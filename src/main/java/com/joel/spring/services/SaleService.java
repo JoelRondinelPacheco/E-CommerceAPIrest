@@ -13,7 +13,7 @@ import java.util.*;
 
 // TODO CAMBIAR STOCK DE PRODUCTOS AL REALIZAR UNA VENTA, Y FIJARSE QUE EL PRODUCTO ES TE DISPONIBLE
 @Service
-public class SaleService implements ICrudService<Sale, SalePostReqDTO, SaleEditReqDTO, Long> {
+public class SaleService implements ISaleService{
     @Autowired
     private ISaleRepository saleRepository;
     @Autowired

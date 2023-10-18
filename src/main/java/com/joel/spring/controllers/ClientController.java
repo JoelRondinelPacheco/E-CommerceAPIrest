@@ -38,7 +38,6 @@ public class ClientController {
     }
 
     // TODO AGREGAR CONTROLLER ADVICER
-
     @PutMapping("edit/{client_id}")
     public ResponseEntity<Client> edit(@RequestBody ClientEditReqDTO body) throws NotFoundException {
         Client client = this.clientService.update(body);

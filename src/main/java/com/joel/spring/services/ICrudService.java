@@ -1,6 +1,5 @@
 package com.joel.spring.services;
 
-import com.joel.spring.dtos.sales.SalePostResDTO;
 import com.joel.spring.exceptions.NotFoundException;
 
 import java.util.List;

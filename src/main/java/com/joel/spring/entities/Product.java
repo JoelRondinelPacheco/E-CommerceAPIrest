@@ -9,7 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
+@Entity(name = "products")
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Setter
