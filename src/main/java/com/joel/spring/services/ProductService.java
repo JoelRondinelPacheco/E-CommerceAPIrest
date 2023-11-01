@@ -58,11 +58,13 @@ public class ProductService implements IProductService {
         return this.productRepository.findAll();
     }
 
+    @Override
     public int updateQuantity(Long id, Double quantity){
     int i = this.productRepository.updateQuantity(id, quantity);
     return i;
     }
 
+    @Override
     public List<Product> getLackStock (Long quantity) {
         return this.productRepository.getLackStock(quantity);
     }

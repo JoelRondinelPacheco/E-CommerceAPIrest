@@ -26,7 +26,7 @@ public class Sale {
     @ManyToMany
     @JoinTable(name = "rel_sales_products", joinColumns = @JoinColumn(name = "sales_id"), inverseJoinColumns = @JoinColumn(name = "products_id"))
     private List<Product> products;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="client_id")
     private Client client;
 

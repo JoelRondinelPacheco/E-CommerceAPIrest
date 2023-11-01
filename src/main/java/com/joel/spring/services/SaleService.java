@@ -13,7 +13,7 @@ import java.util.*;
 
 // TODO CAMBIAR STOCK DE PRODUCTOS AL REALIZAR UNA VENTA, Y FIJARSE QUE EL PRODUCTO ES TE DISPONIBLE
 @Service
-public class SaleService implements ISaleService{
+public class SaleService implements ISaleService {
     @Autowired
     private ISaleRepository saleRepository;
     @Autowired
@@ -58,13 +58,15 @@ public class SaleService implements ISaleService{
 
     @Override
     public Sale update(SaleEditReqDTO body) throws NotFoundException {
-        // TODO VER QUE ERROR GENERA AL PEDIR UNA VENTA CON ID QUE NO EXISTE
-        Sale sale = this.saleRepository.findById(body.getSale_id()).get();
-        Client client = this.clientService.getById(body.getClient_id());
-        sale.setClient(client);
-        //sale.setTotal_price(body.getTotal_price());
-        this.saleRepository.save(sale);
-        return sale;
+        Optional<Sale> saleOptional = this.saleRepository.findById(body.getSale_id());
+        if (saleOptional.isPresent()) {
+            Sale sale = saleOptional.get();
+            Client client = this.clientService.getById(body.getClient_id());
+            sale.setClient(client);
+            this.saleRepository.save(sale);
+            return sale;
+        }
+        throw new NotFoundException("Sale not found");
 
     }
 
@@ -73,18 +75,20 @@ public class SaleService implements ISaleService{
         return this.saleRepository.findAll();
     }
 
+    @Override
     public List<Product> getProducts(Long id) {
         return this.saleRepository.findProductsBySaleId(id);
     }
 
-    //TODO PUNTO 6 QUERY DE TOTAL VENTAS POR FECHA
+    @Override
     public SaleInfoByDateDTO getSaleInfoByDate(Date date) {
         Double total_amount = this.saleRepository.totalAmountByDate(date);
         int total_sales = this.saleRepository.countSalesByDate(date);
         return new SaleInfoByDateDTO(total_amount, total_sales);
     }
 
-    public List<SaleMaxAmountDTO> getMaxAmountSale(){
+    @Override
+    public List<SaleMaxAmountDTO> getMaxAmountSale() {
         List<SaleMaxAmountDTO> max = this.saleRepository.saleMaxAmount();
         return this.saleRepository.saleMaxAmount();
     }

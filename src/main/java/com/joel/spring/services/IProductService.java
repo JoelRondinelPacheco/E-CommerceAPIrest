@@ -4,5 +4,9 @@ import com.joel.spring.dtos.products.ProductEditReqDTO;
 import com.joel.spring.dtos.products.ProductPostReqDTO;
 import com.joel.spring.entities.Product;
 
-public interface IProductService extends ICrudService<Product, ProductPostReqDTO, ProductEditReqDTO, Long>{
+import java.util.List;
+
+public interface IProductService extends ICrudService<Product, ProductPostReqDTO, ProductEditReqDTO, Long> {
+    int updateQuantity(Long id, Double quantity);
+    List<Product> getLackStock(Long quantity);
 }
