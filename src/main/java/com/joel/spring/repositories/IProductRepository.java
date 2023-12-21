@@ -17,5 +17,5 @@ public interface IProductRepository extends JpaRepository<Product, Long> {
     @Query("UPDATE Product p SET p.quantity_available = p.quantity_available - :quantity WHERE p.product_id = :id")
     int updateQuantity(@Param("id") Long id, @Param("quantity") Double quantity);
     @Query("SELECT p FROM Product p WHERE p.quantity_available < :max")
-    List<Product> getLackStock (@Param("max") Long quantity);
+    List<Product> getLackStock (@Param("max") Long max);
 }

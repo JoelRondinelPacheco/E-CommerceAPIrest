@@ -9,7 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity(name = "products")
+@Entity
+@Table(name = "products")
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Setter
@@ -30,7 +31,7 @@ public class Product   {
     @NonNull
     private Double price;
     @NonNull
-    private Double quantity_available;
+    private Long quantity_available;
     @ManyToMany(mappedBy = "products")
     private List<Sale> sales;
 }

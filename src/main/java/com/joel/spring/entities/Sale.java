@@ -11,7 +11,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity(name = "sales")
+@Entity
+@Table(name = "sales")
 @Getter
 @Setter
 public class Sale {
