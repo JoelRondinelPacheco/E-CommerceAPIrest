@@ -23,6 +23,10 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     @Autowired
     IJWTUtilityService jwtUtilityService;
 
+    public JWTAuthorizationFilter(IJWTUtilityService jwtUtilityService) {
+        this.jwtUtilityService = jwtUtilityService;
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
