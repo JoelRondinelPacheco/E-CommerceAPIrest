@@ -4,13 +4,12 @@ import com.joel.spring.dtos.sales.*;
 import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.SaleService;
+import com.joel.spring.services.impl.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 

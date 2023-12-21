@@ -1,10 +1,11 @@
-package com.joel.spring.services;
+package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.products.ProductEditReqDTO;
 import com.joel.spring.dtos.products.ProductPostReqDTO;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.IProductRepository;
+import com.joel.spring.services.IProductService;
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;

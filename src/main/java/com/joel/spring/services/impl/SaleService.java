@@ -1,4 +1,4 @@
-package com.joel.spring.services;
+package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.sales.*;
 import com.joel.spring.entities.UserEntity;
@@ -6,6 +6,7 @@ import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ISaleRepository;
+import com.joel.spring.services.ISaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
