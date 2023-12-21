@@ -17,7 +17,7 @@ import java.util.List;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long client_id;
+    private Long id;
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     private LocalDate created;
