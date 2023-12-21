@@ -26,13 +26,13 @@ public class Sale {
     private List<Product> products;
     @ManyToOne
     @JoinColumn(name="client_id")
-    private UserEntity userEntity;
+    private UserEntity client;
 
     public Sale() {
     }
 
-    public Sale(UserEntity userEntity, List<Product> products, Double total_price) {
-        this.userEntity = userEntity;
+    public Sale(UserEntity client, List<Product> products, Double total_price) {
+        this.client = client;
         this.products = products;
         this.total_price = total_price;
     }

@@ -1,6 +1,5 @@
 package com.joel.spring.dtos.users;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class LoginResDTO {
-    private int numOfErrors;
+public class InvalidFieldDTO {
+    private String field;
     private String message;
 }

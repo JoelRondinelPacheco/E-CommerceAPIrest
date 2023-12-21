@@ -22,6 +22,6 @@ public interface ISaleRepository extends JpaRepository<Sale, Long >{
     int countSalesByDate(@Param("saleDate") Date saleDate);
     @Query("SELECT SUM(s.total_price) FROM Sale s WHERE s.sale_date = :saleDate")
     Double totalAmountByDate(@Param("saleDate") Date saleDate);
-    @Query("SELECT s.sale_id AS saleId, s.total_price AS totalPrice, c.name AS name, c.lastname AS lastName FROM Sale s INNER JOIN UserEntity c ON s.client.client_id = c.client_id WHERE s.total_price = (SELECT MAX(total_price) FROM Sale)")
+    @Query("SELECT s.sale_id AS saleId, s.total_price AS totalPrice, c.firstName AS name, c.lastName AS lastName FROM Sale s INNER JOIN UserEntity c ON s.client.id = c.id WHERE s.total_price = (SELECT MAX(total_price) FROM Sale)")
     List<SaleMaxAmountDTO> saleMaxAmount();
 }

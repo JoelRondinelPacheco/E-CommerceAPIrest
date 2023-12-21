@@ -18,7 +18,7 @@ public class SaleService implements ISaleService {
     @Autowired
     private ISaleRepository saleRepository;
     @Autowired
-    private ClientService clientService;
+    private UserService userService;
     @Autowired
     private ProductService productService;
 
@@ -34,7 +34,7 @@ public class SaleService implements ISaleService {
 
     @Override
     public Sale save(SalePostReqDTO body) throws NotFoundException {
-        UserEntity userEntity = this.clientService.getById(body.getClient_id());
+        UserEntity userEntity = this.userService.getById(body.getClient_id());
         List<Product> products = new ArrayList<>();
         for (Long product_id : body.getProducts() ) {
             Product product = this.productService.getById(product_id);
@@ -62,8 +62,8 @@ public class SaleService implements ISaleService {
         Optional<Sale> saleOptional = this.saleRepository.findById(body.getSale_id());
         if (saleOptional.isPresent()) {
             Sale sale = saleOptional.get();
-            UserEntity userEntity = this.clientService.getById(body.getClient_id());
-            sale.setUserEntity(userEntity);
+            UserEntity userEntity = this.userService.getById(body.getClient_id());
+            sale.setClient(userEntity);
             this.saleRepository.save(sale);
             return sale;
         }

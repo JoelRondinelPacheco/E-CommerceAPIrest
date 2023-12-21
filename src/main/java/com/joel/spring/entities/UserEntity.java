@@ -25,16 +25,16 @@ public class UserEntity {
     private String lastName;
     private String email;
     private String password;
-    private String dni;
     @OneToMany(mappedBy = "client")
     private List<Sale> sales;
 
     public UserEntity() {
     }
 
-    public UserEntity(String firstName, String lastName, String dni) {
+    public UserEntity(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dni = dni;
+        this.email = email;
+        this.password = password;
     }
 }
