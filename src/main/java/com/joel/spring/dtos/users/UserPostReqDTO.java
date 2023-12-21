@@ -1,9 +1,9 @@
-package com.joel.spring.dtos.clients;
+package com.joel.spring.dtos.users;
 
 import lombok.Getter;
 
 @Getter
-public class ClientPostReqDTO {
+public class UserPostReqDTO {
     private String name;
     private String lastname;
     private String dni;

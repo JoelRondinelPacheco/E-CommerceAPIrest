@@ -1,7 +1,7 @@
 package com.joel.spring.services;
 
 import com.joel.spring.dtos.sales.*;
-import com.joel.spring.entities.Client;
+import com.joel.spring.entities.UserEntity;
 import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
@@ -33,7 +33,7 @@ public class SaleService implements ISaleService {
 
     @Override
     public Sale save(SalePostReqDTO body) throws NotFoundException {
-        Client client = this.clientService.getById(body.getClient_id());
+        UserEntity userEntity = this.clientService.getById(body.getClient_id());
         List<Product> products = new ArrayList<>();
         for (Long product_id : body.getProducts() ) {
             Product product = this.productService.getById(product_id);
@@ -46,7 +46,7 @@ public class SaleService implements ISaleService {
             totalPrice += product.getPrice();
         }
 
-        Sale sale = this.saleRepository.save(new Sale(client, products, totalPrice));
+        Sale sale = this.saleRepository.save(new Sale(userEntity, products, totalPrice));
         return sale;
     }
 
@@ -61,8 +61,8 @@ public class SaleService implements ISaleService {
         Optional<Sale> saleOptional = this.saleRepository.findById(body.getSale_id());
         if (saleOptional.isPresent()) {
             Sale sale = saleOptional.get();
-            Client client = this.clientService.getById(body.getClient_id());
-            sale.setClient(client);
+            UserEntity userEntity = this.clientService.getById(body.getClient_id());
+            sale.setUserEntity(userEntity);
             this.saleRepository.save(sale);
             return sale;
         }

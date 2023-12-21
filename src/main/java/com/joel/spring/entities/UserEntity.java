@@ -10,29 +10,31 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "users")
 @Getter
 @Setter
 @JsonIgnoreProperties("sales")
-public class Client {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long client_id;
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     private LocalDate created;
-    private String name;
-    private String lastname;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
     private String dni;
     @OneToMany(mappedBy = "client")
     private List<Sale> sales;
 
-    public Client() {
+    public UserEntity() {
     }
 
-    public Client(String name, String lastname, String dni) {
-        this.name = name;
-        this.lastname = lastname;
+    public UserEntity(String firstName, String lastName, String dni) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dni = dni;
     }
 }

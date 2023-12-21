@@ -1,6 +1,6 @@
 package com.joel.spring.dtos.sales;
 
-import com.joel.spring.entities.Client;
+import com.joel.spring.entities.UserEntity;
 import com.joel.spring.entities.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +19,5 @@ public class SalePostResDTO {
     private LocalDate sale_date;
     private Double total_price;
     private List<Product> products;
-    private Client client;
+    private UserEntity userEntity;
 }

@@ -1,10 +1,7 @@
 package com.joel.spring.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -29,13 +26,13 @@ public class Sale {
     private List<Product> products;
     @ManyToOne
     @JoinColumn(name="client_id")
-    private Client client;
+    private UserEntity userEntity;
 
     public Sale() {
     }
 
-    public Sale(Client client, List<Product> products, Double total_price) {
-        this.client = client;
+    public Sale(UserEntity userEntity, List<Product> products, Double total_price) {
+        this.userEntity = userEntity;
         this.products = products;
         this.total_price = total_price;
     }

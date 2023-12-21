@@ -1,10 +1,10 @@
 package com.joel.spring.services;
 
-import com.joel.spring.dtos.clients.ClientEditReqDTO;
-import com.joel.spring.dtos.clients.ClientPostReqDTO;
-import com.joel.spring.entities.Client;
+import com.joel.spring.dtos.users.UserEditReqDTO;
+import com.joel.spring.dtos.users.UserPostReqDTO;
+import com.joel.spring.entities.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.IClientRepository;
+import com.joel.spring.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,43 +15,43 @@ import java.util.Optional;
 public class ClientService implements IClientService {
 
     @Autowired
-    private IClientRepository clientRepository;
+    private IUserRepository clientRepository;
 
     @Override
-    public Client getById(Long id) throws NotFoundException {
-        Optional<Client> optionalClient =  this.clientRepository.findById(id);
+    public UserEntity getById(Long id) throws NotFoundException {
+        Optional<UserEntity> optionalClient =  this.clientRepository.findById(id);
         if (optionalClient.isPresent()) {
-            Client client = optionalClient.get();
-            return client;
+            UserEntity userEntity = optionalClient.get();
+            return userEntity;
         }
-        throw new NotFoundException("Client not found");
+        throw new NotFoundException("UserEntity not found");
     }
 
     @Override
     @Transactional
-    public Client save(ClientPostReqDTO dto) {
-        return this.clientRepository.save(new Client(dto.getName(), dto.getLastname(), dto.getDni()));
+    public UserEntity save(UserPostReqDTO dto) {
+        return this.clientRepository.save(new UserEntity(dto.getName(), dto.getLastname(), dto.getDni()));
 
     }
 
     @Override
     public String delete(Long id) {
         this.clientRepository.deleteById(id);
-        return "Client deleted";
+        return "UserEntity deleted";
     }
 
     @Override
-    public Client update(ClientEditReqDTO dto) throws NotFoundException {
-        Client client = this.getById(dto.getClient_id());
-        client.setName(dto.getName());
-        client.setLastname(dto.getLastname());
-        client.setDni(dto.getDni());
-        this.clientRepository.save(client);
-        return client;
+    public UserEntity update(UserEditReqDTO dto) throws NotFoundException {
+        UserEntity userEntity = this.getById(dto.getClient_id());
+        userEntity.setName(dto.getName());
+        userEntity.setLastname(dto.getLastname());
+        userEntity.setDni(dto.getDni());
+        this.clientRepository.save(userEntity);
+        return userEntity;
     }
 
     @Override
-    public List<Client> getAll() {
+    public List<UserEntity> getAll() {
         return this.clientRepository.findAll();
     }
 }
