@@ -19,6 +19,11 @@ public class CartService implements ICartService {
 
 
     @Override
+    public void saveByEntity(Cart cart) {
+        this.cartRepository.save(cart);
+    }
+
+    @Override
     public String addProduct(AddProductToCartDTO body, String id) {
         /*if (this.userService.existsById(id)) {
         }*/

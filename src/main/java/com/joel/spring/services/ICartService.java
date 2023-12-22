@@ -6,6 +6,8 @@ import com.joel.spring.exceptions.NotFoundException;
 
 public interface ICartService {
 
+    void saveByEntity(Cart cart);
+
     String addProduct(AddProductToCartDTO body, String id);
 
     Cart findById(String id) throws NotFoundException;
