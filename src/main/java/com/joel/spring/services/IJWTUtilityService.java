@@ -1,5 +1,6 @@
 package com.joel.spring.services;
 
+import com.joel.spring.exceptions.NotFoundException;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jwt.JWTClaimsSet;
 
@@ -10,6 +11,6 @@ import java.text.ParseException;
 
 public interface IJWTUtilityService {
     public String generateJWT(String userId) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException;
-
     public JWTClaimsSet parseJWT(String jwt) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, ParseException, JOSEException;
+    public String getId(String token) throws NotFoundException;
 }

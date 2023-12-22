@@ -1,6 +1,9 @@
 package com.joel.spring.controllers;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
+import com.joel.spring.entities.CartProduct;
+import com.joel.spring.exceptions.NotFoundException;
+import com.joel.spring.services.ICartProductService;
 import com.joel.spring.services.ICartService;
 import com.joel.spring.services.IJWTUtilityService;
 import com.nimbusds.jose.JOSEException;
@@ -25,31 +28,16 @@ import java.text.ParseException;
 public class CartController {
 
     @Autowired private ICartService cartService;
+    @Autowired private ICartProductService cartProductService;
     @Autowired private IJWTUtilityService jwtService;
 
     @PostMapping("/add")
-    public ResponseEntity addProduct(@RequestBody AddProductToCartDTO body, HttpServletRequest request) {
+    public ResponseEntity<CartProduct> addProduct(@RequestBody AddProductToCartDTO body, HttpServletRequest request) throws NotFoundException {
         String token = request.getHeader("Authorization").substring(7);
-        try {
-            JWTClaimsSet claims = this.jwtService.parseJWT(token);
-            String id = claims.getSubject();
+            String id = this.jwtService.getId(token);
+            CartProduct cartProduct = this.cartProductService.saveProduct(body, id);
+            return new ResponseEntity(cartProduct, HttpStatus.OK);
 
-            // Buscar usuario
-            // Buscar cart
-            // Modificar cart
-            String res = this.cartService.addProduct(body, id);
-            return new ResponseEntity(id, HttpStatus.OK);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        } catch (JOSEException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 }

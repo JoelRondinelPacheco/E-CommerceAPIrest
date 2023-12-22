@@ -1,6 +1,7 @@
 package com.joel.spring.services.impl;
 
 import com.fasterxml.jackson.databind.DatabindException;
+import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.IJWTUtilityService;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.RSASSASigner;
@@ -70,6 +71,15 @@ public class JWTUtilityService implements IJWTUtilityService {
         return claimsSet;
     }
 
+    @Override
+    public String getId(String token) throws NotFoundException {
+        try {
+            JWTClaimsSet claims = this.parseJWT(token);
+            return claims.getSubject();
+        } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException | ParseException | JOSEException e) {
+            throw new NotFoundException(e.getMessage());
+        }
+    }
 
 
     private PrivateKey loadPrivateKey(Resource resource) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
