@@ -22,6 +22,7 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.text.ParseException;
 import java.util.Base64;
 import java.util.Date;
@@ -53,7 +54,6 @@ public class JWTUtilityService implements IJWTUtilityService {
     @Override
     public JWTClaimsSet parseJWT(String jwt) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, ParseException, JOSEException {
         PublicKey publicKey = loadPublicKey(publicKeyResource);
-
         SignedJWT signedJWT = SignedJWT.parse(jwt);
         JWSVerifier verifier = new RSASSAVerifier((RSAPublicKey) publicKey);
 
@@ -93,9 +93,10 @@ public class JWTUtilityService implements IJWTUtilityService {
                 .replaceAll("\\s", "");
 
         byte[] decodeKey = Base64.getDecoder().decode(publicKeyPEM);
+
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 
-        return keyFactory.generatePublic(new PKCS8EncodedKeySpec(decodeKey));
+        return keyFactory.generatePublic(new X509EncodedKeySpec(decodeKey));
 
     }
 }
