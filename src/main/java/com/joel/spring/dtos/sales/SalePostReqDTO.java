@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class SalePostReqDTO {
     //private Double total_price;
-    private Long client_id;
-    private List<Long> products;
+    private String clientId;
+    private List<String> products;
 }

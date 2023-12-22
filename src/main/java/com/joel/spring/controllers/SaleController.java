@@ -29,29 +29,29 @@ public class SaleController {
         return this.saleService.getAll();
     }
 
-    @GetMapping("/id/{sale_id}")
-    public ResponseEntity<Sale> getBiId(@PathVariable Long sale_id) throws NotFoundException {
-        return new ResponseEntity<Sale>(this.saleService.getById(sale_id), HttpStatus.FOUND);
+    @GetMapping("/id/{saleId}")
+    public ResponseEntity<Sale> getBiId(@PathVariable String saleId) throws NotFoundException {
+        return new ResponseEntity<Sale>(this.saleService.getById(saleId), HttpStatus.FOUND);
     }
 
-    @DeleteMapping("/delete/{sale_id}")
-    public ResponseEntity<String> delete(@PathVariable Long sale_id) {
-        return new ResponseEntity<String>(this.saleService.delete(sale_id), HttpStatus.OK);
+    @DeleteMapping("/delete/{saleId}")
+    public ResponseEntity<String> delete(@PathVariable String saleId) {
+        return new ResponseEntity<String>(this.saleService.delete(saleId), HttpStatus.OK);
     }
 
-    @PutMapping("/edit/{sale_id}")
-    public ResponseEntity<Sale> update(@RequestBody SaleEditReqDTO body, @PathVariable Long sale_id) throws NotFoundException {
+    @PutMapping("/edit")
+    public ResponseEntity<Sale> update(@RequestBody SaleEditReqDTO body) throws NotFoundException {
         return new ResponseEntity<Sale>(this.saleService.update(body), HttpStatus.OK);
     }
 
-    @GetMapping("/products/{sale_id}")
-    public ResponseEntity<List<Product>> getProducts(@PathVariable Long sale_id) {
-        return new ResponseEntity<List<Product>>(this.saleService.getProducts(sale_id), HttpStatus.FOUND);
+    @GetMapping("/products/{saleId}")
+    public ResponseEntity<List<Product>> getProducts(@PathVariable String saleId) {
+        return new ResponseEntity<List<Product>>(this.saleService.getProducts(saleId), HttpStatus.FOUND);
     }
 
-    @GetMapping("/{sale_date}")
-    public ResponseEntity<SaleInfoByDateDTO> getSaleInfoByDate(@PathVariable Date sale_date) {
-        return new ResponseEntity<>(this.saleService.getSaleInfoByDate(sale_date), HttpStatus.OK);
+    @GetMapping("/{saleDate}")
+    public ResponseEntity<SaleInfoByDateDTO> getSaleInfoByDate(@PathVariable Date saleDate) {
+        return new ResponseEntity<>(this.saleService.getSaleInfoByDate(saleDate), HttpStatus.OK);
     }
 
     @GetMapping("/max")

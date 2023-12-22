@@ -10,5 +10,5 @@ public class ProductPostReqDTO {
     private String name;
     private String brand;
     private Double price;
-    private Long quantity_available;
+    private Long quantityAvailable;
 }

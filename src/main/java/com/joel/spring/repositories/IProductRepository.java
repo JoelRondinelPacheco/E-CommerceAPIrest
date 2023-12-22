@@ -12,10 +12,10 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface IProductRepository extends JpaRepository<Product, Long> {
+public interface IProductRepository extends JpaRepository<Product, String> {
     @Modifying
-    @Query("UPDATE Product p SET p.quantity_available = p.quantity_available - :quantity WHERE p.product_id = :id")
-    int updateQuantity(@Param("id") Long id, @Param("quantity") Double quantity);
-    @Query("SELECT p FROM Product p WHERE p.quantity_available < :max")
+    @Query("UPDATE Product p SET p.quantityAvailable = p.quantityAvailable - :quantity WHERE p.id = :id")
+    int updateQuantity(@Param("id") String id, @Param("quantity") Double quantity);
+    @Query("SELECT p FROM Product p WHERE p.quantityAvailable < :max")
     List<Product> getLackStock (@Param("max") Long max);
 }

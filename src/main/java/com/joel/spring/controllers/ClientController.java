@@ -26,18 +26,18 @@ public class ClientController {
     @GetMapping
     public List<UserEntity> getAll () { return this.userService.getAll(); }
 
-    @GetMapping("/{client_id}")
-    public ResponseEntity<UserEntity> getById (@PathVariable Long id) throws NotFoundException {
-        return new ResponseEntity<UserEntity>(this.userService.getById(id), HttpStatus.FOUND);
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserEntity> getById (@PathVariable String userId) throws NotFoundException {
+        return new ResponseEntity<UserEntity>(this.userService.getById(userId), HttpStatus.FOUND);
     }
 
-    @DeleteMapping("/delete/{client_id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
-        this.userService.delete(id);
+    @DeleteMapping("/delete/{clientId}")
+    public ResponseEntity<String> delete(@PathVariable String clientId) {
+        this.userService.delete(clientId);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
-    @PutMapping("edit/{client_id}")
+    @PutMapping("/edit")
     public ResponseEntity<UserEntity> edit(@RequestBody UserEditReqDTO body) throws NotFoundException {
         UserEntity userEntity = this.userService.update(body);
         return new ResponseEntity<UserEntity>(userEntity, HttpStatus.OK);

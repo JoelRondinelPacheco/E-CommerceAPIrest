@@ -20,11 +20,10 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     @Override
-    public UserEntity getById(Long id) throws NotFoundException {
+    public UserEntity getById(String id) throws NotFoundException {
         Optional<UserEntity> optionalClient =  this.userRepository.findById(id);
         if (optionalClient.isPresent()) {
-            UserEntity userEntity = optionalClient.get();
-            return userEntity;
+            return optionalClient.get();
         }
         throw new NotFoundException("UserEntity not found");
     }
@@ -38,14 +37,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public String delete(Long id) {
+    public String delete(String id) {
         this.userRepository.deleteById(id);
         return "UserEntity deleted";
     }
 
     @Override
     public UserEntity update(UserEditReqDTO dto) throws NotFoundException {
-        UserEntity userEntity = this.getById(dto.getClient_id());
+        UserEntity userEntity = this.getById(dto.getUserId());
         userEntity.setFirstName(dto.getFirstName());
         userEntity.setLastName(dto.getLastName());
         return this.userRepository.save(userEntity);

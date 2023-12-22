@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class UserEditReqDTO extends UserPostReqDTO {
-    private Long client_id;
+    private String userId;
 }

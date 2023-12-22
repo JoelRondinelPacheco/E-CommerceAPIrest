@@ -15,9 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class SalePostResDTO {
-    private Long sale_id;
-    private LocalDate sale_date;
-    private Double total_price;
+    private String saleId;
+    private LocalDate saleDate;
+    private Double totalPrice;
     private List<Product> products;
     private UserEntity userEntity;
 }

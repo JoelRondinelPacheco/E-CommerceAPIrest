@@ -6,8 +6,8 @@ import com.joel.spring.entities.Product;
 
 import java.util.List;
 
-public interface IProductService extends ICrudService<Product, ProductPostReqDTO, ProductEditReqDTO, Long> {
+public interface IProductService extends ICrudService<Product, ProductPostReqDTO, ProductEditReqDTO, String> {
     public Product save(ProductPostReqDTO dto);
-    int updateQuantity(Long id, Double quantity);
+    int updateQuantity(String id, Double quantity);
     List<Product> getLackStock(Long quantity);
 }

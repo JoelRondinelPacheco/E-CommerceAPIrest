@@ -13,15 +13,15 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface ISaleRepository extends JpaRepository<Sale, Long >{
+public interface ISaleRepository extends JpaRepository<Sale, String >{
     @Query("SELECT s.products FROM Sale s WHERE s.id = :saleId")
-    List<Product> findProductsBySaleId(@Param("saleId") Long saleId);
-    @Query("SELECT sales FROM Sale sales WHERE sales.sale_date = :saleDate")
+    List<Product> findProductsBySaleId(@Param("saleId") String saleId);
+    @Query("SELECT sales FROM Sale sales WHERE sales.saleDate = :saleDate")
     List<Sale> getSaleByDate(@Param("saleDate") Date saleDate);
-    @Query("SELECT COUNT(sale) FROM Sale sale WHERE sale.sale_date = :saleDate")
+    @Query("SELECT COUNT(sale) FROM Sale sale WHERE sale.saleDate = :saleDate")
     int countSalesByDate(@Param("saleDate") Date saleDate);
-    @Query("SELECT SUM(s.total_price) FROM Sale s WHERE s.sale_date = :saleDate")
+    @Query("SELECT SUM(s.totalPrice) FROM Sale s WHERE s.saleDate = :saleDate")
     Double totalAmountByDate(@Param("saleDate") Date saleDate);
-    @Query("SELECT s.sale_id AS saleId, s.total_price AS totalPrice, c.firstName AS name, c.lastName AS lastName FROM Sale s INNER JOIN UserEntity c ON s.client.id = c.id WHERE s.total_price = (SELECT MAX(total_price) FROM Sale)")
+    @Query("SELECT s.id AS saleId, s.totalPrice AS totalPrice, c.firstName AS name, c.lastName AS lastName FROM Sale s INNER JOIN UserEntity c ON s.client.id = c.id WHERE s.totalPrice = (SELECT MAX(total_price) FROM Sale)")
     List<SaleMaxAmountDTO> saleMaxAmount();
 }

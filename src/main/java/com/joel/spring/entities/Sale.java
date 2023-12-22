@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,15 +15,14 @@ import java.util.List;
 @Setter
 public class Sale {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long sale_id;
+    @UuidGenerator
+    private String id;
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
-    private LocalDate sale_date;
-    private Double total_price;
-    //TODO complete oneToMany
+    private LocalDate saleDate;
+    private Double totalPrice;
     @ManyToMany
-    @JoinTable(name = "rel_sales_products", joinColumns = @JoinColumn(name = "sales_id"), inverseJoinColumns = @JoinColumn(name = "products_id"))
+    @JoinTable(name = "rel_sales_products", joinColumns = @JoinColumn(name = "sales_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
     @ManyToOne
     @JoinColumn(name="client_id")
@@ -31,9 +31,9 @@ public class Sale {
     public Sale() {
     }
 
-    public Sale(UserEntity client, List<Product> products, Double total_price) {
+    public Sale(UserEntity client, List<Product> products, Double totalPrice) {
         this.client = client;
         this.products = products;
-        this.total_price = total_price;
+        this.totalPrice = totalPrice;
     }
 }

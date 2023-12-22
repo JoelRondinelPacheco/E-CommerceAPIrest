@@ -23,23 +23,22 @@ public class SaleService implements ISaleService {
     private ProductService productService;
 
     @Override
-    public Sale getById(Long id) throws NotFoundException {
+    public Sale getById(String id) throws NotFoundException {
         Optional<Sale> saleOptional = this.saleRepository.findById(id);
         if (saleOptional.isPresent()) {
-            Sale sale = saleOptional.get();
-            return sale;
+            return saleOptional.get();
         }
         throw new NotFoundException("Sale not found");
     }
 
     @Override
     public Sale save(SalePostReqDTO body) throws NotFoundException {
-        UserEntity userEntity = this.userService.getById(body.getClient_id());
+        UserEntity userEntity = this.userService.getById(body.getClientId());
         List<Product> products = new ArrayList<>();
-        for (Long product_id : body.getProducts() ) {
-            Product product = this.productService.getById(product_id);
+        for (String productId : body.getProducts() ) {
+            Product product = this.productService.getById(productId);
             products.add(product);
-            this.productService.updateQuantity( product.getProduct_id(), 1D);
+            this.productService.updateQuantity( product.getId(), 1D);
         }
 
         Double totalPrice = 0D;
@@ -47,25 +46,24 @@ public class SaleService implements ISaleService {
             totalPrice += product.getPrice();
         }
 
-        Sale sale = this.saleRepository.save(new Sale(userEntity, products, totalPrice));
-        return sale;
+        return this.saleRepository.save(new Sale(userEntity, products, totalPrice));
     }
 
     @Override
-    public String delete(Long id) {
+    public String delete(String id) {
         this.saleRepository.deleteById(id);
         return "Product deleted";
     }
 
     @Override
     public Sale update(SaleEditReqDTO body) throws NotFoundException {
-        Optional<Sale> saleOptional = this.saleRepository.findById(body.getSale_id());
+        Optional<Sale> saleOptional = this.saleRepository.findById(body.getSaleId());
         if (saleOptional.isPresent()) {
             Sale sale = saleOptional.get();
-            UserEntity userEntity = this.userService.getById(body.getClient_id());
+            UserEntity userEntity = this.userService.getById(body.getClientId());
             sale.setClient(userEntity);
-            this.saleRepository.save(sale);
-            return sale;
+            return this.saleRepository.save(sale);
+
         }
         throw new NotFoundException("Sale not found");
 
@@ -77,7 +75,7 @@ public class SaleService implements ISaleService {
     }
 
     @Override
-    public List<Product> getProducts(Long id) {
+    public List<Product> getProducts(String id) {
         return this.saleRepository.findProductsBySaleId(id);
     }
 

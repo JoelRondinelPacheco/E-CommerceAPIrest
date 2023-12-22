@@ -9,6 +9,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ProductEditReqDTO extends ProductPostReqDTO{
-    private Long product_id;
+    private String productId;
 
 }

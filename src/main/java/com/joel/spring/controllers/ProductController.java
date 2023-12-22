@@ -28,20 +28,20 @@ public class ProductController {
         return this.productService.getAll();
     }
 
-    @GetMapping("/{product_code}")
-    public ResponseEntity<Product> getById(@PathVariable Long product_code) throws NotFoundException {
-        Product product = this.productService.getById(product_code);
+    @GetMapping("/{productId}")
+    public ResponseEntity<Product> getById(@PathVariable String productId) throws NotFoundException {
+        Product product = this.productService.getById(productId);
             return new ResponseEntity<>(product, HttpStatus.FOUND);
     }
 
-    @DeleteMapping("/delete/{product_code}")
-    public ResponseEntity<String> delete(@PathVariable Long product_code) {
-        this.productService.delete(product_code);
+    @DeleteMapping("/delete/{productId}")
+    public ResponseEntity<String> delete(@PathVariable String productId) {
+        this.productService.delete(productId);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
 
-    @PutMapping("/edit/{product_code}")
+    @PutMapping("/edit")
     public ResponseEntity<Product> edit(@RequestBody ProductEditReqDTO body) throws NotFoundException {
         Product product = this.productService.update(body);
         return new ResponseEntity<Product>(product, HttpStatus.OK);

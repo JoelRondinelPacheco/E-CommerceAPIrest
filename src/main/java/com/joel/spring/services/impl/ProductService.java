@@ -21,7 +21,7 @@ public class ProductService implements IProductService {
 
 
     @Override
-    public Product getById(Long id) throws NotFoundException {
+    public Product getById(String id) throws NotFoundException {
         //TODO verify id != null
         Optional<Product> optionalProduct = this.productRepository.findById(id);
         if (optionalProduct.isPresent()) {
@@ -34,23 +34,22 @@ public class ProductService implements IProductService {
     @Override
     @Transactional
     public Product save(ProductPostReqDTO dto) {
-        Product product = this.productRepository.save(new Product(dto.getName(), dto.getBrand(), dto.getPrice(), dto.getQuantity_available()));
-        return product;
+        return this.productRepository.save(new Product(dto.getName(), dto.getBrand(), dto.getPrice(), dto.getQuantityAvailable()));
     }
 
     @Override
-    public String delete(Long id) {
+    public String delete(String id) {
         this.productRepository.deleteById(id);
         return "Product deleted";
     }
 
     @Override
     public Product update(ProductEditReqDTO dto) throws NotFoundException {
-        Product product = this.getById(dto.getProduct_id());
+        Product product = this.getById(dto.getProductId());
         product.setName(dto.getName());
         product.setBrand(dto.getBrand());
         product.setPrice(dto.getPrice());
-        product.setQuantity_available(dto.getQuantity_available());
+        product.setQuantityAvailable(dto.getQuantityAvailable());
         return this.productRepository.save(product);
     }
 
@@ -60,7 +59,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public int updateQuantity(Long id, Double quantity){
+    public int updateQuantity(String id, Double quantity){
     int i = this.productRepository.updateQuantity(id, quantity);
     return i;
     }

@@ -33,14 +33,14 @@ public class JWTUtilityService implements IJWTUtilityService {
     @Value("classpath:jwtKeys/public_key.pem") private Resource publicKeyResource;
 
     @Override
-    public String generateJWT(Long userId) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException {
+    public String generateJWT(String userId) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException {
         PrivateKey privateKey = loadPrivateKey(privateKeyResource);
 
         JWSSigner signer = new RSASSASigner(privateKey);
 
         Date now = new Date();
         JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
-                .subject(userId.toString())
+                .subject(userId)
                 .issueTime(now)
                 .expirationTime(new Date(now.getTime() + 14400000))
                 .build();

@@ -25,8 +25,6 @@ public class AuthService implements IAuthService {
     @Autowired private IJWTUtilityService jwtUtilityService;
     @Autowired private UserValidation userValidation;
 
-
-    //TODO Cambiar hashmap por dto
     @Override
     public AuthInfoDTO login(LoginDTO login) {
         List<InvalidFieldDTO> errors = new ArrayList<>();
@@ -67,8 +65,9 @@ public class AuthService implements IAuthService {
         AuthInfoDTO response = new AuthInfoDTO();
         boolean exists = this.userService.existsByEmail(user.getEmail());
         if (exists) {
-            response.setResponse("");
+            response.setResponse("Error");
             errors.add(new InvalidFieldDTO("error", "User already exists"));
+            response.setErrors(errors);
             response.setHttpStatusCode(HttpStatus.CONFLICT);
             return response;
         }

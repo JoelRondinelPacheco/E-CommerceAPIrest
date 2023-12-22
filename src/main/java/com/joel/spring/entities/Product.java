@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,8 +20,8 @@ import java.util.List;
 @JsonIgnoreProperties("sales")
 public class Product   {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long product_id;
+    @UuidGenerator
+    private String id;
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     private LocalDate created;
@@ -31,7 +32,9 @@ public class Product   {
     @NonNull
     private Double price;
     @NonNull
-    private Long quantity_available;
+    private Long quantityAvailable;
     @ManyToMany(mappedBy = "products")
     private List<Sale> sales;
+    @ManyToMany(mappedBy = "products")
+    private List<Category> categories;
 }

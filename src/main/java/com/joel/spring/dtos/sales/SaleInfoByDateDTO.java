@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class SaleInfoByDateDTO {
-    private Double total_amount;
-    private int total_sales;
+    private Double totalAmount;
+    private int totalSales;
 }
