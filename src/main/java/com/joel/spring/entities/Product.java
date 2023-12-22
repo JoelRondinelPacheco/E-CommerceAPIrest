@@ -1,6 +1,5 @@
 package com.joel.spring.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,8 +32,13 @@ public class Product   {
     private Double price;
     @NonNull
     private Long quantityAvailable;
+
     @ManyToMany(mappedBy = "products")
     private List<Sale> sales;
+
     @ManyToMany(mappedBy = "products")
     private List<Category> categories;
+
+    @OneToMany(mappedBy = "product")
+    private List<CartProduct> cartsProducts;
 }

@@ -29,6 +29,10 @@ public class UserEntity {
     @OneToMany(mappedBy = "client")
     private List<Sale> sales;
 
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
     public UserEntity() {
     }
 
