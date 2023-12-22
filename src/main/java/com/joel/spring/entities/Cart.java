@@ -19,7 +19,11 @@ public class Cart {
     private String id;
     private Double totalPrice;
 
-    @OneToMany(mappedBy = "cart")
+
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     private List<CartProduct> cartProducts;
+
+    @OneToOne(mappedBy = "cart")
+    private UserEntity user;
 
 }

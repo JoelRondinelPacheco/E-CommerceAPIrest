@@ -9,4 +9,5 @@ public interface IUserService extends ICrudService<UserEntity, UserPostReqDTO, U
     public UserEntity save(UserPostReqDTO dto);
     public UserEntity findByEmail(String email) throws NotFoundException;
     boolean existsByEmail(String email);
+    boolean existsById(String id);
 }

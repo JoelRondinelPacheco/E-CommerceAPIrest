@@ -29,14 +29,15 @@ public class CartController {
 
     @PostMapping("/add")
     public ResponseEntity addProduct(@RequestBody AddProductToCartDTO body, HttpServletRequest request) {
-        String header = request.getHeader("Authorization");
-        if (header == null || !header.startsWith("Bearer ")) {
-            return new ResponseEntity("Invalid credentials" , HttpStatus.UNAUTHORIZED);
-        }
-        String token = header.substring(7);
+        String token = request.getHeader("Authorization").substring(7);
         try {
             JWTClaimsSet claims = this.jwtService.parseJWT(token);
             String id = claims.getSubject();
+
+            // Buscar usuario
+            // Buscar cart
+            // Modificar cart
+            String res = this.cartService.addProduct(body, id);
             return new ResponseEntity(id, HttpStatus.OK);
         } catch (IOException e) {
             throw new RuntimeException(e);

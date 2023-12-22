@@ -68,4 +68,9 @@ public class UserService implements IUserService {
     public boolean existsByEmail(String email) {
         return this.userRepository.existsByEmail(email);
     }
+
+    @Override
+    public boolean existsById(String id) {
+        return this.userRepository.existsById(id);
+    }
 }
