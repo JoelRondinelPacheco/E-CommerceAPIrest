@@ -1,6 +1,7 @@
 package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.users.UserEditReqDTO;
+import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import com.joel.spring.dtos.users.UserPostReqDTO;
 import com.joel.spring.entities.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
@@ -72,5 +73,14 @@ public class UserService implements IUserService {
     @Override
     public boolean existsById(String id) {
         return this.userRepository.existsById(id);
+    }
+
+    @Override
+    public UserPersonalInfoDTO getUserPersonalInfo(String id) throws NotFoundException {
+        Optional<UserPersonalInfoDTO> optional = this.userRepository.getUserPersonalInfo(id);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+        throw new NotFoundException("User not found");
     }
 }

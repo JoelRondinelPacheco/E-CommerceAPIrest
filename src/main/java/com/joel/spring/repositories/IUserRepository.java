@@ -1,8 +1,10 @@
 package com.joel.spring.repositories;
 
+import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import com.joel.spring.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -14,4 +16,7 @@ public interface IUserRepository extends JpaRepository<UserEntity, String> {
     Optional<UserEntity> findByEmail(String email);
 
     boolean existsByEmail(String email);
+
+    @Query("SELECT new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id AS id, u.firstName AS firstName, u.lastName AS lastName, u.email AS email) FROM UserEntity u WHERE u.id = :userId")
+    Optional<UserPersonalInfoDTO> getUserPersonalInfo(@Param("userId") String userId);
 }

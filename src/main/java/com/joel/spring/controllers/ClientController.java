@@ -1,10 +1,10 @@
 package com.joel.spring.controllers;
 
 import com.joel.spring.dtos.users.UserEditReqDTO;
-import com.joel.spring.dtos.users.UserPostReqDTO;
+import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import com.joel.spring.entities.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.impl.UserService;
+import com.joel.spring.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,19 +16,14 @@ import java.util.List;
 @RequestMapping("/clients")
 public class ClientController {
     @Autowired
-    private UserService userService;
-
-    @PostMapping("/create")
-    public ResponseEntity<UserEntity> crate(@RequestBody UserPostReqDTO body) {
-        return new ResponseEntity<UserEntity>(this.userService.save(body), HttpStatus.OK);
-    }
+    private IUserService userService;
 
     @GetMapping
     public List<UserEntity> getAll () { return this.userService.getAll(); }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserEntity> getById (@PathVariable String userId) throws NotFoundException {
-        return new ResponseEntity<UserEntity>(this.userService.getById(userId), HttpStatus.FOUND);
+    public ResponseEntity<UserPersonalInfoDTO> getById (@PathVariable String userId) throws NotFoundException {
+        return new ResponseEntity<>(this.userService.getUserPersonalInfo(userId), HttpStatus.FOUND);
     }
 
     @DeleteMapping("/delete/{clientId}")

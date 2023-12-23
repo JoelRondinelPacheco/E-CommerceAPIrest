@@ -5,6 +5,8 @@ import com.joel.spring.dtos.users.*;
 import com.joel.spring.services.IAuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,11 +23,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
-@Tag(name = "Authorization/Authentication", description = "Operations pertaining to products in the Product Management System")
+@Tag(name = "Authorization/Authentication", description = "Operations pertaining to login a register users")
 public class AuthController {
-
-    @Autowired private IAuthService authService;
-    @Autowired private ValidationsConfig validations;
 
     @Operation(summary = "Register", description = "Register new user")
     @ApiResponses(value = {
@@ -48,8 +47,16 @@ public class AuthController {
         }
         return new ResponseEntity<>(res, info.getHttpStatusCode());
     }
+    @Autowired private IAuthService authService;
 
-    @Valid
+    @Autowired private ValidationsConfig validations;
+
+    @Operation(summary = "Login", description = "Authenticate user")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "400", description = "Bad Request. Campos invalidos para el login"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized. Credenciales invalidas"),
+            @ApiResponse(responseCode = "200", description = "OK. Usuario logeado")}
+    )
     @PostMapping("/login")
     private ResponseEntity<List<AuthResDTO>> login(@RequestBody LoginDTO body) {
         List<AuthResDTO> res = new ArrayList<>();
