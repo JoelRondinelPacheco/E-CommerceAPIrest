@@ -12,6 +12,6 @@ import java.util.List;
 @Builder
 @Data
 public class AuthResDTO {
-    private String response;
-    private List<InvalidFieldDTO> errors;
+    private String field;
+    private String message;
 }

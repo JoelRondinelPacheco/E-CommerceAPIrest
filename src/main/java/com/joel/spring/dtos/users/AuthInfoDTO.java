@@ -16,5 +16,5 @@ import java.util.List;
 public class AuthInfoDTO {
     private String response;
     private HttpStatusCode httpStatusCode;
-    private List<InvalidFieldDTO> errors;
+    private List<AuthResDTO> errors;
 }

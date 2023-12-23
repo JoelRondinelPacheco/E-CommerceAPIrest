@@ -1,9 +1,6 @@
 package com.joel.spring.services.impl;
 
-import com.joel.spring.dtos.users.InvalidFieldDTO;
-import com.joel.spring.dtos.users.LoginDTO;
-import com.joel.spring.dtos.users.AuthInfoDTO;
-import com.joel.spring.dtos.users.UserPostReqDTO;
+import com.joel.spring.dtos.users.*;
 import com.joel.spring.entities.Cart;
 import com.joel.spring.entities.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
@@ -31,31 +28,30 @@ public class AuthService implements IAuthService {
 
     @Override
     public AuthInfoDTO login(LoginDTO login) {
-        List<InvalidFieldDTO> errors = new ArrayList<>();
+        List<AuthResDTO> errors = new ArrayList<>();
         AuthInfoDTO response = new AuthInfoDTO();
         try {
             UserEntity user = this.userService.findByEmail(login.getEmail());
             if (verifyPassword(login.getPassword(), user.getPassword())) {
                 response.setResponse(jwtUtilityService.generateJWT(user.getId()));
-                response.setErrors(new ArrayList<InvalidFieldDTO>());
+                response.setErrors(errors);
                 response.setHttpStatusCode(HttpStatus.OK);
-                return response;
             } else {
-                errors.add(new InvalidFieldDTO("error", "User or password invalid"));
+                errors.add(new AuthResDTO("error", "User or password invalid"));
                 response.setResponse("Error");
                 response.setErrors(errors);
                 response.setHttpStatusCode(HttpStatus.UNAUTHORIZED);
-                return response;
             }
+            return response;
         } catch (NotFoundException e) {
-            errors.add(new InvalidFieldDTO("error", "User or password invalid"));
+            errors.add(new AuthResDTO("error", "User or password invalid"));
             response.setResponse("Error");
             response.setErrors(errors);
             response.setHttpStatusCode(HttpStatus.UNAUTHORIZED);
             return response;
         }
         catch (Exception e) {
-            errors.add(new InvalidFieldDTO("error", e.getMessage()));
+            errors.add(new AuthResDTO("error", e.getMessage()));
             response.setResponse("Error");
             response.setErrors(errors);
             response.setHttpStatusCode(HttpStatus.BAD_REQUEST);
@@ -65,12 +61,11 @@ public class AuthService implements IAuthService {
 
     @Override
     public AuthInfoDTO register(UserPostReqDTO user) {
-        List<InvalidFieldDTO> errors = new ArrayList<>();
+        List<AuthResDTO> errors = new ArrayList<>();
         AuthInfoDTO response = new AuthInfoDTO();
         boolean exists = this.userService.existsByEmail(user.getEmail());
         if (exists) {
-            response.setResponse("Error");
-            errors.add(new InvalidFieldDTO("error", "User already exists"));
+            errors.add(new AuthResDTO("error", "User already exists"));
             response.setErrors(errors);
             response.setHttpStatusCode(HttpStatus.CONFLICT);
             return response;
@@ -82,7 +77,7 @@ public class AuthService implements IAuthService {
                 .user(userSaved)
                 .build();
         this.cartService.saveByEntity(cart);
-        response.setResponse("User created successfully");
+        response.setResponse("User registered");
         response.setErrors(errors);
         response.setHttpStatusCode(HttpStatus.CREATED);
         return response;
