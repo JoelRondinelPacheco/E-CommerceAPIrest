@@ -21,11 +21,11 @@ public class UserValidation {
             response.add(new InvalidFieldDTO("lastName", "El campo lastName no puede ser nulo, y tiene que tener entre 3 y 30 caracteres"));
         }
 
-        if (user.getEmail() == null || !user.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+        if (user.getEmail() == null || user.getEmail().isBlank() || !user.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
             response.add(new InvalidFieldDTO("email", "El email no es valido"));
         }
 
-        if (user.getPassword() == null || !user.getPassword().matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,16}$")) {
+        if (user.getPassword() == null || user.getPassword().isEmpty() || !user.getPassword().matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,16}$")) {
             response.add(new InvalidFieldDTO("password", "La contraseña debe tener entre 8 y 6 caracteress, al menos un numero, una minuscula y una mayuscula"));
         }
         return response;
@@ -33,11 +33,11 @@ public class UserValidation {
 
     public List<InvalidFieldDTO> loginValidation(LoginDTO login) {
         List<InvalidFieldDTO> response = new ArrayList<>();
-        if (login.getEmail().isBlank() || !login.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+        if (login.getEmail() == null || login.getEmail().isBlank() || !login.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
             response.add(new InvalidFieldDTO("email", "Ingrese un email valido"));
         }
 
-        if (login.getPassword().isBlank()) {
+        if (login.getEmail() == null || login.getPassword().isBlank()) {
             response.add(new InvalidFieldDTO("password", "Contraseña invalida"));
         }
 

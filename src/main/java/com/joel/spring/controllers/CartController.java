@@ -3,7 +3,6 @@ package com.joel.spring.controllers;
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cart.ProductInfoDTO;
 import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
-import com.joel.spring.dtosbuilder.CartDTOBuilder;
 import com.joel.spring.entities.CartProduct;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.ICartProductService;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/cart")
 public class CartController {
@@ -28,16 +26,16 @@ public class CartController {
 
 
     @GetMapping("/products")
-    public ResponseEntity getCartProducts(HttpServletRequest request) throws NotFoundException {
+    public ResponseEntity<List<ProductInfoDTO>> getCartProducts(HttpServletRequest request) throws NotFoundException {
         String id = this.jwtService.getId(request.getHeader("Authorization").substring(7));
-        return new ResponseEntity(this.cartService.getUserCard(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.cartService.getUserCard(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")
     public ResponseEntity<CartProduct> addProduct(@RequestBody AddProductToCartDTO body, HttpServletRequest request) throws NotFoundException {
         String id = this.jwtService.getId(request.getHeader("Authorization").substring(7));
         CartProduct cartProduct = this.cartProductService.saveProduct(body, id);
-        return new ResponseEntity(cartProduct, HttpStatus.OK);
+        return new ResponseEntity<>(cartProduct, HttpStatus.OK);
     }
 
     @DeleteMapping("/remove/{cartProductId}")
