@@ -42,9 +42,12 @@ public class CartProductService implements ICartProductService {
     }
 
     @Override
-    public void deleteProduct(String productId) throws NotFoundException {
-        //TODO REVISAR SI NO DA ERROR AL ELIMINAR
-        this.cartProductRepository.deleteById(productId);
+    public void deleteProduct(String cartProductId) throws NotFoundException {
+        if (this.cartProductRepository.existsById(cartProductId)) {
+            this.cartProductRepository.deleteById(cartProductId);
+            return;
+        }
+        throw new NotFoundException("Cart product not found");
     }
 
     @Override

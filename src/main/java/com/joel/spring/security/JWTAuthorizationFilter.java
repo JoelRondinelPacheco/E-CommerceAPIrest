@@ -43,15 +43,26 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException | ParseException | JOSEException e) {
+            throw new ServletException("Error" + e.getCause() + " | " + e.getMessage());
+        }
+        /*catch (NoSuchAlgorithmException e) {
+            System.out.println("NoSuchAlgorithmException");
+            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         } catch (InvalidKeySpecException e) {
+            System.out.println("InvalidKeySpecException");
+            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         } catch (ParseException e) {
+            System.out.println("ParseException");
+            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         } catch (JOSEException e) {
+            System.out.println("JOSEException");
+            System.out.println(e.getMessage());
             throw new RuntimeException(e);
-        }
+        }*/
 
         filterChain.doFilter(request, response);
     }
