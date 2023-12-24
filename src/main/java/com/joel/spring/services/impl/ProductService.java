@@ -7,6 +7,7 @@ import com.joel.spring.entities.Category;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.IProductRepository;
+import com.joel.spring.services.ICategoryService;
 import com.joel.spring.services.IProductService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,8 @@ public class ProductService implements IProductService {
                         .brand(dto.getBrand())
                         .price(dto.getPrice())
                         .stock(dto.getStock())
-
-                        .);
+                        .categories(categories)
+                        .build());
     }
 
     @Override
