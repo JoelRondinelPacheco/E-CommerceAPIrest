@@ -1,6 +1,6 @@
 package com.joel.spring.dtos.products;
 
-import com.joel.spring.entities.Category;
+import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,5 +18,5 @@ public class ProductInfoDTO {
     private String brand;
     private Double price;
     private Long stock;
-    private List<Category> categories;
+    private CategoryParentInfoDTO category;
 }

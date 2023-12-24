@@ -93,8 +93,5 @@ public class ProductService implements IProductService {
                 .categories(product.getCategories())
                 .build();
     }
-    /*
-    private Product product(ProductPostReqDTO dto) {
 
-    }*/
 }
