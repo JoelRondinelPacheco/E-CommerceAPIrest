@@ -2,6 +2,8 @@ package com.joel.spring.dtos.products;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,5 +12,6 @@ public class ProductPostReqDTO {
     private String name;
     private String brand;
     private Double price;
-    private Long quantityAvailable;
+    private Long stock;
+    private List<String> categoriesId;
 }

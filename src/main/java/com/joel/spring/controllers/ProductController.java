@@ -1,6 +1,7 @@
 package com.joel.spring.controllers;
 
 import com.joel.spring.dtos.products.ProductEditReqDTO;
+import com.joel.spring.dtos.products.ProductInfoDTO;
 import com.joel.spring.dtos.products.ProductPostReqDTO;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
@@ -19,8 +20,8 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/create")
-    public ResponseEntity<Product> create(@RequestBody ProductPostReqDTO body) {
-        return new ResponseEntity<Product>( this.productService.save(body), HttpStatus.CREATED);
+    public ResponseEntity<ProductInfoDTO> create(@RequestBody ProductPostReqDTO body) {
+        return new ResponseEntity<>( this.productService.saveAndReturnDTO(body), HttpStatus.CREATED);
     }
 
     @GetMapping

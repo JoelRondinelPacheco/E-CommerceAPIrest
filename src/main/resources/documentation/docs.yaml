@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: Ecommerce APIrest - OpenAPI 3.1
+  description: |-
+    Api rest para un ecommerce
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Authentication
+    description: Login y register users
+  - name: Products
+    description: CRUD for products
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Loggin a user
+      description: Endpoint for login user to te system
+      operationId: loginuser
+      requestBody:
+        description: Body request for login
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginDTO'
+      responses:
+        '200':
+          description: Ok. Successful login
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthResDTO'
+                example:
+                  - field: Token
+                    message: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5d
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthResDTO'
+                example:
+                  - field: Error 1
+                    message: Message error 1
+                  - field: Error 2
+                    message: Message error 2
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register a new user
+      description: Register a new user to the system
+      operationId: registerUser
+      requestBody:
+        description: Body request register user
+        required: true
+        content:
+          application/json:
+            schema:
+               $ref: '#/components/schemas/ProductPostReqDTO'
+      responses:
+        '201':
+          description: Created. User registered
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/AuthResDTO'
+                example:
+                  - field: Ok.
+                    message: "User registered"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/AuthResDTO'
+                example:
+                  - field: Error 1
+                    message: Message error 1
+                  - field: Error 2
+                    message: Message error 2
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '409':
+          description: Conflict. User already exists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/AuthResDTO'
+                example:
+                  - field: error
+                    message: Usser already exists
+  /products/create:
+    post:
+      tags:
+        - Products
+      summary: CRUD products
+      operationId: productsCRUD
+      requestBody:
+        description: Body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/schemas/ProductPostReqDTO'
+
+components:
+  schemas:
+    LoginDTO:
+      type: object
+      properties:
+        email:
+          type: string
+          example: email@example.com
+        password:
+          type: string
+          example: 'Password123'
+      required:
+        - email
+        - password
+    UserPostReqDTO:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Joel
+        lastName:
+          type: string
+          example: Rondinel Pacheco
+        email:
+          type: string
+          example: joelrondinel@mail.com
+        password:
+          type: string
+          example: Password123
+      required:
+        - firstName
+        - lastName
+        - email
+        - password
+    ListAuthResDTO:
+      type: array
+      items:
+        $ref: '#components/schemas/AuthResDTO'
+    AuthResDTO:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+    ProductPostReqDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        brand:
+          type: string
+        price:
+          type: number
+          format: dobule
+        stock:
+          type: number
+  responses:
+    401Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          example: {}
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+          

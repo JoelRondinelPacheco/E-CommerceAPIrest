@@ -12,9 +12,10 @@ import java.util.List;
 @Entity
 @Table(name = "products")
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Setter
 @Getter
+@Builder
 @ToString
 @JsonIgnoreProperties("sales")
 public class Product   {
@@ -31,7 +32,7 @@ public class Product   {
     @NonNull
     private Double price;
     @NonNull
-    private Long quantityAvailable;
+    private Long stock;
 
     @ManyToMany(mappedBy = "products")
     private List<Sale> sales;

@@ -23,15 +23,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
-@Tag(name = "Authorization/Authentication", description = "Operations pertaining to login a register users")
 public class AuthController {
 
-    @Operation(summary = "Register", description = "Register new user")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "400", description = "Bad Request. Campos invalidos para el registro"),
-            @ApiResponse(responseCode = "409", description = "Conflict. Ya existe un usuario registrado con ese email"),
-            @ApiResponse(responseCode = "201", description = "Created. Usuario registrado")}
-    )
+    @Autowired private IAuthService authService;
+    @Autowired private ValidationsConfig validations;
+
     @PostMapping("/register")
     private ResponseEntity<List<AuthResDTO>> register(@RequestBody UserPostReqDTO body) {
         List<AuthResDTO> res = new ArrayList<>();
@@ -47,16 +43,7 @@ public class AuthController {
         }
         return new ResponseEntity<>(res, info.getHttpStatusCode());
     }
-    @Autowired private IAuthService authService;
 
-    @Autowired private ValidationsConfig validations;
-
-    @Operation(summary = "Login", description = "Authenticate user")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "400", description = "Bad Request. Campos invalidos para el login"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized. Credenciales invalidas"),
-            @ApiResponse(responseCode = "200", description = "OK. Usuario logeado")}
-    )
     @PostMapping("/login")
     private ResponseEntity<List<AuthResDTO>> login(@RequestBody LoginDTO body) {
         List<AuthResDTO> res = new ArrayList<>();
