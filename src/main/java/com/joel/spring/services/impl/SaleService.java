@@ -8,6 +8,8 @@ import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ISaleRepository;
 import com.joel.spring.services.IProductService;
 import com.joel.spring.services.ISaleService;
+import com.joel.spring.services.IUserService;
+import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.sales.BuildSalesDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,10 @@ import java.util.*;
 @Service
 public class SaleService implements ISaleService {
     @Autowired private ISaleRepository saleRepository;
-    @Autowired private UserService userService;
+    @Autowired private IUserService userService;
     @Autowired private IProductService productService;
     @Autowired private BuildSalesDTOs salesDTOs;
+    @Autowired private CheckOptional checkOptional;
 
     @Override
     public Sale getById(String id) throws NotFoundException {
@@ -106,5 +109,11 @@ public class SaleService implements ISaleService {
             s.setProducts(this.productService.getProductnInfoBySaleId(s.getSaleId()));
         }
         return sales;
+    }
+
+    @Override
+    public SaleInfoDTO getByIdDTO(String saleId) throws NotFoundException{
+        Optional<SaleInfoDTO> optional = this.saleRepository.getSaleByIdDTO(saleId);
+        return this.checkOptional.checkOptionalOk(optional, "Sale");
     }
 }

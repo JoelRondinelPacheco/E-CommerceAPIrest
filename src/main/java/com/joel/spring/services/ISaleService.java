@@ -1,5 +1,6 @@
 package com.joel.spring.services;
 
+import com.joel.spring.dtos.products.ProductInfoDTO;
 import com.joel.spring.dtos.sales.*;
 import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
@@ -17,4 +18,7 @@ public interface ISaleService extends ICrudService<Sale, SalePostReqDTO, SaleEdi
     SaleInfoDTO saveDTO(SalePostReqDTO body) throws NotFoundException;
 
     List<SaleInfoDTO> getAllDTO();
+
+    SaleInfoDTO getByIdDTO(String saleId) throws NotFoundException;
+
 }

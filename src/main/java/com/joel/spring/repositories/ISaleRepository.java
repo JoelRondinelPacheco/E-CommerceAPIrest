@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ISaleRepository extends JpaRepository<Sale, String >{
@@ -29,4 +30,8 @@ public interface ISaleRepository extends JpaRepository<Sale, String >{
     @Query("SELECT new com.joel.spring.dtos.sales.SaleInfoDTO(s.id, s.totalPrice," +
             " new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id, u.firstName, u.lastName, u.email)) FROM Sale s JOIN UserEntity u")
     List<SaleInfoDTO> getAllSalesDTOs();
+
+    @Query("SELECT new com.joel.spring.dtos.sales.SaleInfoDTO(s.id, s.totalPrice," +
+            " new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id, u.firstName, u.lastName, u.email)) FROM Sale s JOIN UserEntity u WHERE s.id =:saleId")
+    Optional<SaleInfoDTO> getSaleByIdDTO(@Param(("saleId")) String saleId);
 }

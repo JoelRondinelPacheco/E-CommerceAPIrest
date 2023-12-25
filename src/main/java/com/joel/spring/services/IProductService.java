@@ -17,5 +17,5 @@ public interface IProductService extends ICrudService<Product, ProductPostReqDTO
     List<ProductInfoDTO> getLackStock(Long quantity);
 
     List<ProductInfoDTO> getAllDTO();
-    List<ProductInfoDTO> getProductnInfoBySaleId(String saleId);
+    List<ProductInfoDTO> getProductInfoBySaleId(String saleId);
 }

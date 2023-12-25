@@ -125,7 +125,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductInfoDTO> getProductnInfoBySaleId(String saleId) {
+    public List<ProductInfoDTO> getProductInfoBySaleId(String saleId) {
         return this.productRepository.getProductInfoBySaleId(saleId);
     }
 
