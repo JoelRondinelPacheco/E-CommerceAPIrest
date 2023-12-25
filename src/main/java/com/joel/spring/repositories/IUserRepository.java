@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,4 +20,6 @@ public interface IUserRepository extends JpaRepository<UserEntity, String> {
 
     @Query("SELECT new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id AS id, u.firstName AS firstName, u.lastName AS lastName, u.email AS email) FROM UserEntity u WHERE u.id = :userId")
     Optional<UserPersonalInfoDTO> getUserPersonalInfo(@Param("userId") String userId);
+    @Query("SELECT new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id AS id, u.firstName AS firstName, u.lastName AS lastName, u.email AS email) FROM UserEntity u")
+    List<UserPersonalInfoDTO> getAllDTO();
 }

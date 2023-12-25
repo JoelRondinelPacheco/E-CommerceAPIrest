@@ -7,6 +7,8 @@ import com.joel.spring.entities.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.IUserRepository;
 import com.joel.spring.services.IUserService;
+import com.joel.spring.utils.CheckOptional;
+import com.joel.spring.utils.users.BuildUsersDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,9 @@ import java.util.Optional;
 @Service
 public class UserService implements IUserService {
 
-    @Autowired
-    private IUserRepository userRepository;
+    @Autowired private IUserRepository userRepository;
+    @Autowired private CheckOptional checkOptional;
+    @Autowired private BuildUsersDTOs usersDTOs;
 
     @Override
     public UserEntity getById(String id) throws NotFoundException {
@@ -78,9 +81,16 @@ public class UserService implements IUserService {
     @Override
     public UserPersonalInfoDTO getUserPersonalInfo(String id) throws NotFoundException {
         Optional<UserPersonalInfoDTO> optional = this.userRepository.getUserPersonalInfo(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        throw new NotFoundException("User not found");
+        return this.checkOptional.checkOptionalOk(optional, "User");
+    }
+
+    @Override
+    public List<UserPersonalInfoDTO> getAllDTO() {
+        return this.userRepository.getAllDTO();
+    }
+
+    @Override
+    public UserPersonalInfoDTO updateDTO(UserEditReqDTO body) throws NotFoundException{
+        return this.usersDTOs.userPersonalInfoDTO(this.update(body));
     }
 }

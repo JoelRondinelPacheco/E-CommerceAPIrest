@@ -19,4 +19,12 @@ public class CheckOptional {
         throw new NotFoundException(className + " not found");
     }
 
+    public <T> T checkOptionalOk(Optional<T> optional, String className) throws NotFoundException {
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+
+        throw new NotFoundException(className + " not found");
+    }
+
 }
