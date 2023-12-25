@@ -5,6 +5,7 @@ import com.joel.spring.dtos.products.ProductInfoDTO;
 import com.joel.spring.dtos.products.ProductPostReqDTO;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
+import com.joel.spring.services.IProductService;
 import com.joel.spring.services.impl.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     @Autowired
-    private ProductService productService;
+    private IProductService productService;
 
     @PostMapping("/create")
     public ResponseEntity<ProductInfoDTO> create(@RequestBody ProductPostReqDTO body) {
@@ -25,8 +26,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAll() {
-        return this.productService.getAll();
+    public List<ProductInfoDTO> getAll() {
+        return this.productService.getAllDTO();
     }
 
     @GetMapping("/{productId}")

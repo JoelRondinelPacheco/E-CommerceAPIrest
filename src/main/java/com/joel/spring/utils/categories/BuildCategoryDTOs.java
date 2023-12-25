@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class BuildDTOs {
-    public CategoryParentInfoDTO categoryInfoDTO(Category category) {
-        List<CategoryInfoDTO> children = this.categoryChildrenInfoDTOSList(category.getChildren());
+public class BuildCategoryDTOs {
+    public CategoryParentInfoDTO categoryParentInfoDTO(Category category) {
+        List<CategoryInfoDTO> children = this.categoryInfoDTOSList(category.getChildren());
         return CategoryParentInfoDTO.builder()
                 .id(category.getId())
                 .name(category.getName())
@@ -20,7 +20,15 @@ public class BuildDTOs {
                 .build();
     }
 
-    public CategoryInfoDTO categoryChildrenInfoDTO(Category category) {
+    public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<Category> categories) {
+        List<CategoryParentInfoDTO> categoriesDTO = new ArrayList<>();
+        for (Category category : categories) {
+            categoriesDTO.add(this.categoryParentInfoDTO(category));
+        }
+        return categoriesDTO;
+    }
+
+    public CategoryInfoDTO categoryInfoDTO(Category category) {
         return CategoryInfoDTO.builder()
                 .id(category.getId())
                 .name(category.getName())
@@ -28,10 +36,10 @@ public class BuildDTOs {
                 .build();
     }
 
-    public List<CategoryInfoDTO> categoryChildrenInfoDTOSList(List<Category> categories) {
+    public List<CategoryInfoDTO> categoryInfoDTOSList(List<Category> categories) {
         List<CategoryInfoDTO> children = new ArrayList<>();
         for (Category category : categories) {
-            children.add(this.categoryChildrenInfoDTO(category));
+            children.add(this.categoryInfoDTO(category));
         }
         return children;
     }

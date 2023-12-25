@@ -1,5 +1,6 @@
 package com.joel.spring.services.impl;
 
+import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
 import com.joel.spring.dtos.products.ProductEditReqDTO;
 import com.joel.spring.dtos.products.ProductInfoDTO;
 import com.joel.spring.dtos.products.ProductPostReqDTO;
@@ -9,6 +10,7 @@ import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.IProductRepository;
 import com.joel.spring.services.ICategoryService;
 import com.joel.spring.services.IProductService;
+import com.joel.spring.utils.categories.BuildCategoryDTOs;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ import java.util.Optional;
 public class ProductService implements IProductService {
     @Autowired private IProductRepository productRepository;
     @Autowired private ICategoryService categoryService;
-
+    @Autowired private BuildCategoryDTOs categoryDTOs;
 
     @Override
     public Product getById(String id) throws NotFoundException {
@@ -83,14 +85,26 @@ public class ProductService implements IProductService {
         return this.productRepository.getLackStock(quantity);
     }
 
+    @Override
+    public List<ProductInfoDTO> getAllDTO() {
+        List<ProductInfoDTO> list = this.productRepository.getAllDTOs();
+        for (ProductInfoDTO product : list) {
+            List<String> categories = this.categoryService.categoriesIdByProduct(product.getId());
+            List<CategoryParentInfoDTO> categoriesInfo = this.categoryService.categoryParentInfoDTOList(categories);
+            product.setCategories(categoriesInfo);
+        }
+        return list;
+    }
+
     private ProductInfoDTO productInfoDTO(Product product) {
+        List<CategoryParentInfoDTO> categories = this.categoryDTOs.categoryParentInfoDTOList(product.getCategories());
         return ProductInfoDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
                 .brand(product.getBrand())
                 .price(product.getPrice())
                 .stock(product.getStock())
-                .categories(product.getCategories())
+                .categories(categories)
                 .build();
     }
 

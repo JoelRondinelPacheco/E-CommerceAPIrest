@@ -18,5 +18,13 @@ public class ProductInfoDTO {
     private String brand;
     private Double price;
     private Long stock;
-    private CategoryParentInfoDTO category;
+    private List<CategoryParentInfoDTO> categories;
+
+    public ProductInfoDTO(String id, String name, String brand, Double price, Long stock) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.stock = stock;
+    }
 }
