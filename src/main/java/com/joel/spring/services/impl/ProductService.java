@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public ProductInfoDTO updateDTO(ProductEditReqDTO dto) throws NotFoundException {
+        return this.productInfoDTO(this.update(dto));
+
+    }
+
+    @Override
     public ProductInfoDTO getDTOById(String id) throws NotFoundException {
         Optional<ProductInfoDTO> optional = this.productRepository.getDTOById(id);
         ProductInfoDTO product = this.checkOptional.checkOptionalOk(optional);
@@ -77,6 +84,15 @@ public class ProductService implements IProductService {
         product.setBrand(dto.getBrand());
         product.setPrice(dto.getPrice());
         product.setStock(dto.getStock());
+        List<Category> categories = new ArrayList<>();
+        for (String id : dto.getCategoriesId()) {
+            try {
+                categories.add(this.categoryService.getCategoryById(id));
+            } catch (NotFoundException e) {
+                continue;
+            }
+        }
+        product.setCategories(categories);
         return this.productRepository.save(product);
     }
 

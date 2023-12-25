@@ -34,12 +34,12 @@ public class Product   {
     @NonNull
     private Long stock;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private List<Sale> sales;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private List<Category> categories;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<CartProduct> cartsProducts;
 }

@@ -43,9 +43,8 @@ public class ProductController {
 
 
     @PutMapping("/edit")
-    public ResponseEntity<Product> edit(@RequestBody ProductEditReqDTO body) throws NotFoundException {
-        Product product = this.productService.update(body);
-        return new ResponseEntity<Product>(product, HttpStatus.OK);
+    public ResponseEntity<ProductInfoDTO> edit(@RequestBody ProductEditReqDTO body) throws NotFoundException {
+        return new ResponseEntity<>(this.productService.updateDTO(body), HttpStatus.OK);
     }
 
     @GetMapping("/lack_stock/{stock}")
