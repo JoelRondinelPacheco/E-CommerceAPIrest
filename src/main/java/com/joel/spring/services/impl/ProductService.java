@@ -12,6 +12,7 @@ import com.joel.spring.services.ICategoryService;
 import com.joel.spring.services.IProductService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;
+import com.joel.spring.utils.products.BuildProductsDTOs;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class ProductService implements IProductService {
     @Autowired private ICategoryService categoryService;
     @Autowired private BuildCategoryDTOs categoryDTOs;
     @Autowired private CheckOptional checkOptional;
+    @Autowired private BuildProductsDTOs productsDTOs;
 
     @Override
     public Product getById(String id) throws NotFoundException {
@@ -54,7 +56,7 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductInfoDTO updateDTO(ProductEditReqDTO dto) throws NotFoundException {
-        return this.productInfoDTO(this.update(dto));
+        return this.productsDTOs.productInfoDTO(this.update(dto));
 
     }
 
@@ -68,7 +70,7 @@ public class ProductService implements IProductService {
 
     @Override
     public ProductInfoDTO saveAndReturnDTO(ProductPostReqDTO dto) {
-        return this.productInfoDTO(this.save(dto));
+        return this.productsDTOs.productInfoDTO(this.save(dto));
     }
 
     @Override
@@ -120,18 +122,6 @@ public class ProductService implements IProductService {
             product.setCategories(categoriesInfo);
         }
         return list;
-    }
-
-    private ProductInfoDTO productInfoDTO(Product product) {
-        List<CategoryParentInfoDTO> categories = this.categoryDTOs.categoryParentInfoDTOList(product.getCategories());
-        return ProductInfoDTO.builder()
-                .id(product.getId())
-                .name(product.getName())
-                .brand(product.getBrand())
-                .price(product.getPrice())
-                .stock(product.getStock())
-                .categories(categories)
-                .build();
     }
 
 }

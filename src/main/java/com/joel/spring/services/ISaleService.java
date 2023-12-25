@@ -1,9 +1,6 @@
 package com.joel.spring.services;
 
-import com.joel.spring.dtos.sales.SaleEditReqDTO;
-import com.joel.spring.dtos.sales.SaleInfoByDateDTO;
-import com.joel.spring.dtos.sales.SaleMaxAmountDTO;
-import com.joel.spring.dtos.sales.SalePostReqDTO;
+import com.joel.spring.dtos.sales.*;
 import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
@@ -16,4 +13,6 @@ public interface ISaleService extends ICrudService<Sale, SalePostReqDTO, SaleEdi
     List<Product> getProducts(String id);
     SaleInfoByDateDTO getSaleInfoByDate(Date date);
     List<SaleMaxAmountDTO> getMaxAmountSale();
+
+    SaleInfoDTO saveDTO(SalePostReqDTO body) throws NotFoundException;
 }

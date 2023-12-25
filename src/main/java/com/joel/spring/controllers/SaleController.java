@@ -4,6 +4,7 @@ import com.joel.spring.dtos.sales.*;
 import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
+import com.joel.spring.services.ISaleService;
 import com.joel.spring.services.impl.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,11 @@ import java.util.List;
 @RequestMapping("/sales")
 public class SaleController {
     @Autowired
-    private SaleService saleService;
+    private ISaleService saleService;
 
     @PostMapping("/create")
-    public ResponseEntity<Sale> save(@RequestBody SalePostReqDTO body) throws NotFoundException {
-        return new ResponseEntity<Sale>(this.saleService.save(body), HttpStatus.OK);
+    public ResponseEntity<SaleInfoDTO> save(@RequestBody SalePostReqDTO body) throws NotFoundException {
+        return new ResponseEntity<>(this.saleService.saveDTO(body), HttpStatus.OK);
     }
 
     @GetMapping

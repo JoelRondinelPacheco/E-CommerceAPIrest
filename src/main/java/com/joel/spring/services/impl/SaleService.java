@@ -7,6 +7,7 @@ import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ISaleRepository;
 import com.joel.spring.services.ISaleService;
+import com.joel.spring.utils.sales.BuildSalesDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,10 @@ import java.util.*;
 // TODO CAMBIAR STOCK DE PRODUCTOS AL REALIZAR UNA VENTA, Y FIJARSE QUE EL PRODUCTO ES TE DISPONIBLE
 @Service
 public class SaleService implements ISaleService {
-    @Autowired
-    private ISaleRepository saleRepository;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private ProductService productService;
+    @Autowired private ISaleRepository saleRepository;
+    @Autowired private UserService userService;
+    @Autowired private ProductService productService;
+    @Autowired private BuildSalesDTOs salesDTOs;
 
     @Override
     public Sale getById(String id) throws NotFoundException {
@@ -90,5 +89,12 @@ public class SaleService implements ISaleService {
     public List<SaleMaxAmountDTO> getMaxAmountSale() {
         List<SaleMaxAmountDTO> max = this.saleRepository.saleMaxAmount();
         return this.saleRepository.saleMaxAmount();
+    }
+
+    @Override
+    public SaleInfoDTO saveDTO(SalePostReqDTO body) throws NotFoundException {
+        Sale s = this.save(body);
+        return this.salesDTOs.saleInfoDTO(s);
+
     }
 }
