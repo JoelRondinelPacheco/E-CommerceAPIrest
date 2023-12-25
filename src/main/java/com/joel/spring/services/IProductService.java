@@ -13,7 +13,7 @@ public interface IProductService extends ICrudService<Product, ProductPostReqDTO
     ProductInfoDTO getDTOById(String id) throws NotFoundException;
     ProductInfoDTO saveAndReturnDTO(ProductPostReqDTO dto);
     int updateQuantity(String id, Double quantity);
-    List<Product> getLackStock(Long quantity);
+    List<ProductInfoDTO> getLackStock(Long quantity);
 
     List<ProductInfoDTO> getAllDTO();
 }

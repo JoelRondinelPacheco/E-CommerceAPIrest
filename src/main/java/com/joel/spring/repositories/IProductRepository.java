@@ -18,8 +18,8 @@ public interface IProductRepository extends JpaRepository<Product, String> {
     @Modifying
     @Query("UPDATE Product p SET p.stock = p.stock - :quantity WHERE p.id = :id")
     int updateQuantity(@Param("id") String id, @Param("quantity") Double quantity);
-    @Query("SELECT p FROM Product p WHERE p.stock < :max")
-    List<Product> getLackStock (@Param("max") Long max);
+    @Query("SELECT new com.joel.spring.dtos.products.ProductInfoDTO(p.id, p.name, p.brand, p.price, p.stock) FROM Product p WHERE p.stock < :max")
+    List<ProductInfoDTO> getLackStock (@Param("max") Long max);
 
     @Query("SELECT new com.joel.spring.dtos.products.ProductInfoDTO(p.id, p.name, p.brand, p.price, p.stock) FROM Product p")
     List<ProductInfoDTO> getAllDTOs();

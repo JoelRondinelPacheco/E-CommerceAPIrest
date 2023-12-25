@@ -49,7 +49,7 @@ public class ProductController {
     }
 
     @GetMapping("/lack_stock/{stock}")
-    public List<Product> lackStock(@PathVariable Long stock) {
+    public List<ProductInfoDTO> lackStock(@PathVariable Long stock) {
         return this.productService.getLackStock(stock);
     }
 }
