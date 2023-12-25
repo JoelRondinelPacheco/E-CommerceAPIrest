@@ -15,4 +15,6 @@ public interface ISaleService extends ICrudService<Sale, SalePostReqDTO, SaleEdi
     List<SaleMaxAmountDTO> getMaxAmountSale();
 
     SaleInfoDTO saveDTO(SalePostReqDTO body) throws NotFoundException;
+
+    List<SaleInfoDTO> getAllDTO();
 }

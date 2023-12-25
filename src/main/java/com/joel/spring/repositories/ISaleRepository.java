@@ -1,5 +1,6 @@
 package com.joel.spring.repositories;
 
+import com.joel.spring.dtos.sales.SaleInfoDTO;
 import com.joel.spring.dtos.sales.SaleMaxAmountDTO;
 import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
@@ -24,4 +25,8 @@ public interface ISaleRepository extends JpaRepository<Sale, String >{
     Double totalAmountByDate(@Param("saleDate") Date saleDate);
     @Query("SELECT s.id AS saleId, s.totalPrice AS totalPrice, c.firstName AS name, c.lastName AS lastName FROM Sale s INNER JOIN UserEntity c ON s.client.id = c.id WHERE s.totalPrice = (SELECT MAX(totalPrice) FROM Sale)")
     List<SaleMaxAmountDTO> saleMaxAmount();
+
+    @Query("SELECT new com.joel.spring.dtos.sales.SaleInfoDTO(s.id, s.totalPrice," +
+            " new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id, u.firstName, u.lastName, u.email)) FROM Sale s JOIN UserEntity u")
+    List<SaleInfoDTO> getAllSalesDTOs();
 }

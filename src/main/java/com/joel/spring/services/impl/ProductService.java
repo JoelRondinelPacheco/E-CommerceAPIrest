@@ -124,4 +124,9 @@ public class ProductService implements IProductService {
         return list;
     }
 
+    @Override
+    public List<ProductInfoDTO> getProductnInfoBySaleId(String saleId) {
+        return this.productRepository.getProductInfoBySaleId(saleId);
+    }
+
 }

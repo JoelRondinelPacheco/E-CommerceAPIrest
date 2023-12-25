@@ -26,8 +26,8 @@ public class SaleController {
     }
 
     @GetMapping
-    public List<Sale> getAll(){
-        return this.saleService.getAll();
+    public List<SaleInfoDTO> getAll(){
+        return this.saleService.getAllDTO();
     }
 
     @GetMapping("/id/{saleId}")

@@ -18,4 +18,10 @@ public class SaleInfoDTO {
     private Double totalPrice;
     private UserPersonalInfoDTO client;
     private List<ProductInfoDTO> products;
+
+    public SaleInfoDTO(String saleId, Double totalPrice, UserPersonalInfoDTO client) {
+        this.saleId = saleId;
+        this.totalPrice = totalPrice;
+        this.client = client;
+    }
 }

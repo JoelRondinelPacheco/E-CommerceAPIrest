@@ -6,6 +6,7 @@ import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ISaleRepository;
+import com.joel.spring.services.IProductService;
 import com.joel.spring.services.ISaleService;
 import com.joel.spring.utils.sales.BuildSalesDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.*;
 public class SaleService implements ISaleService {
     @Autowired private ISaleRepository saleRepository;
     @Autowired private UserService userService;
-    @Autowired private ProductService productService;
+    @Autowired private IProductService productService;
     @Autowired private BuildSalesDTOs salesDTOs;
 
     @Override
@@ -96,5 +97,14 @@ public class SaleService implements ISaleService {
         Sale s = this.save(body);
         return this.salesDTOs.saleInfoDTO(s);
 
+    }
+
+    @Override
+    public List<SaleInfoDTO> getAllDTO() {
+        List<SaleInfoDTO> sales = this.saleRepository.getAllSalesDTOs();
+        for (SaleInfoDTO s : sales) {
+            s.setProducts(this.productService.getProductnInfoBySaleId(s.getSaleId()));
+        }
+        return sales;
     }
 }
