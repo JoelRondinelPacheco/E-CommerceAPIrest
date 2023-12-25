@@ -10,6 +10,7 @@ import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.IProductRepository;
 import com.joel.spring.services.ICategoryService;
 import com.joel.spring.services.IProductService;
+import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class ProductService implements IProductService {
     @Autowired private IProductRepository productRepository;
     @Autowired private ICategoryService categoryService;
     @Autowired private BuildCategoryDTOs categoryDTOs;
+    @Autowired private CheckOptional checkOptional;
 
     @Override
     public Product getById(String id) throws NotFoundException {
@@ -47,6 +49,14 @@ public class ProductService implements IProductService {
                         .stock(dto.getStock())
                         .categories(categories)
                         .build());
+    }
+
+    @Override
+    public ProductInfoDTO getDTOById(String id) throws NotFoundException {
+        Optional<ProductInfoDTO> optional = this.productRepository.getDTOById(id);
+        ProductInfoDTO product = this.checkOptional.checkOptionalOk(optional);
+        product.setCategories(this.categoryService.categoryParentInfoDTOListByProductId(id));
+        return product;
     }
 
     @Override

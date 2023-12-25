@@ -31,9 +31,8 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getById(@PathVariable String productId) throws NotFoundException {
-        Product product = this.productService.getById(productId);
-            return new ResponseEntity<>(product, HttpStatus.FOUND);
+    public ResponseEntity<ProductInfoDTO> getById(@PathVariable String productId) throws NotFoundException {
+        return new ResponseEntity<>(this.productService.getDTOById(productId), HttpStatus.FOUND);
     }
 
     @DeleteMapping("/delete/{productId}")

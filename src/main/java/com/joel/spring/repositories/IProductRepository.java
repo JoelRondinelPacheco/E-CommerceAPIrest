@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -24,4 +25,6 @@ public interface IProductRepository extends JpaRepository<Product, String> {
     List<ProductInfoDTO> getAllDTOs();
 
 
+    @Query("SELECT new com.joel.spring.dtos.products.ProductInfoDTO(p.id, p.name, p.brand, p.price, p.stock) FROM Product p WHERE p.id = :productId")
+    Optional<ProductInfoDTO> getDTOById(@Param("productId") String productId);
 }

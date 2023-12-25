@@ -71,6 +71,12 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    public List<CategoryParentInfoDTO> categoryParentInfoDTOListByProductId(String id) {
+        List<String> categoriesId = this.categoriesIdByProduct(id);
+        return this.categoryParentInfoDTOList(categoriesId);
+    }
+
+    @Override
     public List<String> categoriesIdByProduct(String productId) {
         return this.categoryRepository.getCategoriesIdByProductId(productId);
     }
