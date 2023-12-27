@@ -22,19 +22,18 @@ public class SaleController {
     @Autowired private ISaleService saleService;
     @Autowired private IProductService productService;
 
-    @PostMapping("/create")
-    public ResponseEntity<SaleInfoDTO> save(@RequestBody SalePostReqDTO body) throws NotFoundException {
-        return new ResponseEntity<>(this.saleService.saveDTO(body), HttpStatus.OK);
-    }
-
     @GetMapping
     public List<SaleInfoDTO> getAll(){
         return this.saleService.getAllDTO();
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<SaleInfoDTO> save(@RequestBody SalePostReqDTO body) throws NotFoundException {
+        return new ResponseEntity<>(this.saleService.saveDTO(body), HttpStatus.OK);
+    }
     @GetMapping("/id/{saleId}")
     public ResponseEntity<SaleInfoDTO> getBiId(@PathVariable String saleId) throws NotFoundException {
-        return new ResponseEntity<>(this.saleService.getByIdDTO(saleId), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.saleService.getByIdDTO(saleId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{saleId}")
@@ -44,10 +43,10 @@ public class SaleController {
 
     @GetMapping("/products/{saleId}")
     public ResponseEntity<List<ProductInfoDTO>> getProducts(@PathVariable String saleId) {
-        return new ResponseEntity<>(this.productService.getProductInfoBySaleId(saleId), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.productService.getProductInfoBySaleId(saleId), HttpStatus.OK);
     }
 
-    @GetMapping("/{saleDate}")
+    @GetMapping("/date/{saleDate}")
     public ResponseEntity<SaleInfoByDateDTO> getSaleInfoByDate(@PathVariable Date saleDate) {
         return new ResponseEntity<>(this.saleService.getSaleInfoByDate(saleDate), HttpStatus.OK);
     }

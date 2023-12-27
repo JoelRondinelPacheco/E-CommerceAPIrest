@@ -14,7 +14,7 @@ public interface IProductService extends ICrudService<Product, ProductPostReqDTO
     ProductInfoDTO getDTOById(String id) throws NotFoundException;
     ProductInfoDTO saveAndReturnDTO(ProductPostReqDTO dto);
     int updateQuantity(String id, Double quantity);
-    List<ProductInfoDTO> getLackStock(Long quantity);
+    List<ProductInfoDTO> getLowStock(Long quantity);
 
     List<ProductInfoDTO> getAllDTO();
     List<ProductInfoDTO> getProductInfoBySaleId(String saleId);

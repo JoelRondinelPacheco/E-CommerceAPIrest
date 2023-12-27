@@ -1,0 +1,13 @@
+type: object
+properties:
+  id:
+    type: string
+  name:
+    type: string
+  categoryOrder:
+    type: number
+    format: integer
+  children:
+    type: array
+    items:
+      $ref: './CategoryInfoDTO.yaml'

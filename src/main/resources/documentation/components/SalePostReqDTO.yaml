@@ -1,0 +1,8 @@
+type: object
+properties:
+  clientId:
+    type: string
+  products:
+    type: array
+    items:
+      type: string

@@ -55,7 +55,7 @@ public class SaleService implements ISaleService {
     @Override
     public String delete(String id) {
         this.saleRepository.deleteById(id);
-        return "Product deleted";
+        return "Sale deleted";
     }
 
     @Override
@@ -106,7 +106,7 @@ public class SaleService implements ISaleService {
     public List<SaleInfoDTO> getAllDTO() {
         List<SaleInfoDTO> sales = this.saleRepository.getAllSalesDTOs();
         for (SaleInfoDTO s : sales) {
-            s.setProducts(this.productService.getProductnInfoBySaleId(s.getSaleId()));
+            s.setProducts(this.productService.getProductInfoBySaleId(s.getSaleId()));
         }
         return sales;
     }

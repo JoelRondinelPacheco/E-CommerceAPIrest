@@ -34,16 +34,15 @@ public class ClientController {
         return new ResponseEntity<>(this.userService.getUserPersonalInfo(userId), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{clientId}")
-    public ResponseEntity<String> delete(@PathVariable String clientId) {
-        this.userService.delete(clientId);
+    @DeleteMapping("/delete/{userId}")
+    public ResponseEntity<String> delete(@PathVariable String userId) {
+        this.userService.delete(userId);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
     }
 
     @PutMapping("/edit")
     public ResponseEntity<UserPersonalInfoDTO> edit(@RequestBody UserEditReqDTO body) throws NotFoundException {
-        UserPersonalInfoDTO userEntity = this.userService.updateDTO(body);
-        return new ResponseEntity<>(userEntity, HttpStatus.OK);
+        return new ResponseEntity<>(this.userService.updateDTO(body), HttpStatus.OK);
     }
 
 

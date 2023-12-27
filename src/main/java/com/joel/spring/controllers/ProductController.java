@@ -32,7 +32,7 @@ public class ProductController {
 
     @GetMapping("/{productId}")
     public ResponseEntity<ProductInfoDTO> getById(@PathVariable String productId) throws NotFoundException {
-        return new ResponseEntity<>(this.productService.getDTOById(productId), HttpStatus.FOUND);
+        return new ResponseEntity<>(this.productService.getDTOById(productId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{productId}")
@@ -47,8 +47,8 @@ public class ProductController {
         return new ResponseEntity<>(this.productService.updateDTO(body), HttpStatus.OK);
     }
 
-    @GetMapping("/lack_stock/{stock}")
+    @GetMapping("/low-stock/{stock}")
     public List<ProductInfoDTO> lackStock(@PathVariable Long stock) {
-        return this.productService.getLackStock(stock);
+        return this.productService.getLowStock(stock);
     }
 }

@@ -1,0 +1,19 @@
+type: object
+properties:
+  firstName:
+    type: string
+    example: Joel
+  lastName:
+    type: string
+    example: Rondinel Pacheco
+  email:
+    type: string
+    example: joelrondinel@mail.com
+  password:
+    type: string
+    example: Password123
+required:
+  - firstName
+  - lastName
+  - email
+  - password

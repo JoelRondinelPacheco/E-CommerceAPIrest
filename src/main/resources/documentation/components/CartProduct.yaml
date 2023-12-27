@@ -1,0 +1,8 @@
+type: object
+properties:
+  id:
+    type: string
+  quantity:
+    type: integer
+  product:
+    $rel: './Product.yaml'

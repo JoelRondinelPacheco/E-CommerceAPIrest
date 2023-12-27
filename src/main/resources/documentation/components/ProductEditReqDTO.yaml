@@ -1,0 +1,13 @@
+type: object
+properties:
+  productId:
+    type: string
+  name:
+    type: string
+  brand:
+    type: string
+  price:
+    type: number
+    format: dobule
+  stock:
+    type: number

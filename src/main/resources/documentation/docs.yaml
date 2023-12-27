@@ -72,7 +72,7 @@ paths:
         content:
           application/json:
             schema:
-               $ref: '#/components/schemas/ProductPostReqDTO'
+               $ref: '#/components/schemas/UserPostReqDTO'
       responses:
         '201':
           description: Created. User registered
@@ -116,78 +116,495 @@ paths:
       tags:
         - Products
       summary: CRUD products
-      operationId: productsCRUD
+      operationId: postProduct
       requestBody:
         description: Body
         required: true
         content:
           application/json:
             schema:
-              $ref: '#components/schemas/ProductPostReqDTO'
+              $ref: '#/components/schemas/ProductPostReqDTO'
+      responses:
+        '201':
+          description: Created. product Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductInfoDTO'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Get all products
+      operationId: getAllProducts
+      responses:
+        '200':
+          description: OK. Return all products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/ProductInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /products/{productId}:
+    get:
+      tags:
+        - Products
+      summary: Get product by product product id
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          description: Id of the product to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Return the produc found
+          content:
+            application/json:
+              schema:
+                $ref: './components/ProductInfoDTO.yaml'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+  /products/delete/{productId}:
+    delete:
+      tags:
+       - Products
+      summary: Delete product by product Id
+      operationId: deleteProduct
+      parameters:
+        - name: productId
+          in: path
+          description: Id of the produce to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Product deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Deleted
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /products/edit:
+    put:
+      tags:
+        - Products
+      summary: Edit a product by id
+      operationId: editProduct
+      requestBody:
+        description: body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/ProductEditReqDTO.yaml'
+      responses:
+        '200':
+          description: OK. Product successfuly edited
+          content:
+            application/json:
+              schema:
+                $ref: './components/ProductInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+  /products/low-stock/{stock}:
+    get:
+      tags:
+        - Products
+      summary: Get product with low stock
+      operationId: lowStockProducts
+      parameters:
+        - name: stock
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Products found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductInfoDTO' 
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /clients:
+    get:
+      tags:
+        - Clients
+      summary: Return all Clients
+      operationId: getAllClients
+      responses:
+        '200':
+          description: OK. Return all Clients
+          content:
+            application/json:
+              schema:
+                $ref: './components/UserPersonalInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /clients/{userId}:
+    get:
+      tags:
+        - Clients
+      summary: Get user by Id
+      operationId: getUserByid
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. User found
+          content:
+            application/json:
+              schema:
+                $ref: './components/UserPersonalInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          description: Not Found. User not found
+          content:
+            application/json:
+              schema:
+                type: string
+                example: User not found
+  /clients/delete/{userId}:
+    delete:
+      tags:
+        - Clients
+      summary: Delete client by Id
+      operationId: deleteUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. User deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Deleted
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /clients/edit:
+    put:
+      tags:
+        - Clients
+      summary: Edit a existing user
+      operationId: EditUserById
+      requestBody:
+        description: Request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/UserEditReqDTO.yaml'
+      responses:
+        '200':
+          description: OK. User edited
+          content:
+            application/json:
+              schema:
+                $ref: './components/UserPersonalInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+  /sales:
+    get:
+      tags:
+        - Sales
+      summary: ENdpoint for get all Sales
+      operationId: getAllSales
+      responses:
+        '200':
+          description: OK. Return all sales
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/SaleInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /sales/create:
+    post:
+      tags:
+        - Sales
+      summary: Create a new sale
+      operationId: postSale
+      requestBody:
+        description: Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/SalePostReqDTO.yaml'
+      responses:
+        '200':
+          description: OK. sale created
+          content:
+            application/json:
+              schema:
+                $ref: './components/SaleInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'            
+        '404':
+          $ref: '#/components/responses/404NotFound'
+  /sales/id/{saleId}:
+    get:
+      tags:
+        - Sales
+      summary: Get sale by id
+      operationId: getSaleById
+      parameters:
+        - name: saleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Sale found
+          content:
+            application/json:
+              schema:
+                $ref: './components/SaleInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          description: Not Found. User not found
+          content:
+            application/json:
+              schema:
+                type: string
+                example: User not found
+  /sales/delete/{saleId}:
+    delete:
+      tags:
+        - Sales
+      summary: Delete sale
+      operationId: delteSaleById
+      parameters:
+        - name: saleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Sale deleted
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Sale deleted
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /sales/products/{saleId}:
+    get:
+      tags:
+        - Sales
+      summary: Get products of a sale
+      operationId: getProductsBySaleId
+      parameters:
+        - name: saleId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Products returned
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/ProductInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /sales/date/{saleDate}:
+    get:
+      tags:
+        - Sales
+      summary: Get sales by date
+      operationId: getSalesByDate
+      parameters:
+        - name: saleDate
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK. sales found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/SaleInfoByDateDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /sales/max:
+    get:
+      tags:
+        - Sales
+      summary: Get max sale
+      operationId: getMaxSale
+      responses:
+        '200':
+          description: OK. max sale
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/SaleMaxAmountDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+  /cart/products:
+    get:
+      tags:
+        - Cart
+      summary: Get cart of a user
+      operationId: getUserCart
+      responses:
+        '200':
+          description: OK. Return the cart
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components/ProductInfoDTO.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+  /cart/add:
+    post:
+      tags:
+        - Cart
+      summary: Add a product to the cart
+      operationId: postProductToCart
+      requestBody:
+        description: body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/AddProductToCartDTO.yaml'
+      responses:
+        '200':
+          description: OK. Product added
+          content:
+            application/json:
+              schema:
+                $ref: './components/CartProduct.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+  /cart/remove/{cartProductId}:
+    delete:
+      tags:
+        - Cart
+      summary: Delete product fromn cart
+      operationId: delteProductCartById
+      parameters:
+        - name: cartProductId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK. Product found and deleted from cart
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Product deleted from cart
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+  /cart/update:
+    put:
+      tags:
+        - Cart
+      summary: Update a product from cart
+      operationId: updateProductFromCart
+      requestBody:
+        description: body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components/UpdateQuantityDTO.yaml'
+      responses:
+        '200':
+          description: OK. Product updated
+          content:
+            application/json:
+              schema:
+                $ref: './components/CartProduct.yaml'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
 
 components:
   schemas:
     LoginDTO:
-      type: object
-      properties:
-        email:
-          type: string
-          example: email@example.com
-        password:
-          type: string
-          example: 'Password123'
-      required:
-        - email
-        - password
+      $ref: './components/LoginResDTO.yaml'
     UserPostReqDTO:
-      type: object
-      properties:
-        firstName:
-          type: string
-          example: Joel
-        lastName:
-          type: string
-          example: Rondinel Pacheco
-        email:
-          type: string
-          example: joelrondinel@mail.com
-        password:
-          type: string
-          example: Password123
-      required:
-        - firstName
-        - lastName
-        - email
-        - password
+      $ref: './components/UserPostReqDTO.yaml'
     ListAuthResDTO:
       type: array
       items:
         $ref: '#components/schemas/AuthResDTO'
     AuthResDTO:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
+      $ref: './components/AuthResDTO.yaml'
     ProductPostReqDTO:
-      type: object
-      properties:
-        name:
-          type: string
-        brand:
-          type: string
-        price:
-          type: number
-          format: dobule
-        stock:
-          type: number
+      $ref: './components/ProductPostReqDTO.yaml'
+    ProductInfoDTO:
+      $ref: './components/ProductInfoDTO.yaml'
   responses:
+    400BadRequest:
+      description: Bad request
     401Unauthorized:
       description: Unauthorized
-      content:
-        application/json:
-          example: {}
+    404NotFound:
+      description: Not found
   securitySchemes:
     BearerAuth:
       type: http

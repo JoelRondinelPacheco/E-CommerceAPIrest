@@ -1,0 +1,15 @@
+type: object
+properties:
+  saleId:
+    type: string
+  totalPrice:
+    type: number
+    format: double
+  client:
+    type: object
+    schema:
+      $ref: './UserPersonalInfoDTO.yaml'
+  products:
+    type: array
+    items:
+      $ref: './ProductInfoDTO.yaml'

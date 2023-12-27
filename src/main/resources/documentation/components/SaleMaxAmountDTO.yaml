@@ -1,0 +1,11 @@
+type: object
+properties:
+  saleId:
+    type: string
+  totalPrice:
+    type: number
+    format: double
+  name:
+    type: string
+  lastName:
+    type: string

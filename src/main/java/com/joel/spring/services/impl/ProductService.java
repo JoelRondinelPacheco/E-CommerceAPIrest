@@ -109,8 +109,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductInfoDTO> getLackStock (Long quantity) {
-        return this.productRepository.getLackStock(quantity);
+    public List<ProductInfoDTO> getLowStock (Long quantity) {
+        return this.productRepository.getLowStock(quantity);
     }
 
     @Override

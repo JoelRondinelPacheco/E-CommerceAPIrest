@@ -1,0 +1,7 @@
+type: object
+properties:
+  totalAmount:
+    type: number
+    format: double
+  totalSales:
+    type: integer
