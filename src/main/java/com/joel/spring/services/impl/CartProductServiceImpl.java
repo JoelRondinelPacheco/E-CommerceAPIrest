@@ -6,7 +6,7 @@ import com.joel.spring.entities.Cart;
 import com.joel.spring.entities.CartProduct;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.ICartProductRepository;
+import com.joel.spring.repositories.CartProductRepository;
 import com.joel.spring.services.CartProductService;
 import com.joel.spring.services.CartService;
 import com.joel.spring.services.ProductService;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class CartProductServiceImpl implements CartProductService {
 
-    @Autowired private ICartProductRepository cartProductRepository;
+    @Autowired private CartProductRepository cartProductRepository;
     @Autowired private CartService cartService;
     @Autowired private ProductService productService;
 

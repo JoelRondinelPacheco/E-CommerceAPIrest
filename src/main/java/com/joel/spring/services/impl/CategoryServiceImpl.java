@@ -4,7 +4,7 @@ import com.joel.spring.dtos.categories.CategoryInfoDTO;
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
 import com.joel.spring.entities.Category;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.ICategoryRepository;
+import com.joel.spring.repositories.CategoryRepository;
 import com.joel.spring.services.CategoryService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-    @Autowired private ICategoryRepository categoryRepository;
+    @Autowired private CategoryRepository categoryRepository;
     @Autowired private CheckOptional checkOptional;
     @Autowired private BuildCategoryDTOs categoryDTOs;
     @Override

@@ -5,7 +5,7 @@ import com.joel.spring.dtos.cart.ProductInfoDTO;
 import com.joel.spring.entities.Cart;
 import com.joel.spring.entities.CartProduct;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.ICartRepository;
+import com.joel.spring.repositories.CartRepository;
 import com.joel.spring.services.CartService;
 import com.joel.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class CartServiceImpl implements CartService {
 
     @Autowired private UserService userService;
-    @Autowired private ICartRepository cartRepository;
+    @Autowired private CartRepository cartRepository;
 
 
     @Override

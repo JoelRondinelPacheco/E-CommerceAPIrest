@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ICategoryRepository extends JpaRepository<Category, String> {
+public interface CategoryRepository extends JpaRepository<Category, String> {
     @Query("SELECT new com.joel.spring.dtos.categories.CategoryInfoDTO(cat.id, cat.name, cat.categoryOrder) FROM Category cat WHERE cat.parent.id = :parentId")
     List<CategoryInfoDTO> categoryInfoDTOByParentId(@Param("parentId") String parentId);
 

@@ -9,13 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ISaleRepository extends JpaRepository<Sale, String >{
+public interface SaleRepository extends JpaRepository<Sale, String >{
     @Query("SELECT s.products FROM Sale s WHERE s.id = :saleId")
     List<Product> findProductsBySaleId(@Param("saleId") String saleId);
     @Query("SELECT sales FROM Sale sales WHERE sales.saleDate = :saleDate")

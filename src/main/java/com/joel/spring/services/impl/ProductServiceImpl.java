@@ -7,7 +7,7 @@ import com.joel.spring.dtos.products.ProductPostReqDTO;
 import com.joel.spring.entities.Category;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.IProductRepository;
+import com.joel.spring.repositories.ProductRepository;
 import com.joel.spring.services.CategoryService;
 import com.joel.spring.services.ProductService;
 import com.joel.spring.utils.CheckOptional;
@@ -23,7 +23,7 @@ import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    @Autowired private IProductRepository productRepository;
+    @Autowired private ProductRepository productRepository;
     @Autowired private CategoryService categoryService;
     @Autowired private BuildCategoryDTOs categoryDTOs;
     @Autowired private CheckOptional checkOptional;

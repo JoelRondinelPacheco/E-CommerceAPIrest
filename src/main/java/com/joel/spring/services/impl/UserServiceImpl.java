@@ -5,7 +5,7 @@ import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import com.joel.spring.dtos.users.UserPostReqDTO;
 import com.joel.spring.entities.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.IUserRepository;
+import com.joel.spring.repositories.UserRepository;
 import com.joel.spring.services.UserService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.users.BuildUsersDTOs;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired private IUserRepository userRepository;
+    @Autowired private UserRepository userRepository;
     @Autowired private CheckOptional checkOptional;
     @Autowired private BuildUsersDTOs usersDTOs;
 

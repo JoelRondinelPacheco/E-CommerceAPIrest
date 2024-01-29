@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface IProductRepository extends JpaRepository<Product, String> {
+public interface ProductRepository extends JpaRepository<Product, String> {
     @Modifying
     @Query("UPDATE Product p SET p.stock = p.stock - :quantity WHERE p.id = :id")
     int updateQuantity(@Param("id") String id, @Param("quantity") Double quantity);
