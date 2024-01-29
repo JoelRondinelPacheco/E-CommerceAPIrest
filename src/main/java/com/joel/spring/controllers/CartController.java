@@ -5,9 +5,9 @@ import com.joel.spring.dtos.cart.ProductInfoDTO;
 import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
 import com.joel.spring.entities.CartProduct;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.ICartProductService;
-import com.joel.spring.services.ICartService;
-import com.joel.spring.services.IJWTUtilityService;
+import com.joel.spring.services.CartProductService;
+import com.joel.spring.services.CartService;
+import com.joel.spring.services.JWTUtilityService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,9 +20,9 @@ import java.util.List;
 @RequestMapping("/cart")
 public class CartController {
 
-    @Autowired private ICartService cartService;
-    @Autowired private ICartProductService cartProductService;
-    @Autowired private IJWTUtilityService jwtService;
+    @Autowired private CartService cartService;
+    @Autowired private CartProductService cartProductService;
+    @Autowired private JWTUtilityService jwtService;
 
 
     @GetMapping("/products")

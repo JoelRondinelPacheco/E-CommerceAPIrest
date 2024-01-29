@@ -2,13 +2,12 @@ package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cart.ProductInfoDTO;
-import com.joel.spring.dtosbuilder.CartDTOBuilder;
 import com.joel.spring.entities.Cart;
 import com.joel.spring.entities.CartProduct;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ICartRepository;
-import com.joel.spring.services.ICartService;
-import com.joel.spring.services.IUserService;
+import com.joel.spring.services.CartService;
+import com.joel.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CartService implements ICartService {
+public class CartServiceImpl implements CartService {
 
-    @Autowired private IUserService userService;
+    @Autowired private UserService userService;
     @Autowired private ICartRepository cartRepository;
 
 

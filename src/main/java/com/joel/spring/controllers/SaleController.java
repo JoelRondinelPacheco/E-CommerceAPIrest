@@ -2,12 +2,9 @@ package com.joel.spring.controllers;
 
 import com.joel.spring.dtos.products.ProductInfoDTO;
 import com.joel.spring.dtos.sales.*;
-import com.joel.spring.entities.Product;
-import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.IProductService;
-import com.joel.spring.services.ISaleService;
-import com.joel.spring.services.impl.SaleService;
+import com.joel.spring.services.ProductService;
+import com.joel.spring.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/sales")
 public class SaleController {
-    @Autowired private ISaleService saleService;
-    @Autowired private IProductService productService;
+    @Autowired private SaleService saleService;
+    @Autowired private ProductService productService;
 
     @GetMapping
     public List<SaleInfoDTO> getAll(){

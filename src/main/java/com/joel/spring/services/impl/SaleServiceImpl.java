@@ -6,9 +6,9 @@ import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ISaleRepository;
-import com.joel.spring.services.IProductService;
-import com.joel.spring.services.ISaleService;
-import com.joel.spring.services.IUserService;
+import com.joel.spring.services.ProductService;
+import com.joel.spring.services.SaleService;
+import com.joel.spring.services.UserService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.sales.BuildSalesDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import java.util.*;
 
 // TODO CAMBIAR STOCK DE PRODUCTOS AL REALIZAR UNA VENTA, Y FIJARSE QUE EL PRODUCTO ES TE DISPONIBLE
 @Service
-public class SaleService implements ISaleService {
+public class SaleServiceImpl implements SaleService {
     @Autowired private ISaleRepository saleRepository;
-    @Autowired private IUserService userService;
-    @Autowired private IProductService productService;
+    @Autowired private UserService userService;
+    @Autowired private ProductService productService;
     @Autowired private BuildSalesDTOs salesDTOs;
     @Autowired private CheckOptional checkOptional;
 

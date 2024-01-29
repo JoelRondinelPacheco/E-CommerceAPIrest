@@ -7,21 +7,20 @@ import com.joel.spring.entities.CartProduct;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ICartProductRepository;
-import com.joel.spring.repositories.ICartRepository;
-import com.joel.spring.services.ICartProductService;
-import com.joel.spring.services.ICartService;
-import com.joel.spring.services.IProductService;
+import com.joel.spring.services.CartProductService;
+import com.joel.spring.services.CartService;
+import com.joel.spring.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class CartProductService implements ICartProductService {
+public class CartProductServiceImpl implements CartProductService {
 
     @Autowired private ICartProductRepository cartProductRepository;
-    @Autowired private ICartService cartService;
-    @Autowired private IProductService productService;
+    @Autowired private CartService cartService;
+    @Autowired private ProductService productService;
 
     @Override
     public CartProduct saveProduct(AddProductToCartDTO dto, String id) throws NotFoundException {

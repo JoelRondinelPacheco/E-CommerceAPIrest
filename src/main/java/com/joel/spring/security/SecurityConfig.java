@@ -1,6 +1,6 @@
 package com.joel.spring.security;
 
-import com.joel.spring.services.IJWTUtilityService;
+import com.joel.spring.services.JWTUtilityService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
 
-    @Autowired private IJWTUtilityService jwtUtilityService;
+    @Autowired private JWTUtilityService jwtUtilityService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

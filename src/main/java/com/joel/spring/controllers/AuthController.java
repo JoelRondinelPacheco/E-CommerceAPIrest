@@ -2,20 +2,10 @@ package com.joel.spring.controllers;
 
 import com.joel.spring.config.ValidationsConfig;
 import com.joel.spring.dtos.users.*;
-import com.joel.spring.services.IAuthService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
+import com.joel.spring.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,7 +15,7 @@ import java.util.List;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired private IAuthService authService;
+    @Autowired private AuthService authService;
     @Autowired private ValidationsConfig validations;
 
     @PostMapping("/register")

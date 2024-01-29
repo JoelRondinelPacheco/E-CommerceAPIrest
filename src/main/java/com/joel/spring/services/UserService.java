@@ -8,7 +8,7 @@ import com.joel.spring.exceptions.NotFoundException;
 
 import java.util.List;
 
-public interface IUserService extends ICrudService<UserEntity, UserPostReqDTO, UserEditReqDTO, String> {
+public interface UserService extends CrudService<UserEntity, UserPostReqDTO, UserEditReqDTO, String> {
     UserEntity save(UserPostReqDTO dto);
     UserEntity findByEmail(String email) throws NotFoundException;
     boolean existsByEmail(String email);

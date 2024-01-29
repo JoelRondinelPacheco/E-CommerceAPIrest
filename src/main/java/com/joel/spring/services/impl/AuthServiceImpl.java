@@ -4,14 +4,13 @@ import com.joel.spring.dtos.users.*;
 import com.joel.spring.entities.Cart;
 import com.joel.spring.entities.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.IAuthService;
-import com.joel.spring.services.ICartService;
-import com.joel.spring.services.IJWTUtilityService;
-import com.joel.spring.services.IUserService;
+import com.joel.spring.services.AuthService;
+import com.joel.spring.services.CartService;
+import com.joel.spring.services.JWTUtilityService;
+import com.joel.spring.services.UserService;
 import com.joel.spring.validations.users.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AuthService implements IAuthService {
+public class AuthServiceImpl implements AuthService {
 
-    @Autowired private IUserService userService;
-    @Autowired private IJWTUtilityService jwtUtilityService;
+    @Autowired private UserService userService;
+    @Autowired private JWTUtilityService jwtUtilityService;
     @Autowired private UserValidation userValidation;
-    @Autowired private ICartService cartService;
+    @Autowired private CartService cartService;
 
     @Override
     public AuthInfoDTO login(LoginDTO login) {

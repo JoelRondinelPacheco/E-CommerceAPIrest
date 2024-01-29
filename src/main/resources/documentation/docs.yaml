@@ -1,32 +1,34 @@
 openapi: 3.0.3
 info:
-  title: Ecommerce APIrest - OpenAPI 3.1
+  title: Ecommerce APIrest - OpenAPI 3.0
   description: |-
-    Api rest para un ecommerce
-  termsOfService: http://swagger.io/terms/
+    This documentation pertains to an e-commerce API, detailing all available endpoints along with their corresponding responses. It serves as a comprehensive guide for developers seeking to integrate and interact with the API seamlessl.
   contact:
-    email: apiteam@swagger.io
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.11
+    email: joel.rondinel.pacheco@gmail.com
+  version: 0.0.1
 servers:
   - url: http://localhost:8080
 tags:
   - name: Authentication
-    description: Login y register users
+    description: Login and register users
   - name: Products
-    description: CRUD for products
+    description: Provides CRUD operations for products.
+  - name: Clients
+    description: Provides CRUD operations for managing customer data.
+  - name: Sales
+    description: Enables CRUD operations for managing customer sales.
+  - name: Cart
+    description: Endpoint for users to manage their shopping carts.
 paths:
   /auth/login:
     post:
       tags:
         - Authentication
-      summary: Loggin a user
-      description: Endpoint for login user to te system
+      summary: Login a user
+      description: Previously registered users can access this endpoint by providing their credentials.
       operationId: loginuser
       requestBody:
-        description: Body request for login
+        description: ''
         required: true
         content:
           application/json:
@@ -67,7 +69,7 @@ paths:
       description: Register a new user to the system
       operationId: registerUser
       requestBody:
-        description: Body request register user
+        description: ''
         required: true
         content:
           application/json:
@@ -115,10 +117,11 @@ paths:
     post:
       tags:
         - Products
-      summary: CRUD products
+      summary: ''
+      description: ''
       operationId: postProduct
       requestBody:
-        description: Body
+        description: ''
         required: true
         content:
           application/json:
@@ -154,7 +157,7 @@ paths:
     get:
       tags:
         - Products
-      summary: Get product by product product id
+      summary: Get product by product id
       operationId: getProductById
       parameters:
         - name: productId
@@ -203,7 +206,7 @@ paths:
     put:
       tags:
         - Products
-      summary: Edit a product by id
+      summary: Edit a product using its ID
       operationId: editProduct
       requestBody:
         description: body
@@ -214,7 +217,7 @@ paths:
               $ref: './components/ProductEditReqDTO.yaml'
       responses:
         '200':
-          description: OK. Product successfuly edited
+          description: OK. Product successfully edited.
           content:
             application/json:
               schema:
@@ -227,7 +230,7 @@ paths:
     get:
       tags:
         - Products
-      summary: Get product with low stock
+      summary: Retrieve products with low stock.
       operationId: lowStockProducts
       parameters:
         - name: stock
@@ -237,7 +240,7 @@ paths:
             type: string
       responses:
         '200':
-          description: OK. Products found
+          description: OK. Product has been found.
           content:
             application/json:
               schema:
@@ -250,11 +253,11 @@ paths:
     get:
       tags:
         - Clients
-      summary: Return all Clients
+      summary: Retrieve all clients.
       operationId: getAllClients
       responses:
         '200':
-          description: OK. Return all Clients
+          description: OK. Retrieve all clients.
           content:
             application/json:
               schema:
@@ -265,7 +268,7 @@ paths:
     get:
       tags:
         - Clients
-      summary: Get user by Id
+      summary: Retrieve user by ID.
       operationId: getUserByid
       parameters:
         - name: userId
@@ -315,7 +318,7 @@ paths:
     put:
       tags:
         - Clients
-      summary: Edit a existing user
+      summary: Edit an existing user.
       operationId: EditUserById
       requestBody:
         description: Request body
@@ -339,11 +342,11 @@ paths:
     get:
       tags:
         - Sales
-      summary: ENdpoint for get all Sales
+      summary: Endpoint to retrieve all sales.
       operationId: getAllSales
       responses:
         '200':
-          description: OK. Return all sales
+          description: OK. Retrieve all sales
           content:
             application/json:
               schema:
@@ -380,7 +383,7 @@ paths:
     get:
       tags:
         - Sales
-      summary: Get sale by id
+      summary: Retrieve sale by id
       operationId: getSaleById
       parameters:
         - name: saleId
@@ -398,12 +401,12 @@ paths:
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '404':
-          description: Not Found. User not found
+          description: Not Found. Sale not found
           content:
             application/json:
               schema:
                 type: string
-                example: User not found
+                example: Sale not found
   /sales/delete/{saleId}:
     delete:
       tags:
@@ -430,7 +433,7 @@ paths:
     get:
       tags:
         - Sales
-      summary: Get products of a sale
+      summary: Retrieve products associated with a specific sale.
       operationId: getProductsBySaleId
       parameters:
         - name: saleId
@@ -440,7 +443,7 @@ paths:
             type: string
       responses:
         '200':
-          description: OK. Products returned
+          description: OK. Products successfully returned.
           content:
             application/json:
               schema:
@@ -453,7 +456,7 @@ paths:
     get:
       tags:
         - Sales
-      summary: Get sales by date
+      summary: Retrieve sales that occurred on a specific date.
       operationId: getSalesByDate
       parameters:
         - name: saleDate
@@ -477,11 +480,11 @@ paths:
     get:
       tags:
         - Sales
-      summary: Get max sale
+      summary: Retrieve the sale with the highest price.
       operationId: getMaxSale
       responses:
         '200':
-          description: OK. max sale
+          description: OK. Sale found.
           content:
             application/json:
               schema:
@@ -494,11 +497,11 @@ paths:
     get:
       tags:
         - Cart
-      summary: Get cart of a user
+      summary: Retrieve the shopping cart for a user.
       operationId: getUserCart
       responses:
         '200':
-          description: OK. Return the cart
+          description: OK. Shopping cart successfully returned.
           content:
             application/json:
               schema:
@@ -547,7 +550,7 @@ paths:
             type: string
       responses:
         '200':
-          description: OK. Product found and deleted from cart
+          description: OK. Product deleted from cart
           content:
             application/json:
               schema:
@@ -561,7 +564,7 @@ paths:
     put:
       tags:
         - Cart
-      summary: Update a product from cart
+      summary: Update a product in the cart
       operationId: updateProductFromCart
       requestBody:
         description: body
@@ -572,7 +575,7 @@ paths:
               $ref: './components/UpdateQuantityDTO.yaml'
       responses:
         '200':
-          description: OK. Product updated
+          description: OK. Cart updated
           content:
             application/json:
               schema:

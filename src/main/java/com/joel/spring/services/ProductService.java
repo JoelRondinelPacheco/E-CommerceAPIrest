@@ -8,7 +8,7 @@ import com.joel.spring.exceptions.NotFoundException;
 
 import java.util.List;
 
-public interface IProductService extends ICrudService<Product, ProductPostReqDTO, ProductEditReqDTO, String> {
+public interface ProductService extends CrudService<Product, ProductPostReqDTO, ProductEditReqDTO, String> {
     public Product save(ProductPostReqDTO dto);
     ProductInfoDTO updateDTO(ProductEditReqDTO dto) throws NotFoundException;
     ProductInfoDTO getDTOById(String id) throws NotFoundException;

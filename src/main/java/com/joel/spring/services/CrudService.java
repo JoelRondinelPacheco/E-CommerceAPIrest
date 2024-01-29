@@ -4,7 +4,7 @@ import com.joel.spring.exceptions.NotFoundException;
 
 import java.util.List;
 
-public interface ICrudService<T, TPostDTO, TEditDTO, ID> {
+public interface CrudService<T, TPostDTO, TEditDTO, ID> {
     public T getById(ID id) throws NotFoundException;
     public String delete(ID id);
     public T update(TEditDTO dto) throws NotFoundException;

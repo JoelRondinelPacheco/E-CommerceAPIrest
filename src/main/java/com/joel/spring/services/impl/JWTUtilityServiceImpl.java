@@ -1,8 +1,7 @@
 package com.joel.spring.services.impl;
 
-import com.fasterxml.jackson.databind.DatabindException;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.IJWTUtilityService;
+import com.joel.spring.services.JWTUtilityService;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
@@ -29,7 +28,7 @@ import java.util.Base64;
 import java.util.Date;
 
 @Service
-public class JWTUtilityService implements IJWTUtilityService {
+public class JWTUtilityServiceImpl implements JWTUtilityService {
 
     @Value("classpath:jwtKeys/private_key.pem") private Resource privateKeyResource;
     @Value("classpath:jwtKeys/public_key.pem") private Resource publicKeyResource;

@@ -7,7 +7,7 @@ import com.joel.spring.exceptions.NotFoundException;
 
 import java.util.List;
 
-public interface ICategoryService {
+public interface CategoryService {
     List<Category> getListCategoriesById(List<String> categoriesId);
     Category getCategoryById(String id) throws NotFoundException;
     public List<CategoryInfoDTO> categoryInfoDTOList(String parentId);

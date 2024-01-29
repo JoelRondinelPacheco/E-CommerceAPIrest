@@ -5,7 +5,7 @@ import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
 import com.joel.spring.entities.CartProduct;
 import com.joel.spring.exceptions.NotFoundException;
 
-public interface ICartProductService {
+public interface CartProductService {
     CartProduct saveProduct(AddProductToCartDTO dto, String userId) throws NotFoundException;
     void deleteProduct(String productId) throws NotFoundException;
     CartProduct changeQuantity(UpdateQuantityDTO dto) throws NotFoundException;

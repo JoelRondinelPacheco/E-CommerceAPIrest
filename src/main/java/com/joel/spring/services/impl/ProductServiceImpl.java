@@ -8,8 +8,8 @@ import com.joel.spring.entities.Category;
 import com.joel.spring.entities.Product;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.IProductRepository;
-import com.joel.spring.services.ICategoryService;
-import com.joel.spring.services.IProductService;
+import com.joel.spring.services.CategoryService;
+import com.joel.spring.services.ProductService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;
 import com.joel.spring.utils.products.BuildProductsDTOs;
@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService implements IProductService {
+public class ProductServiceImpl implements ProductService {
     @Autowired private IProductRepository productRepository;
-    @Autowired private ICategoryService categoryService;
+    @Autowired private CategoryService categoryService;
     @Autowired private BuildCategoryDTOs categoryDTOs;
     @Autowired private CheckOptional checkOptional;
     @Autowired private BuildProductsDTOs productsDTOs;

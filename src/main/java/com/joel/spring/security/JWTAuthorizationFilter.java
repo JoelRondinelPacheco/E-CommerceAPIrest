@@ -1,6 +1,6 @@
 package com.joel.spring.security;
 
-import com.joel.spring.services.IJWTUtilityService;
+import com.joel.spring.services.JWTUtilityService;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jwt.JWTClaimsSet;
 import jakarta.servlet.FilterChain;
@@ -21,9 +21,9 @@ import java.util.Collections;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
-    IJWTUtilityService jwtUtilityService;
+    JWTUtilityService jwtUtilityService;
 
-    public JWTAuthorizationFilter(IJWTUtilityService jwtUtilityService) {
+    public JWTAuthorizationFilter(JWTUtilityService jwtUtilityService) {
         this.jwtUtilityService = jwtUtilityService;
     }
 
@@ -46,23 +46,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         } catch (NoSuchAlgorithmException | InvalidKeySpecException | ParseException | JOSEException e) {
             throw new ServletException("Error" + e.getCause() + " | " + e.getMessage());
         }
-        /*catch (NoSuchAlgorithmException e) {
-            System.out.println("NoSuchAlgorithmException");
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
-            System.out.println("InvalidKeySpecException");
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            System.out.println("ParseException");
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        } catch (JOSEException e) {
-            System.out.println("JOSEException");
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }*/
+
 
         filterChain.doFilter(request, response);
     }
