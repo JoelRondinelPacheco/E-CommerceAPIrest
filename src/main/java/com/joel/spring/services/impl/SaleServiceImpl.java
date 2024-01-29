@@ -1,14 +1,14 @@
 package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.sales.*;
-import com.joel.spring.entities.UserEntity;
+import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.entities.Product;
 import com.joel.spring.entities.Sale;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.SaleRepository;
 import com.joel.spring.services.ProductService;
 import com.joel.spring.services.SaleService;
-import com.joel.spring.services.UserService;
+import com.joel.spring.client.application.port.input.UserService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.sales.BuildSalesDTOs;
 import org.springframework.beans.factory.annotation.Autowired;

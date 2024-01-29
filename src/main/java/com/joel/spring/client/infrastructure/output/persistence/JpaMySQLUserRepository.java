@@ -1,7 +1,7 @@
-package com.joel.spring.repositories;
+package com.joel.spring.client.infrastructure.output.persistence;
 
 import com.joel.spring.dtos.users.UserPersonalInfoDTO;
-import com.joel.spring.entities.UserEntity;
+import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, String> {
+public interface JpaMySQLUserRepository extends JpaRepository<UserEntity, String> {
 
     @Query(value = "SELECT * FROM users WHERE email = :email", nativeQuery = true)
     Optional<UserEntity> findByEmail(String email);

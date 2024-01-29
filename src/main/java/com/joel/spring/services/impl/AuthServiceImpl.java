@@ -2,12 +2,12 @@ package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.users.*;
 import com.joel.spring.entities.Cart;
-import com.joel.spring.entities.UserEntity;
+import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.AuthService;
 import com.joel.spring.services.CartService;
 import com.joel.spring.services.JWTUtilityService;
-import com.joel.spring.services.UserService;
+import com.joel.spring.client.application.port.input.UserService;
 import com.joel.spring.validations.users.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,9 +1,9 @@
-package com.joel.spring.controllers;
+package com.joel.spring.client.infrastructure.input.web;
 
 import com.joel.spring.dtos.users.UserEditReqDTO;
 import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.UserService;
+import com.joel.spring.client.application.port.input.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

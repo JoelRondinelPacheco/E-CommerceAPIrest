@@ -1,6 +1,8 @@
-package com.joel.spring.entities;
+package com.joel.spring.client.infrastructure.output.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.joel.spring.entities.Cart;
+import com.joel.spring.entities.Sale;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

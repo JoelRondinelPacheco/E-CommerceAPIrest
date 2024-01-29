@@ -1,5 +1,6 @@
 package com.joel.spring.entities;
 
+import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

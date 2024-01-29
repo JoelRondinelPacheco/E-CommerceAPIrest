@@ -1,12 +1,12 @@
-package com.joel.spring.services.impl;
+package com.joel.spring.client.application.usecases;
 
 import com.joel.spring.dtos.users.UserEditReqDTO;
 import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import com.joel.spring.dtos.users.UserPostReqDTO;
-import com.joel.spring.entities.UserEntity;
+import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.UserRepository;
-import com.joel.spring.services.UserService;
+import com.joel.spring.client.infrastructure.output.persistence.JpaMySQLUserRepository;
+import com.joel.spring.client.application.port.input.UserService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.users.BuildUsersDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +19,13 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired private UserRepository userRepository;
+    @Autowired private JpaMySQLUserRepository jpaMySQLUserRepository;
     @Autowired private CheckOptional checkOptional;
     @Autowired private BuildUsersDTOs usersDTOs;
 
     @Override
     public UserEntity getById(String id) throws NotFoundException {
-        Optional<UserEntity> optionalClient =  this.userRepository.findById(id);
+        Optional<UserEntity> optionalClient =  this.jpaMySQLUserRepository.findById(id);
         if (optionalClient.isPresent()) {
             return optionalClient.get();
         }
@@ -37,12 +37,12 @@ public class UserServiceImpl implements UserService {
     public UserEntity save(UserPostReqDTO dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
         String passwordEncrypted = encoder.encode(dto.getPassword());
-        return this.userRepository.save(new UserEntity(dto.getFirstName(), dto.getLastName(), dto.getEmail(),passwordEncrypted));
+        return this.jpaMySQLUserRepository.save(new UserEntity(dto.getFirstName(), dto.getLastName(), dto.getEmail(),passwordEncrypted));
     }
 
     @Override
     public String delete(String id) {
-        this.userRepository.deleteById(id);
+        this.jpaMySQLUserRepository.deleteById(id);
         return "UserEntity deleted";
     }
 
@@ -51,17 +51,17 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = this.getById(dto.getUserId());
         userEntity.setFirstName(dto.getFirstName());
         userEntity.setLastName(dto.getLastName());
-        return this.userRepository.save(userEntity);
+        return this.jpaMySQLUserRepository.save(userEntity);
     }
 
     @Override
     public List<UserEntity> getAll() {
-        return this.userRepository.findAll();
+        return this.jpaMySQLUserRepository.findAll();
     }
 
     @Override
     public UserEntity findByEmail(String email) throws NotFoundException {
-        Optional<UserEntity> user = this.userRepository.findByEmail(email);
+        Optional<UserEntity> user = this.jpaMySQLUserRepository.findByEmail(email);
         if (user.isPresent()) {
             return user.get();
         }
@@ -70,23 +70,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean existsByEmail(String email) {
-        return this.userRepository.existsByEmail(email);
+        return this.jpaMySQLUserRepository.existsByEmail(email);
     }
 
     @Override
     public boolean existsById(String id) {
-        return this.userRepository.existsById(id);
+        return this.jpaMySQLUserRepository.existsById(id);
     }
 
     @Override
     public UserPersonalInfoDTO getUserPersonalInfo(String id) throws NotFoundException {
-        Optional<UserPersonalInfoDTO> optional = this.userRepository.getUserPersonalInfo(id);
+        Optional<UserPersonalInfoDTO> optional = this.jpaMySQLUserRepository.getUserPersonalInfo(id);
         return this.checkOptional.checkOptionalOk(optional, "User");
     }
 
     @Override
     public List<UserPersonalInfoDTO> getAllDTO() {
-        return this.userRepository.getAllDTO();
+        return this.jpaMySQLUserRepository.getAllDTO();
     }
 
     @Override

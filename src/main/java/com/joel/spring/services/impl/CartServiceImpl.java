@@ -7,7 +7,7 @@ import com.joel.spring.entities.CartProduct;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.CartRepository;
 import com.joel.spring.services.CartService;
-import com.joel.spring.services.UserService;
+import com.joel.spring.client.application.port.input.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
