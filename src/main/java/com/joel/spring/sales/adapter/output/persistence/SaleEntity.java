@@ -1,6 +1,7 @@
-package com.joel.spring.entities;
+package com.joel.spring.sales.adapter.output.persistence;
 
 import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
+import com.joel.spring.entities.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.List;
 @Table(name = "sales")
 @Getter
 @Setter
-public class Sale {
+public class SaleEntity {
     @Id
     @UuidGenerator
     private String id;
@@ -29,10 +30,10 @@ public class Sale {
     @JoinColumn(name="client_id")
     private UserEntity client;
 
-    public Sale() {
+    public SaleEntity() {
     }
 
-    public Sale(UserEntity client, List<Product> products, Double totalPrice) {
+    public SaleEntity(UserEntity client, List<Product> products, Double totalPrice) {
         this.client = client;
         this.products = products;
         this.totalPrice = totalPrice;

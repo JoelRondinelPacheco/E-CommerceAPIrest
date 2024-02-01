@@ -1,7 +1,7 @@
 package com.joel.spring.utils.sales;
 
 import com.joel.spring.dtos.sales.SaleInfoDTO;
-import com.joel.spring.entities.Sale;
+import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import com.joel.spring.utils.products.BuildProductsDTOs;
 import com.joel.spring.utils.users.BuildUsersDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,12 @@ public class BuildSalesDTOs {
     @Autowired private BuildUsersDTOs usersDTOs;
     @Autowired private BuildProductsDTOs productsDTOs;
 
-    public SaleInfoDTO saleInfoDTO(Sale sale) {
+    public SaleInfoDTO saleInfoDTO(SaleEntity saleEntity) {
         return SaleInfoDTO.builder()
-                .saleId(sale.getId())
-                .totalPrice(sale.getTotalPrice())
-                .client(this.usersDTOs.userPersonalInfoDTO(sale.getClient()))
-                .products(this.productsDTOs.productInfoDTOList(sale.getProducts()))
+                .saleId(saleEntity.getId())
+                .totalPrice(saleEntity.getTotalPrice())
+                .client(this.usersDTOs.userPersonalInfoDTO(saleEntity.getClient()))
+                .products(this.productsDTOs.productInfoDTOList(saleEntity.getProducts()))
                 .build();
     }
 }

@@ -27,6 +27,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
     @Query("SELECT new com.joel.spring.dtos.products.ProductInfoDTO(p.id, p.name, p.brand, p.price, p.stock) FROM Product p WHERE p.id = :productId")
     Optional<ProductInfoDTO> getDTOById(@Param("productId") String productId);
-    @Query("SELECT new com.joel.spring.dtos.products.ProductInfoDTO(p.id, p.name, p.brand, p.price, p.stock) FROM Product p JOIN Sale s WHERE s.id = :saleId")
+    @Query("SELECT new com.joel.spring.dtos.products.ProductInfoDTO(p.id, p.name, p.brand, p.price, p.stock) FROM Product p JOIN SaleEntity s WHERE s.id = :saleId")
     List<ProductInfoDTO> getProductInfoBySaleId(@Param("saleId") String saleId);
 }

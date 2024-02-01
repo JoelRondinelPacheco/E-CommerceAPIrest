@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
     @Autowired private CheckOptional checkOptional;
     @Autowired private BuildUsersDTOs usersDTOs;
 
-    @Override
     public UserEntity getById(String id) throws NotFoundException {
         Optional<UserEntity> optionalClient =  this.jpaMySQLUserRepository.findById(id);
         if (optionalClient.isPresent()) {
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService {
         throw new NotFoundException("UserEntity not found");
     }
 
-    @Override
+
     @Transactional
     public UserEntity save(UserPostReqDTO dto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
@@ -46,7 +45,6 @@ public class UserServiceImpl implements UserService {
         return "UserEntity deleted";
     }
 
-    @Override
     public UserEntity update(UserEditReqDTO dto) throws NotFoundException {
         UserEntity userEntity = this.getById(dto.getUserId());
         userEntity.setFirstName(dto.getFirstName());
@@ -54,12 +52,12 @@ public class UserServiceImpl implements UserService {
         return this.jpaMySQLUserRepository.save(userEntity);
     }
 
-    @Override
+
     public List<UserEntity> getAll() {
         return this.jpaMySQLUserRepository.findAll();
     }
 
-    @Override
+
     public UserEntity findByEmail(String email) throws NotFoundException {
         Optional<UserEntity> user = this.jpaMySQLUserRepository.findByEmail(email);
         if (user.isPresent()) {
@@ -68,7 +66,6 @@ public class UserServiceImpl implements UserService {
         throw new NotFoundException("User not found");
     }
 
-    @Override
     public boolean existsByEmail(String email) {
         return this.jpaMySQLUserRepository.existsByEmail(email);
     }

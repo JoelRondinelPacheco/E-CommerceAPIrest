@@ -1,13 +1,13 @@
-package com.joel.spring.services.impl;
+package com.joel.spring.sales.application.usecases;
 
 import com.joel.spring.dtos.sales.*;
 import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.entities.Product;
-import com.joel.spring.entities.Sale;
+import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.SaleRepository;
+import com.joel.spring.sales.adapter.output.persistence.JpaMySQLSaleRepository;
 import com.joel.spring.services.ProductService;
-import com.joel.spring.services.SaleService;
+import com.joel.spring.sales.application.port.input.SaleService;
 import com.joel.spring.client.application.port.input.UserService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.sales.BuildSalesDTOs;
@@ -19,23 +19,23 @@ import java.util.*;
 // TODO CAMBIAR STOCK DE PRODUCTOS AL REALIZAR UNA VENTA, Y FIJARSE QUE EL PRODUCTO ES TE DISPONIBLE
 @Service
 public class SaleServiceImpl implements SaleService {
-    @Autowired private SaleRepository saleRepository;
+    @Autowired private JpaMySQLSaleRepository jpaMySQLSaleRepository;
     @Autowired private UserService userService;
     @Autowired private ProductService productService;
     @Autowired private BuildSalesDTOs salesDTOs;
     @Autowired private CheckOptional checkOptional;
 
     @Override
-    public Sale getById(String id) throws NotFoundException {
-        Optional<Sale> saleOptional = this.saleRepository.findById(id);
+    public SaleEntity getById(String id) throws NotFoundException {
+        Optional<SaleEntity> saleOptional = this.jpaMySQLSaleRepository.findById(id);
         if (saleOptional.isPresent()) {
             return saleOptional.get();
         }
-        throw new NotFoundException("Sale not found");
+        throw new NotFoundException("SaleEntity not found");
     }
 
     @Override
-    public Sale save(SalePostReqDTO body) throws NotFoundException {
+    public SaleEntity save(SalePostReqDTO body) throws NotFoundException {
         UserEntity userEntity = this.userService.getById(body.getClientId());
         List<Product> products = new ArrayList<>();
         for (String productId : body.getProducts() ) {
@@ -49,62 +49,62 @@ public class SaleServiceImpl implements SaleService {
             totalPrice += product.getPrice();
         }
 
-        return this.saleRepository.save(new Sale(userEntity, products, totalPrice));
+        return this.jpaMySQLSaleRepository.save(new SaleEntity(userEntity, products, totalPrice));
     }
 
     @Override
     public String delete(String id) {
-        this.saleRepository.deleteById(id);
-        return "Sale deleted";
+        this.jpaMySQLSaleRepository.deleteById(id);
+        return "SaleEntity deleted";
     }
 
     @Override
-    public Sale update(SaleEditReqDTO body) throws NotFoundException {
-        Optional<Sale> saleOptional = this.saleRepository.findById(body.getSaleId());
+    public SaleEntity update(SaleEditReqDTO body) throws NotFoundException {
+        Optional<SaleEntity> saleOptional = this.jpaMySQLSaleRepository.findById(body.getSaleId());
         if (saleOptional.isPresent()) {
-            Sale sale = saleOptional.get();
+            SaleEntity saleEntity = saleOptional.get();
             UserEntity userEntity = this.userService.getById(body.getClientId());
-            sale.setClient(userEntity);
-            return this.saleRepository.save(sale);
+            saleEntity.setClient(userEntity);
+            return this.jpaMySQLSaleRepository.save(saleEntity);
 
         }
-        throw new NotFoundException("Sale not found");
+        throw new NotFoundException("SaleEntity not found");
 
     }
 
     @Override
-    public List<Sale> getAll() {
-        return this.saleRepository.findAll();
+    public List<SaleEntity> getAll() {
+        return this.jpaMySQLSaleRepository.findAll();
     }
 
     @Override
     public List<Product> getProducts(String id) {
-        return this.saleRepository.findProductsBySaleId(id);
+        return this.jpaMySQLSaleRepository.findProductsBySaleId(id);
     }
 
     @Override
     public SaleInfoByDateDTO getSaleInfoByDate(Date date) {
-        Double total_amount = this.saleRepository.totalAmountByDate(date);
-        int total_sales = this.saleRepository.countSalesByDate(date);
+        Double total_amount = this.jpaMySQLSaleRepository.totalAmountByDate(date);
+        int total_sales = this.jpaMySQLSaleRepository.countSalesByDate(date);
         return new SaleInfoByDateDTO(total_amount, total_sales);
     }
 
     @Override
     public List<SaleMaxAmountDTO> getMaxAmountSale() {
-        List<SaleMaxAmountDTO> max = this.saleRepository.saleMaxAmount();
-        return this.saleRepository.saleMaxAmount();
+        List<SaleMaxAmountDTO> max = this.jpaMySQLSaleRepository.saleMaxAmount();
+        return this.jpaMySQLSaleRepository.saleMaxAmount();
     }
 
     @Override
     public SaleInfoDTO saveDTO(SalePostReqDTO body) throws NotFoundException {
-        Sale s = this.save(body);
+        SaleEntity s = this.save(body);
         return this.salesDTOs.saleInfoDTO(s);
 
     }
 
     @Override
     public List<SaleInfoDTO> getAllDTO() {
-        List<SaleInfoDTO> sales = this.saleRepository.getAllSalesDTOs();
+        List<SaleInfoDTO> sales = this.jpaMySQLSaleRepository.getAllSalesDTOs();
         for (SaleInfoDTO s : sales) {
             s.setProducts(this.productService.getProductInfoBySaleId(s.getSaleId()));
         }
@@ -113,7 +113,7 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleInfoDTO getByIdDTO(String saleId) throws NotFoundException{
-        Optional<SaleInfoDTO> optional = this.saleRepository.getSaleByIdDTO(saleId);
-        return this.checkOptional.checkOptionalOk(optional, "Sale");
+        Optional<SaleInfoDTO> optional = this.jpaMySQLSaleRepository.getSaleByIdDTO(saleId);
+        return this.checkOptional.checkOptionalOk(optional, "SaleEntity");
     }
 }

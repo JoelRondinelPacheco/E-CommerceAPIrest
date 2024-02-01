@@ -2,7 +2,7 @@ package com.joel.spring.client.infrastructure.output.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.joel.spring.entities.Cart;
-import com.joel.spring.entities.Sale;
+import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "users")
 @Getter
 @Setter
-@JsonIgnoreProperties("sales")
+@JsonIgnoreProperties("saleEntities")
 public class UserEntity {
     @Id
     @UuidGenerator
@@ -29,7 +29,7 @@ public class UserEntity {
     private String email;
     private String password;
     @OneToMany(mappedBy = "client")
-    private List<Sale> sales;
+    private List<SaleEntity> saleEntities;
 
     @OneToOne
     @JoinColumn(name = "cart_id")

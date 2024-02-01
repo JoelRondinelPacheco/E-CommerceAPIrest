@@ -9,12 +9,11 @@ import com.joel.spring.services.CrudService;
 
 import java.util.List;
 
-public interface UserService extends CrudService<UserEntity, UserPostReqDTO, UserEditReqDTO, String> {
-    UserEntity save(UserPostReqDTO dto);
-    UserEntity findByEmail(String email) throws NotFoundException;
-    boolean existsByEmail(String email);
+public interface UserService {
     boolean existsById(String id);
     UserPersonalInfoDTO getUserPersonalInfo(String id) throws NotFoundException;
     List<UserPersonalInfoDTO> getAllDTO();
     UserPersonalInfoDTO updateDTO(UserEditReqDTO body) throws NotFoundException;
+
+    String delete(String useId);
 }

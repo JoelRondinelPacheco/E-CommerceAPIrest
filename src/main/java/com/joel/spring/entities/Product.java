@@ -1,6 +1,7 @@
 package com.joel.spring.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +18,7 @@ import java.util.List;
 @Getter
 @Builder
 @ToString
-@JsonIgnoreProperties("sales")
+@JsonIgnoreProperties("saleEntities")
 public class Product   {
     @Id
     @UuidGenerator
@@ -35,7 +36,7 @@ public class Product   {
     private Long stock;
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
-    private List<Sale> sales;
+    private List<SaleEntity> saleEntities;
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private List<Category> categories;
