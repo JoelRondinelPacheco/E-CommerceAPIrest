@@ -33,7 +33,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LoginDTO'
+              $ref: '#/components/schemas/UserCredentialsDTO'
       responses:
         '200':
           description: Ok. Successful login

@@ -1,4 +1,4 @@
-package com.joel.spring.dtos.users;
+package com.joel.spring.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class LoginDTO {
+public class UserCredentialsDTO {
     private String email;
     private String password;
 }

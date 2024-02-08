@@ -1,7 +1,7 @@
 package com.joel.spring.validations.users;
 
 import com.joel.spring.dtos.users.AuthResDTO;
-import com.joel.spring.dtos.users.LoginDTO;
+import com.joel.spring.user.dto.UserCredentialsDTO;
 import com.joel.spring.dtos.users.UserPostReqDTO;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class UserValidation {
         return response;
     }
 
-    public List<AuthResDTO> loginValidation(LoginDTO login) {
+    public List<AuthResDTO> loginValidation(UserCredentialsDTO login) {
         List<AuthResDTO> response = new ArrayList<>();
         if (login.getEmail() == null || login.getEmail().isBlank() || !login.getEmail().matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
             response.add(new AuthResDTO("email", "Ingrese un email valido"));

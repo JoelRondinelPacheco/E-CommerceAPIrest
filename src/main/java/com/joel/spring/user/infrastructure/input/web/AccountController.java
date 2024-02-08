@@ -17,7 +17,7 @@ public class AccountController {
     @PostMapping("/validate/{token}")
     public ResponseEntity<?> validate(@PathVariable(name = "token") String token) {
 
-
+    return null;
     }
 
 }

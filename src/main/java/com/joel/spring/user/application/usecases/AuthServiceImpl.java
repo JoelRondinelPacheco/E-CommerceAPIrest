@@ -1,10 +1,12 @@
-package com.joel.spring.services.impl;
+package com.joel.spring.user.application.usecases;
 
 import com.joel.spring.dtos.users.*;
 import com.joel.spring.entities.Cart;
+import com.joel.spring.user.application.port.input.AuthService;
+import com.joel.spring.user.dto.RegisterUserDTO;
+import com.joel.spring.user.dto.UserCredentialsDTO;
 import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.AuthService;
 import com.joel.spring.services.CartService;
 import com.joel.spring.services.JWTUtilityService;
 import com.joel.spring.user.application.port.input.UserService;
@@ -26,7 +28,11 @@ public class AuthServiceImpl implements AuthService {
     @Autowired private CartService cartService;
 
     @Override
-    public AuthInfoDTO login(LoginDTO login) {
+    public String login(UserCredentialsDTO userCredentials) {
+
+        return  null;
+
+        /*
         List<AuthResDTO> errors = new ArrayList<>();
         AuthInfoDTO response = new AuthInfoDTO();
         try {
@@ -55,12 +61,15 @@ public class AuthServiceImpl implements AuthService {
             response.setErrors(errors);
             response.setHttpStatusCode(HttpStatus.BAD_REQUEST);
             return response;
-        }
+        }*/
     }
 
     @Override
-    public AuthInfoDTO register(UserPostReqDTO user) {
-        List<AuthResDTO> errors = new ArrayList<>();
+    public String register(RegisterUserDTO user) {
+
+        return null;
+
+        /*List<AuthResDTO> errors = new ArrayList<>();
         AuthInfoDTO response = new AuthInfoDTO();
         boolean exists = this.userService.existsByEmail(user.getEmail());
         if (exists) {
@@ -85,6 +94,9 @@ public class AuthServiceImpl implements AuthService {
     private boolean verifyPassword(String enteredPassword, String storedPassword) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.matches(enteredPassword, storedPassword);
+    }*/
+
     }
+
 
 }
