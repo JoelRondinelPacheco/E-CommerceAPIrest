@@ -28,6 +28,13 @@ public class UserEntity {
     private String lastName;
     private String email;
     private String password;
+    private boolean enabled;
+
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false, name = "account_token_id")
+    private AccountTokenEntity accountToken;
+
     @OneToMany(mappedBy = "client")
     private List<SaleEntity> saleEntities;
 
@@ -38,10 +45,13 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String firstName, String lastName, String email, String password) {
+    public UserEntity(String firstName, String lastName, String email, String password, AccountTokenEntity accountToken) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.accountToken = accountToken;
+        this.enabled = false;
+
     }
 }

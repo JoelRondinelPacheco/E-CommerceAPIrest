@@ -13,9 +13,21 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private boolean verified;
+
+    private AccountToken accountToken;
+
+    public AccountToken getAccountToken() {
+        return accountToken;
+    }
+
+    public void setAccountToken(AccountToken accountToken) {
+        this.accountToken = accountToken;
+    }
+
     private List<Sale> sale;
     private Cart cart;
-
+//TODO default verified??
     public User() {
     }
 
@@ -66,6 +78,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
 
     public List<Sale> getSale() {
         return sale;
