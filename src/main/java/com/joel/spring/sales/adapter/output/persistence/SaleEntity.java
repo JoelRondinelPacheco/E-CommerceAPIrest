@@ -1,6 +1,6 @@
 package com.joel.spring.sales.adapter.output.persistence;
 
-import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
+import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.entities.Product;
 import jakarta.persistence.*;
 import lombok.Getter;

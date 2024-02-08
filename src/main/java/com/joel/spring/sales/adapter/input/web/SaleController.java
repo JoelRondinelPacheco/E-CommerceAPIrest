@@ -29,7 +29,7 @@ public class SaleController {
         return new ResponseEntity<>(this.saleService.saveDTO(body), HttpStatus.OK);
     }
     @GetMapping("/id/{saleId}")
-    public ResponseEntity<SaleInfoDTO> getBiId(@PathVariable String saleId) throws NotFoundException {
+    public ResponseEntity<SaleInfoDTO> getById(@PathVariable String saleId) throws NotFoundException {
         return new ResponseEntity<>(this.saleService.getByIdDTO(saleId), HttpStatus.OK);
     }
 

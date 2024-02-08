@@ -1,4 +1,4 @@
-package com.joel.spring.client.infrastructure.output.persistence;
+package com.joel.spring.user.infrastructure.output.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.joel.spring.entities.Cart;

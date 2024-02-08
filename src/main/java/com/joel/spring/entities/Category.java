@@ -22,7 +22,7 @@ public class Category {
     private String name;
     //private String image;
     private String description;
-    private Integer categoryOrder;
+    private Integer displayOrder;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")

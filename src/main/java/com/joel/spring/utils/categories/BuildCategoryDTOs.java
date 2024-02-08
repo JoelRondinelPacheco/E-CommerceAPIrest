@@ -15,7 +15,7 @@ public class BuildCategoryDTOs {
         return CategoryParentInfoDTO.builder()
                 .id(category.getId())
                 .name(category.getName())
-                .categoryOrder(category.getCategoryOrder())
+                .categoryOrder(category.getDisplayOrder())
                 .children(children)
                 .build();
     }
@@ -32,7 +32,7 @@ public class BuildCategoryDTOs {
         return CategoryInfoDTO.builder()
                 .id(category.getId())
                 .name(category.getName())
-                .categoryOrder(category.getCategoryOrder())
+                .categoryOrder(category.getDisplayOrder())
                 .build();
     }
 

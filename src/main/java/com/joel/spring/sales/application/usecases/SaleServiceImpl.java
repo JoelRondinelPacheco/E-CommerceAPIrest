@@ -1,14 +1,14 @@
 package com.joel.spring.sales.application.usecases;
 
 import com.joel.spring.dtos.sales.*;
-import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
+import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.entities.Product;
 import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.sales.adapter.output.persistence.JpaMySQLSaleRepository;
 import com.joel.spring.services.ProductService;
 import com.joel.spring.sales.application.port.input.SaleService;
-import com.joel.spring.client.application.port.input.UserService;
+import com.joel.spring.user.application.port.input.UserService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.sales.BuildSalesDTOs;
 import org.springframework.beans.factory.annotation.Autowired;

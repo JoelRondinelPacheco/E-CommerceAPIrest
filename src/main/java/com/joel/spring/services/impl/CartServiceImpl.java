@@ -7,7 +7,7 @@ import com.joel.spring.entities.CartProduct;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.CartRepository;
 import com.joel.spring.services.CartService;
-import com.joel.spring.client.application.port.input.UserService;
+import com.joel.spring.user.application.port.input.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +48,7 @@ public class CartServiceImpl implements CartService {
     public List<ProductInfoDTO> getUserCard(String id) throws NotFoundException {
         Cart cart = this.findByUserId(id);
         List<ProductInfoDTO> response = new ArrayList<>();
-        for (CartProduct cartProduct : cart.getCartProducts()) {
+        for (CartProduct cartProduct : cart.getProducts()) {
             response.add(
                     ProductInfoDTO.builder()
                             .cartProductId(cartProduct.getId())

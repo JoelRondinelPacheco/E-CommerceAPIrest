@@ -1,6 +1,6 @@
 package com.joel.spring.entities;
 
-import com.joel.spring.client.infrastructure.output.persistence.UserEntity;
+import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +24,7 @@ public class Cart {
 
 
     @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
-    private List<CartProduct> cartProducts;
+    private List<CartProduct> products;
 
     @OneToOne(mappedBy = "cart")
     private UserEntity user;
