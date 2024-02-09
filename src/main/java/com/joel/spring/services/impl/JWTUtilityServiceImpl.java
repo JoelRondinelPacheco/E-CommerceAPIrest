@@ -33,9 +33,11 @@ public class JWTUtilityServiceImpl implements JWTUtilityService {
     @Value("classpath:jwtKeys/private_key.pem") private Resource privateKeyResource;
     @Value("classpath:jwtKeys/public_key.pem") private Resource publicKeyResource;
 
+    //throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException
     @Override
-    public String generateJWT(String userId) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException {
-        PrivateKey privateKey = loadPrivateKey(privateKeyResource);
+    public String generateJWT(String userId) {
+
+        PrivateKey privateKey = this.loadPrivateKey(privateKeyResource);
 
         JWSSigner signer = new RSASSASigner(privateKey);
 
@@ -80,18 +82,21 @@ public class JWTUtilityServiceImpl implements JWTUtilityService {
         }
     }
 
+// throws IOException, NoSuchAlgorithmException, InvalidKeySpecException
+    private PrivateKey loadPrivateKey(Resource resource) {
 
-    private PrivateKey loadPrivateKey(Resource resource) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        byte[] keyBytes = Files.readAllBytes(Paths.get(resource.getURI()));
-        String privateKeyPEM = new String(keyBytes, StandardCharsets.UTF_8)
-                .replace("-----BEGIN PRIVATE KEY-----", "")
-                .replace("-----END PRIVATE KEY-----", "")
-                .replaceAll("\\s", "");
+        try {
+            byte[] keyBytes = Files.readAllBytes(Paths.get(resource.getURI()));
 
-        byte[] decodeKey = Base64.getDecoder().decode(privateKeyPEM);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            String privateKeyPEM = this.formatPrivateKey(keyBytes);
+            byte[] decodeKey = Base64.getDecoder().decode(privateKeyPEM);
 
-        return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(decodeKey));
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(decodeKey));
+        } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+            throw new RuntimeException("TODO CUSTOM EXCEPTION");
+        }
+
     }
 
     private PublicKey loadPublicKey(Resource resource) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
@@ -107,5 +112,12 @@ public class JWTUtilityServiceImpl implements JWTUtilityService {
 
         return keyFactory.generatePublic(new X509EncodedKeySpec(decodeKey));
 
+    }
+
+    private String formatPrivateKey(byte[] keyBytes) {
+        return new String(keyBytes, StandardCharsets.UTF_8)
+                .replace("-----BEGIN PRIVATE KEY-----", "")
+                .replace("-----END PRIVATE KEY-----", "")
+                .replaceAll("\\s", "");
     }
 }
