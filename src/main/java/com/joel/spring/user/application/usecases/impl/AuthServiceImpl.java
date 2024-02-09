@@ -12,6 +12,7 @@ import com.joel.spring.user.domain.User;
 import com.joel.spring.user.dto.RegisterUserDTO;
 import com.joel.spring.user.dto.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,8 +26,10 @@ public class AuthServiceImpl implements AuthService {
     private AuthRepositoryPort authRepository;
     @Autowired
     private CartService cartService;
+
     @Autowired
-    private AccountTokenUseCase accountTokenUseCase;
+    @Qualifier("newAccount")
+    private AccountTokenUseCase newUserAccountToken;
 
     @Override
     public String login(UserCredentialsDTO userCredentials) {
@@ -70,18 +73,15 @@ public class AuthServiceImpl implements AuthService {
         this.emailVerification.existsOrThrows(newUser.getEmail());
         this.passwordService.equalsOrThrows(newUser.getPassword(), newUser.getRepeatedPassword());
 
-        /*
         User user = this.create(newUser);
         User userRegistered = this.authRepository.register(user);
-         */
 
-        User user = this.authRepository.register(this.create(newUser));
+        Cart cart = this.cartService.createFor(user);
+        AccountToken accountToken = this.newUserAccountToken.create();
 
-        Cart cart = this.cartService.create(user);
-        AccountToken accountToken = this.accountTokenUseCase.create();
+        userRegistered.setCart(cart);
+        userRegistered.setAccountToken(accountToken);
 
-        user.setCart(cart);
-        user.setAccountToken(accountToken);
 
         //TODO SEND EMAIL
 

@@ -6,7 +6,7 @@ import com.joel.spring.user.domain.User;
 
 public class CartServiceImpl implements CartService {
     @Override
-    public Cart create(User user) {
+    public Cart createFor(User user) {
         return null;
     }
 }

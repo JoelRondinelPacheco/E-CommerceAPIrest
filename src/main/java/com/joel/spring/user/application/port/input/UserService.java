@@ -7,10 +7,5 @@ import com.joel.spring.exceptions.NotFoundException;
 import java.util.List;
 
 public interface UserService {
-    boolean existsById(String id);
-    UserPersonalInfoDTO getUserPersonalInfo(String id) throws NotFoundException;
-    List<UserPersonalInfoDTO> getAllDTO();
-    UserPersonalInfoDTO updateDTO(UserEditReqDTO body) throws NotFoundException;
-
-    String delete(String useId);
+    //TODO IMPLEMENT String delete(String useId);
 }

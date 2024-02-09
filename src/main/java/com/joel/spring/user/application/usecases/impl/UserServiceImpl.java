@@ -32,11 +32,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public String delete(String id) {
-        this.userRepository.deleteById(id);
-        return "UserEntity deleted";
-    }
 
     public UserEntity update(UserEditReqDTO dto) throws NotFoundException {
         UserEntity userEntity = this.getById(dto.getUserId());
@@ -63,23 +58,19 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.existsByEmail(email);
     }
 
-    @Override
     public boolean existsById(String id) {
         return this.userRepository.existsById(id);
     }
 
-    @Override
     public UserPersonalInfoDTO getUserPersonalInfo(String id) throws NotFoundException {
         Optional<UserPersonalInfoDTO> optional = this.userRepository.getUserPersonalInfo(id);
         return this.checkOptional.checkOptionalOk(optional, "User");
     }
 
-    @Override
     public List<UserPersonalInfoDTO> getAllDTO() {
         return this.userRepository.getAllDTO();
     }
 
-    @Override
     public UserPersonalInfoDTO updateDTO(UserEditReqDTO body) throws NotFoundException{
         return this.usersDTOs.userPersonalInfoDTO(this.update(body));
     }
