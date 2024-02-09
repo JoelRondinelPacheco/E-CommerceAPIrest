@@ -17,7 +17,7 @@ public class BuildSalesDTOs {
                 .saleId(saleEntity.getId())
                 .totalPrice(saleEntity.getTotalPrice())
                 .client(this.usersDTOs.userPersonalInfoDTO(saleEntity.getClient()))
-                .products(this.productsDTOs.productInfoDTOList(saleEntity.getProducts()))
+                .products(this.productsDTOs.productInfoDTOList(saleEntity.getProductEntities()))
                 .build();
     }
 }

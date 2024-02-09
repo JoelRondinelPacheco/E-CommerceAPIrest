@@ -2,8 +2,8 @@ package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cart.ProductInfoDTO;
-import com.joel.spring.entities.Cart;
-import com.joel.spring.entities.CartProduct;
+import com.joel.spring.entities.CartEntity;
+import com.joel.spring.entities.CartProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.CartRepository;
 import com.joel.spring.services.CartService;
@@ -23,8 +23,8 @@ public class CartServiceImpl implements CartService {
 
 
     @Override
-    public void saveByEntity(Cart cart) {
-        this.cartRepository.save(cart);
+    public void saveByEntity(CartEntity cartEntity) {
+        this.cartRepository.save(cartEntity);
     }
 
     @Override
@@ -35,38 +35,38 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart findById(String id) throws NotFoundException {
+    public CartEntity findById(String id) throws NotFoundException {
         return this.checkCartOptional(this.cartRepository.findById(id));
     }
 
     @Override
-    public Cart findByUserId(String userId) throws NotFoundException {
+    public CartEntity findByUserId(String userId) throws NotFoundException {
         return this.checkCartOptional(this.cartRepository.findByUser_Id(userId));
     }
 
     @Override
     public List<ProductInfoDTO> getUserCard(String id) throws NotFoundException {
-        Cart cart = this.findByUserId(id);
+        CartEntity cartEntity = this.findByUserId(id);
         List<ProductInfoDTO> response = new ArrayList<>();
-        for (CartProduct cartProduct : cart.getProducts()) {
+        for (CartProductEntity cartProductEntity : cartEntity.getProducts()) {
             response.add(
                     ProductInfoDTO.builder()
-                            .cartProductId(cartProduct.getId())
-                            .productId(cartProduct.getProduct().getId())
-                            .name(cartProduct.getProduct().getName())
-                            .brand(cartProduct.getProduct().getBrand())
-                            .price(cartProduct.getProduct().getPrice())
-                            .quantity(cartProduct.getQuantity())
+                            .cartProductId(cartProductEntity.getId())
+                            .productId(cartProductEntity.getProduct().getId())
+                            .name(cartProductEntity.getProduct().getName())
+                            .brand(cartProductEntity.getProduct().getBrand())
+                            .price(cartProductEntity.getProduct().getPrice())
+                            .quantity(cartProductEntity.getQuantity())
                             .build());
         }
         return response;
     }
 
-    private Cart checkCartOptional(Optional<Cart> cartOptional) throws NotFoundException {
+    private CartEntity checkCartOptional(Optional<CartEntity> cartOptional) throws NotFoundException {
         if (cartOptional.isPresent()) {
             return cartOptional.get();
         }
-        throw new NotFoundException("Cart not found");
+        throw new NotFoundException("CartEntity not found");
     }
 
 

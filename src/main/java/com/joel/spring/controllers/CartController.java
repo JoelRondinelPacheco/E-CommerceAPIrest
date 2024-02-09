@@ -3,7 +3,7 @@ package com.joel.spring.controllers;
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cart.ProductInfoDTO;
 import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
-import com.joel.spring.entities.CartProduct;
+import com.joel.spring.entities.CartProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.CartProductService;
 import com.joel.spring.services.CartService;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/cartEntity")
 public class CartController {
 
     @Autowired private CartService cartService;
@@ -32,21 +32,21 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<CartProduct> addProduct(@RequestBody AddProductToCartDTO body, HttpServletRequest request) throws NotFoundException {
+    public ResponseEntity<CartProductEntity> addProduct(@RequestBody AddProductToCartDTO body, HttpServletRequest request) throws NotFoundException {
         String id = this.jwtService.getId(request.getHeader("Authorization").substring(7));
-        CartProduct cartProduct = this.cartProductService.saveProduct(body, id);
-        return new ResponseEntity<>(cartProduct, HttpStatus.OK);
+        CartProductEntity cartProductEntity = this.cartProductService.saveProduct(body, id);
+        return new ResponseEntity<>(cartProductEntity, HttpStatus.OK);
     }
 
     @DeleteMapping("/remove/{cartProductId}")
     public ResponseEntity<String> removeFromCart(@PathVariable String cartProductId) throws NotFoundException {
         this.cartProductService.deleteProduct(cartProductId);
-        return new ResponseEntity<>("Product deleted from cart", HttpStatus.OK);
+        return new ResponseEntity<>("ProductEntity deleted from cartEntity", HttpStatus.OK);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<CartProduct> updateQuantity(@RequestBody UpdateQuantityDTO body) throws NotFoundException {
-        CartProduct cartProduct = this.cartProductService.changeQuantity(body);
-        return new ResponseEntity<>(cartProduct, HttpStatus.OK);
+    public ResponseEntity<CartProductEntity> updateQuantity(@RequestBody UpdateQuantityDTO body) throws NotFoundException {
+        CartProductEntity cartProductEntity = this.cartProductService.changeQuantity(body);
+        return new ResponseEntity<>(cartProductEntity, HttpStatus.OK);
     }
 }

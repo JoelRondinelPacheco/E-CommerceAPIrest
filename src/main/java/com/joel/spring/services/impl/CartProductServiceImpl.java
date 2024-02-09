@@ -2,9 +2,9 @@ package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
-import com.joel.spring.entities.Cart;
-import com.joel.spring.entities.CartProduct;
-import com.joel.spring.entities.Product;
+import com.joel.spring.entities.CartEntity;
+import com.joel.spring.entities.CartProductEntity;
+import com.joel.spring.entities.ProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.CartProductRepository;
 import com.joel.spring.services.CartProductService;
@@ -23,20 +23,20 @@ public class CartProductServiceImpl implements CartProductService {
     @Autowired private ProductService productService;
 
     @Override
-    public CartProduct saveProduct(AddProductToCartDTO dto, String id) throws NotFoundException {
-        Cart cart = this.cartService.findByUserId(id);
+    public CartProductEntity saveProduct(AddProductToCartDTO dto, String id) throws NotFoundException {
+        CartEntity cartEntity = this.cartService.findByUserId(id);
         try {
-            CartProduct cartProduct = this.getById(cart.getId());
-            cartProduct.setQuantity(dto.getQuantity());
-            return this.cartProductRepository.save(cartProduct);
+            CartProductEntity cartProductEntity = this.getById(cartEntity.getId());
+            cartProductEntity.setQuantity(dto.getQuantity());
+            return this.cartProductRepository.save(cartProductEntity);
         } catch (NotFoundException e) {
-            Product product = this.productService.getById(dto.getProductId());
-            CartProduct cartProduct = CartProduct.builder()
-                    .product(product)
+            ProductEntity productEntity = this.productService.getById(dto.getProductId());
+            CartProductEntity cartProductEntity = CartProductEntity.builder()
+                    .product(productEntity)
                     .quantity(dto.getQuantity())
-                    .cart(cart)
+                    .cart(cartEntity)
                     .build();
-            return this.cartProductRepository.save(cartProduct);
+            return this.cartProductRepository.save(cartProductEntity);
         }
     }
 
@@ -46,23 +46,23 @@ public class CartProductServiceImpl implements CartProductService {
             this.cartProductRepository.deleteById(cartProductId);
             return;
         }
-        throw new NotFoundException("Cart product not found");
+        throw new NotFoundException("CartEntity productEntity not found");
     }
 
     @Override
-    public CartProduct changeQuantity(UpdateQuantityDTO dto) throws NotFoundException{
-        CartProduct cartProduct = this.getById(dto.getId());
-        cartProduct.setQuantity(dto.getQuantity());
-        return cartProductRepository.save(cartProduct);
+    public CartProductEntity changeQuantity(UpdateQuantityDTO dto) throws NotFoundException{
+        CartProductEntity cartProductEntity = this.getById(dto.getId());
+        cartProductEntity.setQuantity(dto.getQuantity());
+        return cartProductRepository.save(cartProductEntity);
     }
 
     @Override
-    public CartProduct getById(String id) throws NotFoundException {
-        Optional<CartProduct> optional = this.cartProductRepository.findById(id);
+    public CartProductEntity getById(String id) throws NotFoundException {
+        Optional<CartProductEntity> optional = this.cartProductRepository.findById(id);
         if (optional.isPresent()) {
             return optional.get();
         }
-        throw new NotFoundException("CartProduct not found");
+        throw new NotFoundException("CartProductEntity not found");
     }
 
 

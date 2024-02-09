@@ -4,8 +4,8 @@ import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
 import com.joel.spring.dtos.products.ProductEditReqDTO;
 import com.joel.spring.dtos.products.ProductInfoDTO;
 import com.joel.spring.dtos.products.ProductPostReqDTO;
-import com.joel.spring.entities.Category;
-import com.joel.spring.entities.Product;
+import com.joel.spring.entities.CategoryEntity;
+import com.joel.spring.entities.ProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.ProductRepository;
 import com.joel.spring.services.CategoryService;
@@ -30,22 +30,22 @@ public class ProductServiceImpl implements ProductService {
     @Autowired private BuildProductsDTOs productsDTOs;
 
     @Override
-    public Product getById(String id) throws NotFoundException {
+    public ProductEntity getById(String id) throws NotFoundException {
         //TODO verify id != null
-        Optional<Product> optionalProduct = this.productRepository.findById(id);
+        Optional<ProductEntity> optionalProduct = this.productRepository.findById(id);
         if (optionalProduct.isPresent()) {
-            Product product = optionalProduct.get();
-            return product;
+            ProductEntity productEntity = optionalProduct.get();
+            return productEntity;
         }
-        throw new NotFoundException("Product not found");
+        throw new NotFoundException("ProductEntity not found");
     }
 
     @Override
     @Transactional
-    public Product save(ProductPostReqDTO dto) {
-        List<Category> categories = this.categoryService.getListCategoriesById(dto.getCategoriesId());
+    public ProductEntity save(ProductPostReqDTO dto) {
+        List<CategoryEntity> categories = this.categoryService.getListCategoriesById(dto.getCategoriesId());
         return this.productRepository.save(
-                Product.builder()
+                ProductEntity.builder()
                         .name(dto.getName())
                         .brand(dto.getBrand())
                         .price(dto.getPrice())
@@ -76,17 +76,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public String delete(String id) {
         this.productRepository.deleteById(id);
-        return "Product deleted";
+        return "ProductEntity deleted";
     }
 
     @Override
-    public Product update(ProductEditReqDTO dto) throws NotFoundException {
-        Product product = this.getById(dto.getProductId());
-        product.setName(dto.getName());
-        product.setBrand(dto.getBrand());
-        product.setPrice(dto.getPrice());
-        product.setStock(dto.getStock());
-        List<Category> categories = new ArrayList<>();
+    public ProductEntity update(ProductEditReqDTO dto) throws NotFoundException {
+        ProductEntity productEntity = this.getById(dto.getProductId());
+        productEntity.setName(dto.getName());
+        productEntity.setBrand(dto.getBrand());
+        productEntity.setPrice(dto.getPrice());
+        productEntity.setStock(dto.getStock());
+        List<CategoryEntity> categories = new ArrayList<>();
         for (String id : dto.getCategoriesId()) {
             try {
                 categories.add(this.categoryService.getCategoryById(id));
@@ -94,12 +94,12 @@ public class ProductServiceImpl implements ProductService {
                 continue;
             }
         }
-        product.setCategories(categories);
-        return this.productRepository.save(product);
+        productEntity.setCategories(categories);
+        return this.productRepository.save(productEntity);
     }
 
     @Override
-    public List<Product> getAll() {
+    public List<ProductEntity> getAll() {
         return this.productRepository.findAll();
     }
 

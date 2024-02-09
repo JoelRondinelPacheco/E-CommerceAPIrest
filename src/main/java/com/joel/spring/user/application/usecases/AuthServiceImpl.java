@@ -2,7 +2,8 @@ package com.joel.spring.user.application.usecases;
 
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
-import com.joel.spring.user.application.usecases.utils.PasswordComparator;
+import com.joel.spring.user.application.usecases.utils.PasswordService;
+import com.joel.spring.user.domain.User;
 import com.joel.spring.user.dto.RegisterUserDTO;
 import com.joel.spring.user.dto.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private EmailVerification emailVerification; //TODO RENAME A EMAIL SERVICE O VERIFYEMAIL
     @Autowired
-    private PasswordComparator passwordComparator;
+    private PasswordService passwordService;
 
     @Override
     public String login(UserCredentialsDTO userCredentials) {
@@ -56,18 +57,26 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String register(RegisterUserDTO newUser) {
         this.emailVerification.existsOrThrows(newUser.getEmail());
-        this.passwordComparator.equalsOrThrows(newUser.getPassword(), newUser.getRepeatedPassword());
+        this.passwordService.equalsOrThrows(newUser.getPassword(), newUser.getRepeatedPassword());
+
+        User user = new User();
+        user.setFirstName(newUser.getFirstName());
+        user.setLastName(newUser.getLastName());
+        user.setEmail(newUser.getEmail());
+        user.setPassword(this.passwordService.encrypt(newUser.getPassword()));
+
+        //TODO CREATE CART
 
 
         return null;
         /*
 
         UserEntity userSaved = this.userService.save(user);
-        Cart cart = Cart.builder()
+        CartEntity cartEntity = CartEntity.builder()
                 .totalPrice(0D)
                 .user(userSaved)
                 .build();
-        this.cartService.saveByEntity(cart);
+        this.cartService.saveByEntity(cartEntity);
         response.setResponse("User registered");
         response.setErrors(errors);
         response.setHttpStatusCode(HttpStatus.CREATED);

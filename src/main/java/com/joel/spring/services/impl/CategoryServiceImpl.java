@@ -2,7 +2,7 @@ package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.categories.CategoryInfoDTO;
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
-import com.joel.spring.entities.Category;
+import com.joel.spring.entities.CategoryEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.repositories.CategoryRepository;
 import com.joel.spring.services.CategoryService;
@@ -21,8 +21,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired private CheckOptional checkOptional;
     @Autowired private BuildCategoryDTOs categoryDTOs;
     @Override
-    public List<Category> getListCategoriesById(List<String> categoriesId) {
-        List<Category> categories = new ArrayList<>();
+    public List<CategoryEntity> getListCategoriesById(List<String> categoriesId) {
+        List<CategoryEntity> categories = new ArrayList<>();
         for (String id : categoriesId) {
             try {
                 categories.add(this.getCategoryById(id));
@@ -34,8 +34,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryById(String id) throws NotFoundException {
-        Optional<Category> optional = this.categoryRepository.findById(id);
+    public CategoryEntity getCategoryById(String id) throws NotFoundException {
+        Optional<CategoryEntity> optional = this.categoryRepository.findById(id);
        return this.checkOptional.checkOptionalOk(optional);
     }
 

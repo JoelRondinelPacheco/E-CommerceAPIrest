@@ -17,7 +17,7 @@ tags:
     description: Provides CRUD operations for managing customer data.
   - name: Sales
     description: Enables CRUD operations for managing customer saleEntities.
-  - name: Cart
+  - name: CartEntity
     description: Endpoint for users to manage their shopping carts.
 paths:
   /auth/login:
@@ -129,7 +129,7 @@ paths:
               $ref: '#/components/schemas/ProductPostReqDTO'
       responses:
         '201':
-          description: Created. product Created.
+          description: Created. productEntity Created.
           content:
             application/json:
               schema:
@@ -157,12 +157,12 @@ paths:
     get:
       tags:
         - Products
-      summary: Get product by product id
+      summary: Get productEntity by productEntity id
       operationId: getProductById
       parameters:
         - name: productId
           in: path
-          description: Id of the product to return
+          description: Id of the productEntity to return
           required: true
           schema:
             type: string
@@ -183,7 +183,7 @@ paths:
     delete:
       tags:
        - Products
-      summary: Delete product by product Id
+      summary: Delete productEntity by productEntity Id
       operationId: deleteProduct
       parameters:
         - name: productId
@@ -194,7 +194,7 @@ paths:
             type: string
       responses:
         '200':
-          description: OK. Product deleted
+          description: OK. ProductEntity deleted
           content:
             application/json:
               schema:
@@ -206,7 +206,7 @@ paths:
     put:
       tags:
         - Products
-      summary: Edit a product using its ID
+      summary: Edit a productEntity using its ID
       operationId: editProduct
       requestBody:
         description: body
@@ -217,7 +217,7 @@ paths:
               $ref: './components/ProductEditReqDTO.yaml'
       responses:
         '200':
-          description: OK. Product successfully edited.
+          description: OK. ProductEntity successfully edited.
           content:
             application/json:
               schema:
@@ -240,7 +240,7 @@ paths:
             type: string
       responses:
         '200':
-          description: OK. Product has been found.
+          description: OK. ProductEntity has been found.
           content:
             application/json:
               schema:
@@ -496,12 +496,12 @@ paths:
   /cart/products:
     get:
       tags:
-        - Cart
-      summary: Retrieve the shopping cart for a user.
+        - CartEntity
+      summary: Retrieve the shopping cartEntity for a user.
       operationId: getUserCart
       responses:
         '200':
-          description: OK. Shopping cart successfully returned.
+          description: OK. Shopping cartEntity successfully returned.
           content:
             application/json:
               schema:
@@ -515,8 +515,8 @@ paths:
   /cart/add:
     post:
       tags:
-        - Cart
-      summary: Add a product to the cart
+        - CartEntity
+      summary: Add a productEntity to the cartEntity
       operationId: postProductToCart
       requestBody:
         description: body
@@ -527,11 +527,11 @@ paths:
               $ref: './components/AddProductToCartDTO.yaml'
       responses:
         '200':
-          description: OK. Product added
+          description: OK. ProductEntity added
           content:
             application/json:
               schema:
-                $ref: './components/CartProduct.yaml'
+                $ref: './components/CartProductEntity.yaml'
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '404':
@@ -539,8 +539,8 @@ paths:
   /cart/remove/{cartProductId}:
     delete:
       tags:
-        - Cart
-      summary: Delete product fromn cart
+        - CartEntity
+      summary: Delete productEntity fromn cartEntity
       operationId: delteProductCartById
       parameters:
         - name: cartProductId
@@ -550,12 +550,12 @@ paths:
             type: string
       responses:
         '200':
-          description: OK. Product deleted from cart
+          description: OK. ProductEntity deleted from cartEntity
           content:
             application/json:
               schema:
                 type: string
-                example: Product deleted from cart
+                example: ProductEntity deleted from cartEntity
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '404':
@@ -563,8 +563,8 @@ paths:
   /cart/update:
     put:
       tags:
-        - Cart
-      summary: Update a product in the cart
+        - CartEntity
+      summary: Update a productEntity in the cartEntity
       operationId: updateProductFromCart
       requestBody:
         description: body
@@ -575,11 +575,11 @@ paths:
               $ref: './components/UpdateQuantityDTO.yaml'
       responses:
         '200':
-          description: OK. Cart updated
+          description: OK. CartEntity updated
           content:
             application/json:
               schema:
-                $ref: './components/CartProduct.yaml'
+                $ref: './components/CartProductEntity.yaml'
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '404':

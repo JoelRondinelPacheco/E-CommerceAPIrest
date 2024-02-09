@@ -16,17 +16,17 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-public class Cart {
+public class CartEntity {
     @Id
     @UuidGenerator
     private String id;
     private Double totalPrice;
 
 
-    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
-    private List<CartProduct> products;
+    @OneToMany(mappedBy = "cartEntity", fetch = FetchType.LAZY)
+    private List<CartProductEntity> products;
 
-    @OneToOne(mappedBy = "cart")
+    @OneToOne(mappedBy = "cartEntity")
     private UserEntity user;
 
 }

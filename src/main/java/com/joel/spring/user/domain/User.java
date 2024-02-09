@@ -1,6 +1,6 @@
 package com.joel.spring.user.domain;
 
-import com.joel.spring.entities.Cart;
+import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.sales.domain.Sale;
 
 import java.time.LocalDate;

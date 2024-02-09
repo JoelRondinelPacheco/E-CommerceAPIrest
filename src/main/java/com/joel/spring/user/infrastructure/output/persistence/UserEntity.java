@@ -1,7 +1,7 @@
 package com.joel.spring.user.infrastructure.output.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.joel.spring.entities.Cart;
+import com.joel.spring.entities.CartEntity;
 import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -40,7 +40,7 @@ public class UserEntity {
 
     @OneToOne
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    private CartEntity cartEntity;
 
     public UserEntity() {
     }

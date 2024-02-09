@@ -1,13 +1,13 @@
 package com.joel.spring.repositories;
 
-import com.joel.spring.entities.CartProduct;
+import com.joel.spring.entities.CartProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface CartProductRepository extends JpaRepository<CartProduct, String> {
+public interface CartProductRepository extends JpaRepository<CartProductEntity, String> {
 
-    Optional<CartProduct> findByCart_Id(String cartId);
+    Optional<CartProductEntity> findByCart_Id(String cartId);
 }

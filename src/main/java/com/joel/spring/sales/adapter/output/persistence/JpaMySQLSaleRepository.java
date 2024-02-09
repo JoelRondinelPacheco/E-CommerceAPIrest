@@ -2,7 +2,7 @@ package com.joel.spring.sales.adapter.output.persistence;
 
 import com.joel.spring.dtos.sales.SaleInfoDTO;
 import com.joel.spring.dtos.sales.SaleMaxAmountDTO;
-import com.joel.spring.entities.Product;
+import com.joel.spring.entities.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public interface JpaMySQLSaleRepository extends JpaRepository<SaleEntity, String >{
     @Query("SELECT s.products FROM SaleEntity s WHERE s.id = :saleId")
-    List<Product> findProductsBySaleId(@Param("saleId") String saleId);
+    List<ProductEntity> findProductsBySaleId(@Param("saleId") String saleId);
     @Query("SELECT saleEntities FROM SaleEntity saleEntities WHERE saleEntities.saleDate = :saleDate")
     List<SaleEntity> getSaleByDate(@Param("saleDate") Date saleDate);
     @Query("SELECT COUNT(sale) FROM SaleEntity sale WHERE sale.saleDate = :saleDate")

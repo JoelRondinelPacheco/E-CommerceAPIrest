@@ -1,7 +1,7 @@
 package com.joel.spring.sales.adapter.output.persistence;
 
+import com.joel.spring.entities.ProductEntity;
 import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
-import com.joel.spring.entities.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +25,7 @@ public class SaleEntity {
     private Double totalPrice;
     @ManyToMany
     @JoinTable(name = "rel_sales_products", joinColumns = @JoinColumn(name = "sales_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
+    private List<ProductEntity> productEntities;
     @ManyToOne
     @JoinColumn(name="client_id")
     private UserEntity client;
@@ -33,9 +33,9 @@ public class SaleEntity {
     public SaleEntity() {
     }
 
-    public SaleEntity(UserEntity client, List<Product> products, Double totalPrice) {
+    public SaleEntity(UserEntity client, List<ProductEntity> productEntities, Double totalPrice) {
         this.client = client;
-        this.products = products;
+        this.productEntities = productEntities;
         this.totalPrice = totalPrice;
     }
 }

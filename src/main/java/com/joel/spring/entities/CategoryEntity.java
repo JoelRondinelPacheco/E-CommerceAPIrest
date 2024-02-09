@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Category {
+public class CategoryEntity {
     @Id
     @UuidGenerator
     private String id;
@@ -26,12 +26,12 @@ public class Category {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    private Category parent;
+    private CategoryEntity parent;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-    private List<Category> children;
+    private List<CategoryEntity> children;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "rel_category_product", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
+    private List<ProductEntity> products;
 }

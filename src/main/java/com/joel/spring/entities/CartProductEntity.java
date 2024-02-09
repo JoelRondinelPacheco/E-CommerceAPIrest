@@ -13,7 +13,7 @@ import org.hibernate.annotations.UuidGenerator;
 @AllArgsConstructor
 @Builder
 @Data
-public class CartProduct {
+public class CartProductEntity {
     @Id
     @UuidGenerator
     private String id;
@@ -21,9 +21,9 @@ public class CartProduct {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private ProductEntity product;
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
-    private Cart cart;
+    private CartEntity cart;
 }

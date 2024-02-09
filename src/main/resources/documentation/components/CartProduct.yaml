@@ -5,4 +5,4 @@ properties:
   quantity:
     type: integer
   product:
-    $rel: './Product.yaml'
+    $rel: './ProductEntity.yaml'

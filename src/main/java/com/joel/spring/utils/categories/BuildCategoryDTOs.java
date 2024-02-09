@@ -2,7 +2,7 @@ package com.joel.spring.utils.categories;
 
 import com.joel.spring.dtos.categories.CategoryInfoDTO;
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
-import com.joel.spring.entities.Category;
+import com.joel.spring.entities.CategoryEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,36 +10,36 @@ import java.util.List;
 
 @Component
 public class BuildCategoryDTOs {
-    public CategoryParentInfoDTO categoryParentInfoDTO(Category category) {
-        List<CategoryInfoDTO> children = this.categoryInfoDTOSList(category.getChildren());
+    public CategoryParentInfoDTO categoryParentInfoDTO(CategoryEntity categoryEntity) {
+        List<CategoryInfoDTO> children = this.categoryInfoDTOSList(categoryEntity.getChildren());
         return CategoryParentInfoDTO.builder()
-                .id(category.getId())
-                .name(category.getName())
-                .categoryOrder(category.getDisplayOrder())
+                .id(categoryEntity.getId())
+                .name(categoryEntity.getName())
+                .categoryOrder(categoryEntity.getDisplayOrder())
                 .children(children)
                 .build();
     }
 
-    public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<Category> categories) {
+    public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<CategoryEntity> categories) {
         List<CategoryParentInfoDTO> categoriesDTO = new ArrayList<>();
-        for (Category category : categories) {
-            categoriesDTO.add(this.categoryParentInfoDTO(category));
+        for (CategoryEntity categoryEntity : categories) {
+            categoriesDTO.add(this.categoryParentInfoDTO(categoryEntity));
         }
         return categoriesDTO;
     }
 
-    public CategoryInfoDTO categoryInfoDTO(Category category) {
+    public CategoryInfoDTO categoryInfoDTO(CategoryEntity categoryEntity) {
         return CategoryInfoDTO.builder()
-                .id(category.getId())
-                .name(category.getName())
-                .categoryOrder(category.getDisplayOrder())
+                .id(categoryEntity.getId())
+                .name(categoryEntity.getName())
+                .categoryOrder(categoryEntity.getDisplayOrder())
                 .build();
     }
 
-    public List<CategoryInfoDTO> categoryInfoDTOSList(List<Category> categories) {
+    public List<CategoryInfoDTO> categoryInfoDTOSList(List<CategoryEntity> categories) {
         List<CategoryInfoDTO> children = new ArrayList<>();
-        for (Category category : categories) {
-            children.add(this.categoryInfoDTO(category));
+        for (CategoryEntity categoryEntity : categories) {
+            children.add(this.categoryInfoDTO(categoryEntity));
         }
         return children;
     }

@@ -1,8 +1,8 @@
 package com.joel.spring.sales.application.usecases;
 
 import com.joel.spring.dtos.sales.*;
+import com.joel.spring.entities.ProductEntity;
 import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
-import com.joel.spring.entities.Product;
 import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.sales.adapter.output.persistence.JpaMySQLSaleRepository;
@@ -37,19 +37,19 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public SaleEntity save(SalePostReqDTO body) throws NotFoundException {
         UserEntity userEntity = this.userService.getById(body.getClientId());
-        List<Product> products = new ArrayList<>();
+        List<ProductEntity> productEntities = new ArrayList<>();
         for (String productId : body.getProducts() ) {
-            Product product = this.productService.getById(productId);
-            products.add(product);
-            this.productService.updateQuantity( product.getId(), 1D);
+            ProductEntity productEntity = this.productService.getById(productId);
+            productEntities.add(productEntity);
+            this.productService.updateQuantity( productEntity.getId(), 1D);
         }
 
         Double totalPrice = 0D;
-        for (Product product : products) {
-            totalPrice += product.getPrice();
+        for (ProductEntity productEntity : productEntities) {
+            totalPrice += productEntity.getPrice();
         }
 
-        return this.jpaMySQLSaleRepository.save(new SaleEntity(userEntity, products, totalPrice));
+        return this.jpaMySQLSaleRepository.save(new SaleEntity(userEntity, productEntities, totalPrice));
     }
 
     @Override
@@ -78,7 +78,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public List<Product> getProducts(String id) {
+    public List<ProductEntity> getProducts(String id) {
         return this.jpaMySQLSaleRepository.findProductsBySaleId(id);
     }
 

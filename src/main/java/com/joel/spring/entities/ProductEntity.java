@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 @ToString
 @JsonIgnoreProperties("saleEntities")
-public class Product   {
+public class ProductEntity {
     @Id
     @UuidGenerator
     private String id;
@@ -36,11 +36,11 @@ public class Product   {
     private Long stock;
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
-    private List<SaleEntity> saleEntities;
+    private List<SaleEntity> sales;
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
-    private List<Category> categories;
+    private List<CategoryEntity> categories;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<CartProduct> cartsProducts;
+    @OneToMany(mappedBy = "productEntity", fetch = FetchType.LAZY)
+    private List<CartProductEntity> cartsProducts;
 }
