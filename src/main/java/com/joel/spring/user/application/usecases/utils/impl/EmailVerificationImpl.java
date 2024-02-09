@@ -10,7 +10,9 @@ public class EmailVerificationImpl implements EmailVerification {
     private EmailVerificationPort verifyEmail;
 
     @Override
-    public boolean exists(String email) {
-        return this.verifyEmail.exists(email);
+    public void existsOrThrows(String email) {
+        if (this.verifyEmail.exists(email)) {
+            throw new RuntimeException("TODO CUSTOM EX");
+        };
     }
 }

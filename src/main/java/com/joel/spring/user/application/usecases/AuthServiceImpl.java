@@ -2,6 +2,7 @@ package com.joel.spring.user.application.usecases;
 
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
+import com.joel.spring.user.application.usecases.utils.PasswordComparator;
 import com.joel.spring.user.dto.RegisterUserDTO;
 import com.joel.spring.user.dto.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
-    private EmailVerification emailVerification;
+    private EmailVerification emailVerification; //TODO RENAME A EMAIL SERVICE O VERIFYEMAIL
+    @Autowired
+    private PasswordComparator passwordComparator;
 
     @Override
     public String login(UserCredentialsDTO userCredentials) {
@@ -52,23 +55,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String register(RegisterUserDTO newUser) {
-        //TODO EVALUAR SI ES MEJOR LANZAR EXPECION Y SOLO LLAMAR AL METODO
-        if (emailVerification.exists(newUser.getEmail())) {
-            //TODO THROW EXCEPTION
-        }
+        this.emailVerification.existsOrThrows(newUser.getEmail());
+        this.passwordComparator.equalsOrThrows(newUser.getPassword(), newUser.getRepeatedPassword());
 
-        //TODO VERIFICAR QUE LAS CONTRASEÑAS SEAN IGUALES, OTRO METODO? CREO QUE SI PORQUE TAMBIEN SE USA AL RESETEAR PASSWORD
+
         return null;
-
-        /*List<AuthResDTO> errors = new ArrayList<>();
-        AuthInfoDTO response = new AuthInfoDTO();
-        boolean exists = this.userService.existsByEmail(user.getEmail());
-        if (exists) {
-            errors.add(new AuthResDTO("error", "User already exists"));
-            response.setErrors(errors);
-            response.setHttpStatusCode(HttpStatus.CONFLICT);
-            return response;
-        }
+        /*
 
         UserEntity userSaved = this.userService.save(user);
         Cart cart = Cart.builder()
