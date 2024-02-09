@@ -1,7 +1,7 @@
 package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.user.application.port.input.AccountService;
-import com.joel.spring.user.dto.ResetPasswordDTO;
+import com.joel.spring.user.dto.PasswordsDTO;
 
 public class AccountServiceImpl implements AccountService {
 
@@ -32,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public String resetPassword(ResetPasswordDTO newPassword) {
+    public String resetPassword(PasswordsDTO newPassword) {
         /*
         TODO
             get account

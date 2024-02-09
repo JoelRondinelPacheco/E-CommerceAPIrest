@@ -4,6 +4,8 @@ import com.joel.spring.user.application.port.output.AuthRepositoryPort;
 import com.joel.spring.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 public class UserPersistenceAdapter implements AuthRepositoryPort {
 
     @Autowired
@@ -19,9 +21,18 @@ public class UserPersistenceAdapter implements AuthRepositoryPort {
     }
 
     @Override
-    public User update(User user) {
-        return null;
+    public User registrationUpdate(User user) {
+        //TODO REFACTOR CON UPDATE CUSTOM QUERY
+        return this.mapper.entityToDomain(userRepository.save(this.mapper.domainToEntity(user)));
     }
 
-    //TODO implementa las interfaces de salida de la capa application
+    @Override
+    public User getUserByEmail(String email) {
+        //TODO REFACTOR CON CLEAN CODE
+        Optional<UserEntity> userEntity = this.userRepository.findByEmail(email);
+        if (userEntity.isPresent()) {
+            return this.mapper.entityToDomain(userEntity.get());
+        }
+        throw new RuntimeException("TODO CREATE CUSTOM EXCEPTION");
+    }
 }

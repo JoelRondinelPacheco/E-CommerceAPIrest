@@ -1,6 +1,6 @@
 package com.joel.spring.security;
 
-import com.joel.spring.services.JWTUtilityService;
+import com.joel.spring.user.application.usecases.JWTUtilityService;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jwt.JWTClaimsSet;
 import jakarta.servlet.FilterChain;

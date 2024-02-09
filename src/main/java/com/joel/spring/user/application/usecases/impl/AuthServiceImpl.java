@@ -5,10 +5,13 @@ import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.port.output.AuthRepositoryPort;
 import com.joel.spring.user.application.usecases.AccountTokenUseCase;
+import com.joel.spring.user.application.usecases.JWTUtilityService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
 import com.joel.spring.user.domain.AccountToken;
 import com.joel.spring.user.domain.User;
+import com.joel.spring.user.dto.LoginPasswordsDTO;
+import com.joel.spring.user.dto.PasswordsDTO;
 import com.joel.spring.user.dto.RegisterUserDTO;
 import com.joel.spring.user.dto.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +21,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthServiceImpl implements AuthService {
 
+    private String accountRegisteredMessage = "User registered, check your email";
+
     @Autowired
     private EmailVerification emailVerification; //TODO RENAME A EMAIL SERVICE O VERIFYEMAIL
     @Autowired
     private PasswordService passwordService;
     @Autowired
     private AuthRepositoryPort authRepository;
+    @Autowired
+    private JWTUtilityService jwtService;
     @Autowired
     private CartService cartService;
 
@@ -33,6 +40,11 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(UserCredentialsDTO userCredentials) {
+
+        User user = this.authRepository.getUserByEmail(userCredentials.getEmail());
+
+        this.passwordService.checkLoginPasswordsOrThrows(new LoginPasswordsDTO(userCredentials.getPassword(), user.getPassword()));
+        String jwt = this.jwtService.generateJWT(user.getId());
 
         return  null;
 
@@ -71,7 +83,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String register(RegisterUserDTO newUser) {
         this.emailVerification.existsOrThrows(newUser.getEmail());
-        this.passwordService.equalsOrThrows(newUser.getPassword(), newUser.getRepeatedPassword());
+        this.passwordService.equalsOrThrows(new PasswordsDTO(newUser.getPassword(), newUser.getRepeatedPassword()));
 
         User user = this.create(newUser);
         User userRegistered = this.authRepository.register(user);
@@ -82,12 +94,12 @@ public class AuthServiceImpl implements AuthService {
         userRegistered.setCart(cart);
         userRegistered.setAccountToken(accountToken);
 
+        this.authRepository.registrationUpdate(userRegistered);
 
         //TODO SEND EMAIL
 
 
-        return null;
-
+        return this.getAccountRegisteredOkMessage();
     }
 
     private User create(RegisterUserDTO newUser) {
@@ -100,5 +112,7 @@ public class AuthServiceImpl implements AuthService {
         return user;
     }
 
-
+    private String getAccountRegisteredOkMessage() {
+        return this.accountRegisteredMessage;
+    }
 }

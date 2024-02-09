@@ -7,7 +7,7 @@ import com.joel.spring.entities.CartProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.CartProductService;
 import com.joel.spring.services.CartService;
-import com.joel.spring.services.JWTUtilityService;
+import com.joel.spring.user.application.usecases.JWTUtilityService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

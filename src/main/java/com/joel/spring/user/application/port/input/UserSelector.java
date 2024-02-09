@@ -5,5 +5,5 @@ import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import java.util.List;
 
 public interface UserSelector <T>{
-    List<UserPersonalInfoDTO> get(T param);
+    UserPersonalInfoDTO get(T param);
 }

@@ -1,6 +1,6 @@
 package com.joel.spring.security;
 
-import com.joel.spring.services.JWTUtilityService;
+import com.joel.spring.user.application.usecases.JWTUtilityService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
