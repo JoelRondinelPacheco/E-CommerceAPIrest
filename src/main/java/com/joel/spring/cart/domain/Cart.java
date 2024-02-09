@@ -10,4 +10,9 @@ public class Cart {
     private Double totalPrice;
     private List<Product> products;
     private User user;
+
+    public Cart(User user) {
+        this.user = user;
+        this.totalPrice = 0D;
+    }
 }

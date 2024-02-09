@@ -1,4 +1,4 @@
-package com.joel.spring.user.application.usecases;
+package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.dtos.users.UserEditReqDTO;
 import com.joel.spring.dtos.users.UserPersonalInfoDTO;
@@ -31,13 +31,6 @@ public class UserServiceImpl implements UserService {
         throw new NotFoundException("UserEntity not found");
     }
 
-
-    @Transactional
-    public UserEntity save(UserPostReqDTO dto) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-        String passwordEncrypted = encoder.encode(dto.getPassword());
-        return this.userRepository.save(new UserEntity(dto.getFirstName(), dto.getLastName(), dto.getEmail(),passwordEncrypted));
-    }
 
     @Override
     public String delete(String id) {

@@ -1,5 +1,6 @@
 package com.joel.spring.user.infrastructure.input.web;
 
+import com.joel.spring.user.application.port.input.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

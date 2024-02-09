@@ -36,11 +36,11 @@ public class UserEntity {
     private AccountTokenEntity accountToken;
 
     @OneToMany(mappedBy = "client")
-    private List<SaleEntity> saleEntities;
+    private List<SaleEntity> sales;
 
     @OneToOne
     @JoinColumn(name = "cart_id")
-    private CartEntity cartEntity;
+    private CartEntity cart;
 
     public UserEntity() {
     }

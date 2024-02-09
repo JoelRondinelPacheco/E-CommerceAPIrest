@@ -1,4 +1,4 @@
-package com.joel.spring.user.application.usecases;
+package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.user.application.port.input.AccountService;
 import com.joel.spring.user.dto.ResetPasswordDTO;
