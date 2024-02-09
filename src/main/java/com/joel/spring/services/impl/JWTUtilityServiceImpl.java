@@ -84,13 +84,10 @@ public class JWTUtilityServiceImpl implements JWTUtilityService {
 
 // throws IOException, NoSuchAlgorithmException, InvalidKeySpecException
     private PrivateKey loadPrivateKey(Resource resource) {
-
         try {
             byte[] keyBytes = Files.readAllBytes(Paths.get(resource.getURI()));
-
             String privateKeyPEM = this.formatPrivateKey(keyBytes);
             byte[] decodeKey = Base64.getDecoder().decode(privateKeyPEM);
-
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(decodeKey));
         } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
@@ -98,26 +95,31 @@ public class JWTUtilityServiceImpl implements JWTUtilityService {
         }
 
     }
+    private PublicKey loadPublicKey(Resource resource) {
 
-    private PublicKey loadPublicKey(Resource resource) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        byte[] keyBytes = Files.readAllBytes(Paths.get(resource.getURI()));
-        String publicKeyPEM = new String(keyBytes, StandardCharsets.UTF_8)
-                .replace("-----BEGIN PUBLIC KEY-----", "")
-                .replace("-----END PUBLIC KEY-----", "")
-                .replaceAll("\\s", "");
-
-        byte[] decodeKey = Base64.getDecoder().decode(publicKeyPEM);
-
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-
-        return keyFactory.generatePublic(new X509EncodedKeySpec(decodeKey));
-
+        try {
+            byte[] keyBytes = Files.readAllBytes(Paths.get(resource.getURI()));
+            String publicKeyPEM = this.formatPublicKey(keyBytes);
+            byte[] decodeKey = Base64.getDecoder().decode(publicKeyPEM);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return keyFactory.generatePublic(new X509EncodedKeySpec(decodeKey));
+        } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 
     private String formatPrivateKey(byte[] keyBytes) {
         return new String(keyBytes, StandardCharsets.UTF_8)
                 .replace("-----BEGIN PRIVATE KEY-----", "")
                 .replace("-----END PRIVATE KEY-----", "")
+                .replaceAll("\\s", "");
+    }
+
+    private String formatPublicKey(byte[] keyBytes) {
+        return new String(keyBytes, StandardCharsets.UTF_8)
+                .replace("-----BEGIN PUBLIC KEY-----", "")
+                .replace("-----END PUBLIC KEY-----", "")
                 .replaceAll("\\s", "");
     }
 }
