@@ -19,12 +19,14 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterUserDTO newUser) {
-
+        //TODO VALIDATE DTO HERE
         return null;
     }
 
     @PostMapping("/login")
     private ResponseEntity<?> login(@RequestBody UserCredentialsDTO userCredentials) {
+
+        //TODO VALIDATE DTO HERE
         return null;
     }
 }

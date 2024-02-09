@@ -1,31 +1,17 @@
 package com.joel.spring.user.application.usecases;
 
-import com.joel.spring.dtos.users.*;
-import com.joel.spring.entities.Cart;
 import com.joel.spring.user.application.port.input.AuthService;
+import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.dto.RegisterUserDTO;
 import com.joel.spring.user.dto.UserCredentialsDTO;
-import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
-import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.CartService;
-import com.joel.spring.services.JWTUtilityService;
-import com.joel.spring.user.application.port.input.UserService;
-import com.joel.spring.validations.users.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    @Autowired private UserService userService;
-    @Autowired private JWTUtilityService jwtUtilityService;
-    @Autowired private UserValidation userValidation;
-    @Autowired private CartService cartService;
+    @Autowired
+    private EmailVerification emailVerification;
 
     @Override
     public String login(UserCredentialsDTO userCredentials) {
@@ -65,8 +51,13 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(RegisterUserDTO user) {
+    public String register(RegisterUserDTO newUser) {
+        //TODO EVALUAR SI ES MEJOR LANZAR EXPECION Y SOLO LLAMAR AL METODO
+        if (emailVerification.exists(newUser.getEmail())) {
+            //TODO THROW EXCEPTION
+        }
 
+        //TODO VERIFICAR QUE LAS CONTRASEÑAS SEAN IGUALES, OTRO METODO? CREO QUE SI PORQUE TAMBIEN SE USA AL RESETEAR PASSWORD
         return null;
 
         /*List<AuthResDTO> errors = new ArrayList<>();
