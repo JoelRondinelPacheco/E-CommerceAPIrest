@@ -3,6 +3,7 @@ package com.joel.spring.user.application.usecases.impl;
 import com.joel.spring.cart.application.port.input.CartService;
 import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.user.application.port.input.AuthService;
+import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.application.port.output.AuthRepositoryPort;
 import com.joel.spring.user.application.usecases.AccountTokenUseCase;
 import com.joel.spring.user.application.usecases.JWTUtilityService;
@@ -38,15 +39,21 @@ public class AuthServiceImpl implements AuthService {
     @Qualifier("newAccount")
     private AccountTokenUseCase newUserAccountToken;
 
+    @Autowired
+    @Qualifier("userByEmail")
+    private UserSelector<String> userByEmail;
+
     @Override
     public String login(UserCredentialsDTO userCredentials) {
 
-        User user = this.authRepository.getUserByEmail(userCredentials.getEmail());
+        User user = this.userByEmail.get(userCredentials.getEmail());
 
         this.passwordService.checkLoginPasswordsOrThrows(new LoginPasswordsDTO(userCredentials.getPassword(), user.getPassword()));
+
+        //todo catch expetions
         String jwt = this.jwtService.generateJWT(user.getId());
 
-        return  null;
+        return jwt;
 
         /*
         List<AuthResDTO> errors = new ArrayList<>();
@@ -82,6 +89,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String register(RegisterUserDTO newUser) {
+
         this.emailVerification.existsOrThrows(newUser.getEmail());
         this.passwordService.equalsOrThrows(new PasswordsDTO(newUser.getPassword(), newUser.getRepeatedPassword()));
 

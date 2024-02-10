@@ -6,5 +6,4 @@ public interface AuthRepositoryPort {
     User register(User user);
     User registrationUpdate(User user);
 
-    User getUserByEmail(String email);
 }

@@ -49,7 +49,11 @@ public class JWTUtilityServiceImpl implements JWTUtilityService {
                 .build();
 
         SignedJWT signedJWT = new SignedJWT(new JWSHeader(JWSAlgorithm.RS256), claimsSet);
-        signedJWT.sign(signer);
+        try {
+            signedJWT.sign(signer);
+        } catch (JOSEException e) {
+            throw new RuntimeException(e);
+        }
         return signedJWT.serialize();
     }
 
@@ -103,8 +107,9 @@ public class JWTUtilityServiceImpl implements JWTUtilityService {
             byte[] decodeKey = Base64.getDecoder().decode(publicKeyPEM);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(new X509EncodedKeySpec(decodeKey));
+
         } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("TODO CUSTOM EXPETION");
         }
     }
 

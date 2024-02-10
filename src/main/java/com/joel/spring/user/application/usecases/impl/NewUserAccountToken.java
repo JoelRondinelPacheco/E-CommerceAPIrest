@@ -11,7 +11,7 @@ public class NewUserAccountToken implements AccountTokenUseCase {
 
     @Override
     public AccountToken create() {
-        String token = "Generate random token or jwt";
+        String token = "Generate-random-token-or-jwt";
         return AccountToken.NewUserAccountToken(token);
     }
 }
