@@ -1,22 +1,23 @@
 package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.user.application.port.input.AccountService;
+import com.joel.spring.user.application.port.output.AccountTokenRepository;
 import com.joel.spring.user.dto.PasswordsDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class AccountServiceImpl implements AccountService {
 
+    @Autowired
+    private AccountTokenRepository accountTokenRepository;
     /*
     TODO
         Create account token whit jwt
      */
     @Override
     public String validate(String token) {
-        /*
-        TODO
-            get account
-            verify token
-            activate account
-         */
+       //buscar token en db
+
+        //activar cuenta
         return null;
     }
 

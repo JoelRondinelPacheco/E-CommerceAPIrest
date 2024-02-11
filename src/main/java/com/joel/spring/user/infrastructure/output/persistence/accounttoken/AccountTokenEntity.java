@@ -1,4 +1,4 @@
-package com.joel.spring.user.infrastructure.output.persistence;
+package com.joel.spring.user.infrastructure.output.persistence.accounttoken;
 
 import com.joel.spring.user.util.AccountTokenType;
 import jakarta.persistence.Entity;

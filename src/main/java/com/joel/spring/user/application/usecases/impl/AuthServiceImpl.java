@@ -5,7 +5,7 @@ import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.application.port.output.AuthRepositoryPort;
-import com.joel.spring.user.application.usecases.AccountTokenUseCase;
+import com.joel.spring.user.application.usecases.NewAccountTokenUserCase;
 import com.joel.spring.user.application.usecases.JWTUtilityService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
@@ -25,11 +25,11 @@ public class AuthServiceImpl implements AuthService {
     private String accountRegisteredMessage = "User registered, check your email";
 
     @Autowired
+    private AuthRepositoryPort authRepository;
+    @Autowired
     private EmailVerification emailVerification; //TODO RENAME A EMAIL SERVICE O VERIFYEMAIL
     @Autowired
     private PasswordService passwordService;
-    @Autowired
-    private AuthRepositoryPort authRepository;
     @Autowired
     private JWTUtilityService jwtService;
     @Autowired
@@ -37,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     @Qualifier("newAccount")
-    private AccountTokenUseCase newUserAccountToken;
+    private NewAccountTokenUserCase newUserAccountToken;
 
     @Autowired
     @Qualifier("userByEmail")
@@ -97,7 +97,7 @@ public class AuthServiceImpl implements AuthService {
         User userRegistered = this.authRepository.register(user);
 
         Cart cart = this.cartService.createFor(user);
-        AccountToken accountToken = this.newUserAccountToken.create();
+        AccountToken accountToken = this.newUserAccountToken.createFor(user);
 
         userRegistered.setCart(cart);
         userRegistered.setAccountToken(accountToken);

@@ -11,6 +11,8 @@ public class AccountToken {
     private AccountTokenType tokenType;
     private boolean valid;
     private Date expires;
+    private User user;
+
 
     private AccountToken(String token) {
         this.token = token;
