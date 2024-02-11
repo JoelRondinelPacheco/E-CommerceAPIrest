@@ -25,14 +25,4 @@ public class UserPersistenceAdapter implements AuthRepositoryPort {
         //TODO REFACTOR CON UPDATE CUSTOM QUERY
         return this.mapper.entityToDomain(userRepository.save(this.mapper.domainToEntity(user)));
     }
-
-//    @Override
-//    public User getUserByEmail(String email) {
-//        //TODO REFACTOR CON CLEAN CODE
-//        Optional<UserEntity> userEntity = this.userRepository.findByEmail(email);
-//        if (userEntity.isPresent()) {
-//            return this.mapper.entityToDomain(userEntity.get());
-//        }
-//        throw new RuntimeException("TODO CREATE CUSTOM EXCEPTION");
-//    }
 }

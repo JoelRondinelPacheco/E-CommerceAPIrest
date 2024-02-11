@@ -1,7 +1,7 @@
 package com.joel.spring.user.infrastructure.output.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.joel.spring.entities.CartEntity;
+import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
 import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import com.joel.spring.user.infrastructure.output.persistence.accounttoken.AccountTokenEntity;
 import jakarta.persistence.*;

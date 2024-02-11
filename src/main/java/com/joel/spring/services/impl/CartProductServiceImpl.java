@@ -2,7 +2,7 @@ package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
-import com.joel.spring.entities.CartEntity;
+import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
 import com.joel.spring.entities.CartProductEntity;
 import com.joel.spring.entities.ProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
