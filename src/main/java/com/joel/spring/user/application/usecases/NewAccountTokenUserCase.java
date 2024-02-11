@@ -4,5 +4,5 @@ import com.joel.spring.user.domain.AccountToken;
 import com.joel.spring.user.domain.User;
 
 public interface NewAccountTokenUserCase {
-    AccountToken createFor(User user);
+    AccountToken create();
 }

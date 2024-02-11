@@ -4,9 +4,11 @@ import com.joel.spring.user.application.port.output.AccountTokenRepository;
 import com.joel.spring.user.application.port.output.NewAccountTokenPort;
 import com.joel.spring.user.domain.AccountToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class AccountTokenPersistenceAdapter implements AccountTokenRepository, NewAccountTokenPort {
 
     @Autowired
@@ -27,6 +29,7 @@ public class AccountTokenPersistenceAdapter implements AccountTokenRepository, N
 
     @Override
     public AccountToken save(AccountToken accountToken) {
-        return null;
+        AccountTokenEntity accountTokenEntity = this.mapper.domainToEntity(accountToken);
+        return this.mapper.entityToDomain(this.accountTokenRepository.save(accountTokenEntity));
     }
 }

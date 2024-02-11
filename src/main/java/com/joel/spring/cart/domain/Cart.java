@@ -9,10 +9,8 @@ public class Cart {
     private String id;
     private Double totalPrice;
     private List<Product> products;
-    private User user;
 
-    public Cart(User user) {
-        this.user = user;
+    public Cart() {
         this.totalPrice = 0D;
     }
 }

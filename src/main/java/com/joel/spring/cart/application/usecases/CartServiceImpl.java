@@ -11,8 +11,8 @@ public class CartServiceImpl implements CartService {
     @Autowired
     private CreateCartPort cartRepository;
     @Override
-    public Cart createFor(User user) {
-        Cart cart = new Cart(user);
-        return this.cartRepository.create(new Cart(user));
+    public Cart create() {
+        Cart cart = new Cart();
+        return this.cartRepository.create(cart);
     }
 }

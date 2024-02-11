@@ -16,7 +16,7 @@ public class NewAccountTokenUserCaseImpl implements NewAccountTokenUserCase {
     private NewAccountTokenPort accountTokenPort;
 
     @Override
-    public AccountToken createFor(User user) {
+    public AccountToken create() {
         String token = "Generate-random-token-or-jwt";
         AccountToken accountToken = AccountToken.NewUserAccountToken(token);
         return this.accountTokenPort.save(accountToken);

@@ -55,37 +55,6 @@ public class AuthServiceImpl implements AuthService {
         String jwt = this.jwtService.generateJWT(user.getId());
 
         return jwt;
-
-        /*
-        List<AuthResDTO> errors = new ArrayList<>();
-        AuthInfoDTO response = new AuthInfoDTO();
-        try {
-            UserEntity user = this.userService.findByEmail(login.getEmail());
-            if (verifyPassword(login.getPassword(), user.getPassword())) {
-                response.setResponse(jwtUtilityService.generateJWT(user.getId()));
-                response.setErrors(errors);
-                response.setHttpStatusCode(HttpStatus.OK);
-            } else {
-                errors.add(new AuthResDTO("error", "User or password invalid"));
-                response.setResponse("Error");
-                response.setErrors(errors);
-                response.setHttpStatusCode(HttpStatus.UNAUTHORIZED);
-            }
-            return response;
-        } catch (NotFoundException e) {
-            errors.add(new AuthResDTO("error", "User or password invalid"));
-            response.setResponse("Error");
-            response.setErrors(errors);
-            response.setHttpStatusCode(HttpStatus.UNAUTHORIZED);
-            return response;
-        }
-        catch (Exception e) {
-            errors.add(new AuthResDTO("error", e.getMessage()));
-            response.setResponse("Error");
-            response.setErrors(errors);
-            response.setHttpStatusCode(HttpStatus.BAD_REQUEST);
-            return response;
-        }*/
     }
 
     @Override
@@ -95,15 +64,14 @@ public class AuthServiceImpl implements AuthService {
         this.passwordService.equalsOrThrows(new PasswordsDTO(newUser.getPassword(), newUser.getRepeatedPassword()));
 
         User user = this.create(newUser);
+
+        Cart cart = this.cartService.create();
+        AccountToken accountToken = this.newUserAccountToken.create();
+
+        user.setCart(cart);
+        user.setAccountToken(accountToken);
+
         User userRegistered = this.authRepository.register(user);
-
-        Cart cart = this.cartService.createFor(user);
-        AccountToken accountToken = this.newUserAccountToken.createFor(user);
-
-        userRegistered.setCart(cart);
-        userRegistered.setAccountToken(accountToken);
-
-        this.authRepository.registrationUpdate(userRegistered);
 
         //TODO SEND EMAIL
 
