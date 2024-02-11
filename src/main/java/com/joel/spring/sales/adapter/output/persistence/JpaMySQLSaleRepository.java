@@ -2,7 +2,7 @@ package com.joel.spring.sales.adapter.output.persistence;
 
 import com.joel.spring.dtos.sales.SaleInfoDTO;
 import com.joel.spring.dtos.sales.SaleMaxAmountDTO;
-import com.joel.spring.entities.ProductEntity;
+import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

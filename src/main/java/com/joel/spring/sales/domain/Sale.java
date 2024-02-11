@@ -1,7 +1,7 @@
 package com.joel.spring.sales.domain;
 
 import com.joel.spring.user.domain.User;
-import com.joel.spring.entities.ProductEntity;
+import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 
 import java.time.LocalDate;
 import java.util.List;

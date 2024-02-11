@@ -38,6 +38,7 @@ public class SaleController {
         return new ResponseEntity<String>(this.saleService.delete(saleId), HttpStatus.OK);
     }
 
+    //TODO, MOVE TO PRODUCTS CONTROLLER ???
     @GetMapping("/products/{saleId}")
     public ResponseEntity<List<ProductInfoDTO>> getProducts(@PathVariable String saleId) {
         return new ResponseEntity<>(this.productService.getProductInfoBySaleId(saleId), HttpStatus.OK);

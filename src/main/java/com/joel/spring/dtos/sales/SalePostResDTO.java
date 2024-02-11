@@ -1,6 +1,6 @@
 package com.joel.spring.dtos.sales;
 
-import com.joel.spring.entities.ProductEntity;
+import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;

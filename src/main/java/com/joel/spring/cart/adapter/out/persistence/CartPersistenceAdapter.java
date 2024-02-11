@@ -18,7 +18,7 @@ public class CartPersistenceAdapter implements CreateCartPort {
 
     @Override
     public Cart create(Cart cart) {
-
-        return null;
+        CartEntity cartSaved = this.cartRepository.save(this.cartMapper.domainToEntity(cart));
+        return this.cartMapper.entityToDomain(cartSaved);
     }
 }

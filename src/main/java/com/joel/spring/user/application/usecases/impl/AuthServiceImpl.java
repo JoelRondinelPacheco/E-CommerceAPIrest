@@ -46,6 +46,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String login(UserCredentialsDTO userCredentials) {
 
+        //TODO HANDLE IF EMAIL DONT EXISTS
         User user = this.userByEmail.get(userCredentials.getEmail());
 
         this.passwordService.checkLoginPasswordsOrThrows(new LoginPasswordsDTO(userCredentials.getPassword(), user.getPassword()));

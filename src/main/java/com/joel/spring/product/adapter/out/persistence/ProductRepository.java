@@ -1,7 +1,7 @@
-package com.joel.spring.repositories;
+package com.joel.spring.product.adapter.out.persistence;
 
 import com.joel.spring.dtos.products.ProductInfoDTO;
-import com.joel.spring.entities.ProductEntity;
+import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

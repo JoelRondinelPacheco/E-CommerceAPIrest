@@ -13,6 +13,7 @@ public class AccountToken {
     private Date expires;
     private User user;
 
+    //Creacion de token en dominio???
 
     private AccountToken(String token) {
         this.token = token;

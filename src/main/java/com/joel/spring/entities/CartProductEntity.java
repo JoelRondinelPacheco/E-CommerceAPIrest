@@ -1,6 +1,7 @@
 package com.joel.spring.entities;
 
 import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
+import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
