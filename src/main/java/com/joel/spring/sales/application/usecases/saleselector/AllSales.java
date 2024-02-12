@@ -1,4 +1,4 @@
-package com.joel.spring.sales.application.usecases;
+package com.joel.spring.sales.application.usecases.saleselector;
 
 import com.joel.spring.dtos.sales.SaleInfoDTO;
 import com.joel.spring.sales.application.port.input.SaleSelector;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@Qualifier("getSaleById")
-public class SaleById implements SaleSelector<String> {
+@Qualifier("allSales")
+public class AllSales implements SaleSelector<String> {
     @Override
     public List<SaleInfoDTO> get(String s) {
         return null;
