@@ -32,7 +32,7 @@ public class UserEntity {
     private boolean enabled;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, name = "account_token_id")
     private AccountTokenEntity accountToken;
 

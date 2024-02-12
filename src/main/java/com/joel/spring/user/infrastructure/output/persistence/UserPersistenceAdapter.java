@@ -22,7 +22,7 @@ public class UserPersistenceAdapter implements AuthRepositoryPort {
     }
 
     @Override
-    public User registrationUpdate(User user) {
+    public User update(User user) {
         //TODO REFACTOR CON UPDATE CUSTOM QUERY
         return this.mapper.entityToDomain(userRepository.save(this.mapper.domainToEntity(user)));
     }

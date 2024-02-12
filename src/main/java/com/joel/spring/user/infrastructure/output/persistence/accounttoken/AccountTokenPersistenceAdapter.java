@@ -1,7 +1,7 @@
 package com.joel.spring.user.infrastructure.output.persistence.accounttoken;
 
 import com.joel.spring.user.application.port.output.AccountTokenRepository;
-import com.joel.spring.user.application.port.output.NewAccountTokenPort;
+import com.joel.spring.user.application.port.output.AccountTokenPersistencePort;
 import com.joel.spring.user.domain.AccountToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class AccountTokenPersistenceAdapter implements AccountTokenRepository, NewAccountTokenPort {
+public class AccountTokenPersistenceAdapter implements AccountTokenRepository, AccountTokenPersistencePort {
 
     @Autowired
     private JpaMySQLAccountTokenRepository accountTokenRepository;
