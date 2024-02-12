@@ -12,6 +12,9 @@ public class AccountToken {
     private boolean valid;
     private Date expires;
 
+    public AccountToken(){
+
+    }
     private AccountToken(String token) {
         this.token = token;
         this.tokenType = AccountTokenType.VALIDATE_ACCOUNT;

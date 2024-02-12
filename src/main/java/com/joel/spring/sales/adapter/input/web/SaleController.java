@@ -18,7 +18,7 @@ import java.util.List;
 public class SaleController {
     @Autowired private SaleService saleService;
     @Autowired private ProductService productService;
-
+/*
     @GetMapping
     public List<SaleInfoDTO> getAll(){
         return this.saleService.getAllDTO();
@@ -52,6 +52,6 @@ public class SaleController {
     @GetMapping("/max")
     public ResponseEntity<List<SaleMaxAmountDTO>> max(){
         return new ResponseEntity<>(this.saleService.getMaxAmountSale(), HttpStatus.OK);
-    }
+    }*/
 
 }

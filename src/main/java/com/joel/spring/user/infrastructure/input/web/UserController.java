@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-
+/*
     @GetMapping
     public List<UserPersonalInfoDTO> getAll () { return this.userService.getAllDTO(); }
 
@@ -34,5 +34,5 @@ public class UserController {
     @PutMapping("/edit")
     public ResponseEntity<UserPersonalInfoDTO> edit(@RequestBody UserEditReqDTO body) throws NotFoundException {
         return new ResponseEntity<>(this.userService.updateDTO(body), HttpStatus.OK);
-    }
+    }*/
 }
