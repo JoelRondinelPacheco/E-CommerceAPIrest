@@ -2,9 +2,9 @@ package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.categories.CategoryInfoDTO;
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
-import com.joel.spring.entities.CategoryEntity;
+import com.joel.spring.category.adapter.output.persistence.CategoryEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.repositories.CategoryRepository;
+import com.joel.spring.category.adapter.output.persistence.CategoryRepository;
 import com.joel.spring.services.CategoryService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;

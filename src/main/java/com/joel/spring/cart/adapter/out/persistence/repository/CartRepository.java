@@ -1,4 +1,4 @@
-package com.joel.spring.repositories;
+package com.joel.spring.cart.adapter.out.persistence.repository;
 
 import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

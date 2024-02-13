@@ -1,4 +1,4 @@
-package com.joel.spring.dtos.products;
+package com.joel.spring.product.dto;
 
 import lombok.*;
 

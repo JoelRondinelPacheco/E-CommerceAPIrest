@@ -1,8 +1,8 @@
 package com.joel.spring.services;
 
-import com.joel.spring.dtos.products.ProductEditReqDTO;
-import com.joel.spring.dtos.products.ProductInfoDTO;
-import com.joel.spring.dtos.products.ProductPostReqDTO;
+import com.joel.spring.product.dto.ProductEditReqDTO;
+import com.joel.spring.product.dto.ProductInfoDTO;
+import com.joel.spring.product.dto.ProductPostReqDTO;
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 

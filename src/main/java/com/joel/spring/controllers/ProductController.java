@@ -1,8 +1,8 @@
 package com.joel.spring.controllers;
 
-import com.joel.spring.dtos.products.ProductEditReqDTO;
-import com.joel.spring.dtos.products.ProductInfoDTO;
-import com.joel.spring.dtos.products.ProductPostReqDTO;
+import com.joel.spring.product.dto.ProductEditReqDTO;
+import com.joel.spring.product.dto.ProductInfoDTO;
+import com.joel.spring.product.dto.ProductPostReqDTO;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

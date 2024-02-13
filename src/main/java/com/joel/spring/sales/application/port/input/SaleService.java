@@ -1,7 +1,7 @@
 package com.joel.spring.sales.application.port.input;
 
-import com.joel.spring.dtos.products.ProductInfoDTO;
-import com.joel.spring.dtos.sales.*;
+import com.joel.spring.product.dto.ProductInfoDTO;
+import com.joel.spring.dtos.sales.SaleMaxAmountDTO;
 
 import java.util.List;
 

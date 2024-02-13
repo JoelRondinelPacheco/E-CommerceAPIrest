@@ -1,4 +1,4 @@
-package com.joel.spring.entities;
+package com.joel.spring.category.adapter.output.persistence;
 
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import jakarta.persistence.*;

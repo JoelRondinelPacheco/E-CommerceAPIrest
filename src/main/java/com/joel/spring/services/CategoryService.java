@@ -2,7 +2,7 @@ package com.joel.spring.services;
 
 import com.joel.spring.dtos.categories.CategoryInfoDTO;
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
-import com.joel.spring.entities.CategoryEntity;
+import com.joel.spring.category.adapter.output.persistence.CategoryEntity;
 import com.joel.spring.exceptions.NotFoundException;
 
 import java.util.List;

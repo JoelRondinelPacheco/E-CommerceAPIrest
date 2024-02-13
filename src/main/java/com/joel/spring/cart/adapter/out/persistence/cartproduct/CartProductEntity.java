@@ -1,4 +1,4 @@
-package com.joel.spring.entities;
+package com.joel.spring.cart.adapter.out.persistence.cartproduct;
 
 import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;

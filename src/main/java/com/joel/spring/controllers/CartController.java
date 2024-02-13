@@ -3,7 +3,7 @@ package com.joel.spring.controllers;
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cart.ProductInfoDTO;
 import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
-import com.joel.spring.entities.CartProductEntity;
+import com.joel.spring.cart.adapter.out.persistence.cartproduct.CartProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.CartProductService;
 import com.joel.spring.services.CartService;

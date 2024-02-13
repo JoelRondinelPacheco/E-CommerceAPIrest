@@ -1,14 +1,13 @@
 package com.joel.spring.controllers;
 
 import com.joel.spring.config.ValidationsConfig;
-import com.joel.spring.dtos.users.*;
+import com.joel.spring.dtos.users.AuthResDTO;
+import com.joel.spring.dtos.users.UserPostReqDTO;
 import com.joel.spring.user.dto.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

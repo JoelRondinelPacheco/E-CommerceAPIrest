@@ -1,23 +1,18 @@
 package com.joel.spring.sales.application.usecases;
 
 import com.joel.spring.dtos.sales.SalePostReqDTO;
-import com.joel.spring.product.adapter.out.persistence.ProductEntity;
-import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.product.application.port.input.ProductSelector;
 import com.joel.spring.product.application.port.output.ProductsByUser;
 import com.joel.spring.product.domain.Product;
-import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import com.joel.spring.sales.application.port.input.SalePersistenceService;
 import com.joel.spring.sales.domain.Sale;
 import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.domain.User;
-import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class SalePersistenceServiceImpl implements SalePersistenceService {
 

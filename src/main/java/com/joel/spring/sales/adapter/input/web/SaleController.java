@@ -1,17 +1,9 @@
 package com.joel.spring.sales.adapter.input.web;
 
-import com.joel.spring.dtos.products.ProductInfoDTO;
-import com.joel.spring.dtos.sales.*;
-import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.ProductService;
 import com.joel.spring.sales.application.port.input.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/saleEntities")
