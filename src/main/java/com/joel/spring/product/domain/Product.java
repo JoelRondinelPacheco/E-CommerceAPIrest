@@ -3,10 +3,12 @@ package com.joel.spring.product.domain;
 import com.joel.spring.cart.domain.CartProduct;
 import com.joel.spring.category.domain.Category;
 import com.joel.spring.sales.domain.Sale;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Data
 public class Product {
     private String id;
     private LocalDate created;
