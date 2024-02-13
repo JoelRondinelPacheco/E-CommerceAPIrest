@@ -1,6 +1,5 @@
 package com.joel.spring.sales.adapter.input.web;
 
-import com.joel.spring.services.ProductService;
 import com.joel.spring.sales.application.port.input.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

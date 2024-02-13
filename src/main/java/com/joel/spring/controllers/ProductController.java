@@ -4,7 +4,6 @@ import com.joel.spring.product.dto.ProductEditReqDTO;
 import com.joel.spring.product.dto.ProductInfoDTO;
 import com.joel.spring.product.dto.ProductPostReqDTO;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

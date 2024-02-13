@@ -9,7 +9,6 @@ import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.cart.adapter.out.persistence.repository.CartProductRepository;
 import com.joel.spring.services.CartProductService;
 import com.joel.spring.services.CartService;
-import com.joel.spring.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

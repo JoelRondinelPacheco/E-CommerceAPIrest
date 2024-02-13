@@ -5,7 +5,7 @@ import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
 import com.joel.spring.category.adapter.output.persistence.CategoryEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.category.adapter.output.persistence.CategoryRepository;
-import com.joel.spring.services.CategoryService;
+import com.joel.spring.category.application.port.input.CategoryService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl  {
     @Autowired private CategoryRepository categoryRepository;
     @Autowired private CheckOptional checkOptional;
     @Autowired private BuildCategoryDTOs categoryDTOs;
-    @Override
     public List<CategoryEntity> getListCategoriesById(List<String> categoriesId) {
         List<CategoryEntity> categories = new ArrayList<>();
         for (String id : categoriesId) {
@@ -33,17 +32,14 @@ public class CategoryServiceImpl implements CategoryService {
         return categories;
     }
 
-    @Override
     public CategoryEntity getCategoryById(String id) throws NotFoundException {
         Optional<CategoryEntity> optional = this.categoryRepository.findById(id);
        return this.checkOptional.checkOptionalOk(optional);
     }
 
-    @Override
     public List<CategoryInfoDTO> categoryInfoDTOList(String parentId) {
         return this.categoryRepository.categoryInfoDTOByParentId(parentId);
     }
-    @Override
     public CategoryParentInfoDTO categoryParentInfoDTO(String id) throws NotFoundException {
         Optional<CategoryInfoDTO> optional = this.categoryRepository.categoryInfoDTOById(id);
         //Info de parent
@@ -57,7 +53,6 @@ public class CategoryServiceImpl implements CategoryService {
                 .build();
     }
 
-    @Override
     public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<String> categories) {
         List<CategoryParentInfoDTO> categoriesDTO = new ArrayList<>();
         for (String id : categories) {
@@ -70,13 +65,11 @@ public class CategoryServiceImpl implements CategoryService {
         return categoriesDTO;
     }
 
-    @Override
     public List<CategoryParentInfoDTO> categoryParentInfoDTOListByProductId(String id) {
         List<String> categoriesId = this.categoriesIdByProduct(id);
         return this.categoryParentInfoDTOList(categoriesId);
     }
 
-    @Override
     public List<String> categoriesIdByProduct(String productId) {
         return this.categoryRepository.getCategoriesIdByProductId(productId);
     }
