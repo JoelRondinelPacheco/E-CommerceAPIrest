@@ -9,9 +9,9 @@ import java.util.List;
 
 @Component
 @Qualifier("productById")
-public class ProductById implements ProductSelector<String> {
+public class ProductById implements ProductSelector<ProductInfoDTO, String> {
     @Override
-    public List<ProductInfoDTO> get(String s) {
+    public ProductInfoDTO get(String s) {
         return null;
     }
 }

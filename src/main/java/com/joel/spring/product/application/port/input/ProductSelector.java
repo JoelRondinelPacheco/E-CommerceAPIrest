@@ -4,6 +4,6 @@ import com.joel.spring.product.dto.ProductInfoDTO;
 
 import java.util.List;
 
-public interface ProductSelector <T>{
-    List<ProductInfoDTO> get(T t);
+public interface ProductSelector <R, T>{
+    R get(T t);
 }
