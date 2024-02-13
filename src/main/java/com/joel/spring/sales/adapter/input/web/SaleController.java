@@ -31,7 +31,7 @@ public class SaleController {
 
     //TODO, MOVE TO PRODUCTS CONTROLLER ???
     @GetMapping("/products/{saleId}")
-    public ResponseEntity<List<ProductInfoDTO>> getProducts(@PathVariable String saleId) {
+    public ResponseEntity<List<ProductCartInfoDTO>> getProducts(@PathVariable String saleId) {
         return new ResponseEntity<>(this.productService.getProductInfoBySaleId(saleId), HttpStatus.OK);
     }
 

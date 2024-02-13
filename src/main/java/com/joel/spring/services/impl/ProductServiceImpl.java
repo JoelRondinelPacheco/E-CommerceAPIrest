@@ -1,24 +1,16 @@
 package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
-import com.joel.spring.product.dto.ProductEditReqDTO;
 import com.joel.spring.product.dto.ProductInfoDTO;
-import com.joel.spring.product.dto.ProductPostReqDTO;
-import com.joel.spring.category.adapter.output.persistence.CategoryEntity;
-import com.joel.spring.product.adapter.out.persistence.ProductEntity;
-import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.product.adapter.out.persistence.ProductRepository;
 import com.joel.spring.category.application.port.input.CategoryService;
 import com.joel.spring.utils.CheckOptional;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;
-import com.joel.spring.utils.products.BuildProductsDTOs;
-import jakarta.transaction.Transactional;
+import com.joel.spring.product.utils.builder.BuildProductsDTOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl{
@@ -26,7 +18,7 @@ public class ProductServiceImpl{
     @Autowired private CategoryService categoryService;
     @Autowired private BuildCategoryDTOs categoryDTOs;
     @Autowired private CheckOptional checkOptional;
-    @Autowired private BuildProductsDTOs productsDTOs;
+    @Autowired private BuildProductsDTOImpl productsDTOs;
 
 
 

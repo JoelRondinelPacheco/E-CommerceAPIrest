@@ -1,7 +1,7 @@
 package com.joel.spring.controllers;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
-import com.joel.spring.dtos.cart.ProductInfoDTO;
+import com.joel.spring.dtos.cart.ProductCartInfoDTO;
 import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
 import com.joel.spring.cart.adapter.out.persistence.cartproduct.CartProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
@@ -26,7 +26,7 @@ public class CartController {
 
 
     @GetMapping("/products")
-    public ResponseEntity<List<ProductInfoDTO>> getCartProducts(HttpServletRequest request) throws NotFoundException {
+    public ResponseEntity<List<ProductCartInfoDTO>> getCartProducts(HttpServletRequest request) throws NotFoundException {
         String id = this.jwtService.getId(request.getHeader("Authorization").substring(7));
         return new ResponseEntity<>(this.cartService.getUserCard(id), HttpStatus.OK);
     }

@@ -1,7 +1,7 @@
 package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
-import com.joel.spring.dtos.cart.ProductInfoDTO;
+import com.joel.spring.dtos.cart.ProductCartInfoDTO;
 import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
 import com.joel.spring.cart.adapter.out.persistence.cartproduct.CartProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
@@ -45,12 +45,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<ProductInfoDTO> getUserCard(String id) throws NotFoundException {
+    public List<ProductCartInfoDTO> getUserCard(String id) throws NotFoundException {
         CartEntity cartEntity = this.findByUserId(id);
-        List<ProductInfoDTO> response = new ArrayList<>();
+        List<ProductCartInfoDTO> response = new ArrayList<>();
         for (CartProductEntity cartProductEntity : cartEntity.getProducts()) {
             response.add(
-                    ProductInfoDTO.builder()
+                    ProductCartInfoDTO.builder()
                             .cartProductId(cartProductEntity.getId())
                             .productId(cartProductEntity.getProduct().getId())
                             .name(cartProductEntity.getProduct().getName())

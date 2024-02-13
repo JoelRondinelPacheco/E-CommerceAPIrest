@@ -1,5 +1,6 @@
 package com.joel.spring.controllers;
 
+import com.joel.spring.product.application.port.input.ProductService;
 import com.joel.spring.product.dto.ProductEditReqDTO;
 import com.joel.spring.product.dto.ProductInfoDTO;
 import com.joel.spring.product.dto.ProductPostReqDTO;
@@ -17,15 +18,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<ProductInfoDTO> create(@RequestBody ProductPostReqDTO body) {
-        return new ResponseEntity<>( this.productService.saveAndReturnDTO(body), HttpStatus.CREATED);
+        return new ResponseEntity<>( this.productService.(body), HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public List<ProductInfoDTO> getAll() {
-        return this.productService.getAllDTO();
-    }
 
     @GetMapping("/{productId}")
     public ResponseEntity<ProductInfoDTO> getById(@PathVariable String productId) throws NotFoundException {

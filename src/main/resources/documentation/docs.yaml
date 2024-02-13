@@ -133,7 +133,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductInfoDTO'
+                $ref: '#/components/schemas/ProductCartInfoDTO'
         '401':
           $ref: '#/components/responses/401Unauthorized'
   /products:
@@ -150,7 +150,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './components/ProductInfoDTO.yaml'
+                  $ref: './components/ProductCartInfoDTO.yaml'
         '401':
           $ref: '#/components/responses/401Unauthorized'
   /products/{productId}:
@@ -172,7 +172,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './components/ProductInfoDTO.yaml'
+                $ref: './components/ProductCartInfoDTO.yaml'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -221,7 +221,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './components/ProductInfoDTO.yaml'
+                $ref: './components/ProductCartInfoDTO.yaml'
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '404':
@@ -246,7 +246,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/ProductInfoDTO' 
+                  $ref: '#/components/schemas/ProductCartInfoDTO'
         '401':
           $ref: '#/components/responses/401Unauthorized'
   /clients:
@@ -449,7 +449,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './components/ProductInfoDTO.yaml'
+                  $ref: './components/ProductCartInfoDTO.yaml'
         '401':
           $ref: '#/components/responses/401Unauthorized'
   /sales/date/{saleDate}:
@@ -507,7 +507,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: './components/ProductInfoDTO.yaml'
+                  $ref: './components/ProductCartInfoDTO.yaml'
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '404':
@@ -600,7 +600,7 @@ components:
     ProductPostReqDTO:
       $ref: './components/ProductPostReqDTO.yaml'
     ProductInfoDTO:
-      $ref: './components/ProductInfoDTO.yaml'
+      $ref: './components/ProductCartInfoDTO.yaml'
   responses:
     400BadRequest:
       description: Bad request

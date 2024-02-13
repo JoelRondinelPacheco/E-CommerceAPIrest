@@ -12,4 +12,4 @@ properties:
   products:
     type: array
     items:
-      $ref: './ProductInfoDTO.yaml'
+      $ref: './ProductCartInfoDTO.yaml'
