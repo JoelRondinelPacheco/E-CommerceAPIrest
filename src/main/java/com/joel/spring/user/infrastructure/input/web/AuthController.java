@@ -4,6 +4,7 @@ import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.dto.UserCredentialsDTO;
 import com.joel.spring.user.dto.RegisterUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,15 +19,15 @@ public class AuthController {
     //TODO array de respuestas al no validar elbody
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterUserDTO newUser) {
+    public ResponseEntity<String> register(@RequestBody RegisterUserDTO newUser) {
         //TODO VALIDATE DTO HERE
-        return null;
+        return new ResponseEntity<>(this.authService.register(newUser), HttpStatus.OK);
     }
 
     @PostMapping("/login")
-    private ResponseEntity<?> login(@RequestBody UserCredentialsDTO userCredentials) {
+    private ResponseEntity<String> login(@RequestBody UserCredentialsDTO userCredentials) {
 
         //TODO VALIDATE DTO HERE
-        return null;
+        return new ResponseEntity<>(this.authService.login(userCredentials), HttpStatus.OK);
     }
 }
