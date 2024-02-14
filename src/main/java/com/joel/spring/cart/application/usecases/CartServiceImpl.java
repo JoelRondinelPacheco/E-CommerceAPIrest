@@ -6,12 +6,14 @@ import com.joel.spring.cart.application.port.input.CartService;
 import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.cartproduct.application.dto.ProductCartInfoDTO;
 import com.joel.spring.exceptions.NotFoundException;
+import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CartServiceImpl implements CartService {
 
 

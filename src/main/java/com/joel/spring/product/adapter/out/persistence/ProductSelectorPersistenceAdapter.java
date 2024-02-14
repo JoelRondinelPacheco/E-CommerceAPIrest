@@ -3,13 +3,15 @@ package com.joel.spring.product.adapter.out.persistence;
 import com.joel.spring.product.application.port.output.ProductSelectorPort;
 import com.joel.spring.product.application.dto.ProductInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ProductSelectorPersistenceAdapter implements ProductSelectorPort {
     @Autowired
-    private ProductRepository productRepository;
+    private ProductDTORepository productDTORepository;
     @Override
     public List<ProductInfoDTO> getByUserId(String userId) {
         return null;
@@ -17,7 +19,7 @@ public class ProductSelectorPersistenceAdapter implements ProductSelectorPort {
 
     @Override
     public ProductInfoDTO getById(String id) {
-        Optional<ProductInfoDTO> productOptional = this.productRepository.getDTOById(id);
+        Optional<ProductInfoDTO> productOptional = this.productDTORepository.getDTOById(id);
         //TODO CREATE GLOBAL FUNCTION
         if (productOptional.isPresent()) {
             return productOptional.get();
@@ -28,6 +30,6 @@ public class ProductSelectorPersistenceAdapter implements ProductSelectorPort {
 
     @Override
     public List<ProductInfoDTO> getAll() {
-        return null;
+        return this.productDTORepository.getAllDTOs();
     }
 }

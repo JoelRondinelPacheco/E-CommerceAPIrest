@@ -13,9 +13,11 @@ import com.joel.spring.product.utils.builder.BuildProductsDTO;
 import com.joel.spring.product.utils.builder.ProductBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductPersistenceImpl implements ProductPersistence {
 
 

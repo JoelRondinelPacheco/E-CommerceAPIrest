@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
 
     @Override
     public List<Category> categoriesById(List<String> categoriesId) {

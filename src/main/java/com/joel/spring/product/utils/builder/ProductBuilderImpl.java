@@ -3,7 +3,9 @@ package com.joel.spring.product.utils.builder;
 import com.joel.spring.product.domain.Product;
 import com.joel.spring.product.application.dto.ProductPersistenceDTO;
 import com.joel.spring.product.application.dto.ProductPostReqDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductBuilderImpl implements ProductBuilder{
     @Override
     public Product product(ProductPostReqDTO productDTO) {
