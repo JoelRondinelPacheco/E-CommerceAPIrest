@@ -8,14 +8,23 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("accountTokenByToken")
-public class AccountTokenSelectorByToken implements TokenSelector<String> {
+public class TokenSelectorImpl implements TokenSelector {
 
     @Autowired
-    private TokenSelectorPort<String> tokenRepository;
+    private TokenSelectorPort tokenRepository;
 
     @Override
-    public AccountToken get(String token) {
-        return this.tokenRepository.get(token);
+    public AccountToken getById(String id) {
+        return null;
+    }
+
+    @Override
+    public AccountToken getByToken(String token) {
+        return null;
+    }
+
+    @Override
+    public AccountToken getByUserEmail(String userEmail) {
+        return null;
     }
 }

@@ -3,7 +3,9 @@ package com.joel.spring.accounttoken.adapter.output.persistence;
 import com.joel.spring.accounttoken.application.port.output.AccountTokenRepository;
 import com.joel.spring.user.application.port.output.AccountTokenPersistencePort;
 import com.joel.spring.user.domain.AccountToken;
+import com.joel.spring.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -15,7 +17,8 @@ public class AccountTokenPersistenceAdapter implements AccountTokenRepository, A
     private JpaMySQLAccountTokenRepository accountTokenRepository;
 
     @Autowired
-    private AccountTokenMapper mapper;
+    @Qualifier("accountTokenMapper")
+    private Mapper<AccountTokenEntity, AccountToken> mapper;
 
     @Override
     public AccountToken getBy(String token) {

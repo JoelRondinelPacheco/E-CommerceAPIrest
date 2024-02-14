@@ -24,10 +24,10 @@ public class CartEntity {
     private Double totalPrice;
 
 
-    @OneToMany(mappedBy = "cartEntity", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     private List<CartProductEntity> products;
 
-    @OneToOne(mappedBy = "cartEntity", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY)
     private UserEntity user;
 
 }

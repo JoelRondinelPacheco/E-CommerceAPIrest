@@ -26,15 +26,10 @@ TODO copiar de aca el metodo apra buscar por token
     private AuthRepositoryPort userRepository;
     @Autowired
     private AccountTokenVerificationUseCase accountTokenVerifier;
-
-    @Autowired
-    @Qualifier("accountTokenByToken")
-    private TokenSelector<String> tokenByAccountToken;
     @Autowired
     private UserSelector userSelector;
     @Autowired
-    @Qualifier("tokenByUserEmail")
-    private TokenSelector<String> tokenByUserEmail;
+    private TokenSelector tokenSelector;
     @Autowired
     private ForgotPasswordTokenUseCaseImpl forgotPasswordToken;
     @Autowired
@@ -71,7 +66,7 @@ TODO copiar de aca el metodo apra buscar por token
         this.emailVerification.existsOrThrows(email);
         this.emailVerification.isValidORThrows(email);
 
-        AccountToken accountToken = this.tokenByUserEmail.get(email);
+        AccountToken accountToken = this.tokenSelector.getByUserEmail(email);
 
         this.forgotPasswordToken.updateToken(accountToken);
         this.accountTokenPersistencePort.save(accountToken);
@@ -87,7 +82,7 @@ TODO copiar de aca el metodo apra buscar por token
 
     @Override
     public String resetPassword(ResetPasswordDTO resetPasswordDTO) {
-        AccountToken accountToken = this.tokenByAccountToken.get(resetPasswordDTO.getToken());
+        AccountToken accountToken = this.tokenSelector.getByToken(resetPasswordDTO.getToken());
 
         this.accountTokenVerifier.verifyToken(accountToken);
         this.accountTokenVerifier.isResetPasswordToken(accountToken);

@@ -1,8 +1,13 @@
 package com.joel.spring.accounttoken.adapter.output.persistence;
 
 import com.joel.spring.user.domain.AccountToken;
+import com.joel.spring.utils.Mapper;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-public class AccountTokenMapper {
+@Component
+@Qualifier("accountTokenMapper")
+public class AccountTokenMapper implements Mapper<AccountTokenEntity, AccountToken> {
 
     public AccountTokenEntity domainToEntity(AccountToken accountToken) {
         return new AccountTokenEntity();

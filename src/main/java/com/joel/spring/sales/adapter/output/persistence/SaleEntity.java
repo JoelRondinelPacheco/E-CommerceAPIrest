@@ -25,7 +25,7 @@ public class SaleEntity {
     private Double totalPrice;
     @ManyToMany
     @JoinTable(name = "rel_sales_products", joinColumns = @JoinColumn(name = "sales_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<ProductEntity> productEntities;
+    private List<ProductEntity> products;
     @ManyToOne
     @JoinColumn(name="client_id")
     private UserEntity client;
@@ -33,9 +33,9 @@ public class SaleEntity {
     public SaleEntity() {
     }
 
-    public SaleEntity(UserEntity client, List<ProductEntity> productEntities, Double totalPrice) {
+    public SaleEntity(UserEntity client, List<ProductEntity> products, Double totalPrice) {
         this.client = client;
-        this.productEntities = productEntities;
+        this.products = products;
         this.totalPrice = totalPrice;
     }
 }
