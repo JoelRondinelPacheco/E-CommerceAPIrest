@@ -1,5 +1,6 @@
 package com.joel.spring.sales.application.usecases;
 
+import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import com.joel.spring.sales.dto.SalePostReqDTO;
 import com.joel.spring.product.application.port.input.ProductSelector;
 import com.joel.spring.product.application.port.output.ProductSelectorPort;
@@ -17,8 +18,7 @@ import java.util.List;
 public class SalePersistenceServiceImpl implements SalePersistenceService {
 
     @Autowired
-    @Qualifier("userReferenceById")
-    private UserSelector<String> userReferenceById;
+    private UserSelector userSelector;
     @Autowired
     @Qualifier("productReferenceById")
     private ProductSelector<String> productsReferenceById;
@@ -39,10 +39,12 @@ public class SalePersistenceServiceImpl implements SalePersistenceService {
             Save sale
          */
         //get reference
-        User user = this.userReferenceById.get(sale.getClientId());
+        User user = this.userSelector.byId(sale.getClientId());
         List<Product> productEntities = new ArrayList<>();
         for (String productId : sale.getProducts() ) {
-            Product productEntity = this.productsReferenceById.get(productId);
+            //Product productEntity = this.productsReferenceById.get(productId);
+            //TODO REFACTOR
+            Product productEntity = new Product();
             productEntities.add(productEntity);
            //TODO update product quantity after sale this.productService.updateQuantity( productEntity.getId(), 1D);
         }

@@ -1,8 +1,9 @@
 package com.joel.spring.user.infrastructure.output.persistence.utils;
 
+import com.joel.spring.user.application.dto.auth.LoginPersistenceInfoDTO;
 import com.joel.spring.user.application.port.output.UserDTOSelectorPort;
 import com.joel.spring.user.domain.User;
-import com.joel.spring.user.dto.UserPersonalInfoDTO;
+import com.joel.spring.user.application.dto.UserPersonalInfoDTO;
 import com.joel.spring.user.infrastructure.output.persistence.JpaMySQLUserRepository;
 import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.utils.Mapper;
@@ -35,6 +36,11 @@ public class UserInfoAdapter implements UserDTOSelectorPort {
 
     @Override
     public UserPersonalInfoDTO byEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public LoginPersistenceInfoDTO loginInfo(String email) {
         return null;
     }
 }

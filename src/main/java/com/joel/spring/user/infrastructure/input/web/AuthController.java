@@ -1,8 +1,8 @@
 package com.joel.spring.user.infrastructure.input.web;
 
 import com.joel.spring.user.application.port.input.AuthService;
-import com.joel.spring.user.dto.UserCredentialsDTO;
-import com.joel.spring.user.dto.RegisterUserDTO;
+import com.joel.spring.user.application.dto.auth.UserCredentialsDTO;
+import com.joel.spring.user.application.dto.auth.RegisterUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

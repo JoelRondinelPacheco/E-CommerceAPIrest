@@ -1,4 +1,4 @@
-package com.joel.spring.user.dto;
+package com.joel.spring.user.application.dto.auth;
 
 public class ResetPasswordDTO extends PasswordsDTO {
     private String token;

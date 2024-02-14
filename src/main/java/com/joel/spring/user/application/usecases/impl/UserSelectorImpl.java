@@ -1,13 +1,18 @@
 package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.user.application.port.input.UserSelector;
+import com.joel.spring.user.application.port.output.UserSelectorPort;
 import com.joel.spring.user.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserSelectorImpl implements UserSelector {
 
+    @Autowired
+    private UserSelectorPort userRepository;
+
     @Override
     public User byEmail(String userEmail) {
-        return null;
+        return this.userRepository.byEmail(userEmail);
     }
 
     @Override

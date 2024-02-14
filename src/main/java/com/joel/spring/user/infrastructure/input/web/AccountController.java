@@ -1,7 +1,7 @@
 package com.joel.spring.user.infrastructure.input.web;
 
 import com.joel.spring.user.application.port.input.AccountService;
-import com.joel.spring.user.dto.ResetPasswordDTO;
+import com.joel.spring.user.application.dto.auth.ResetPasswordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

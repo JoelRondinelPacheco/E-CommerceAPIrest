@@ -1,8 +1,8 @@
 package com.joel.spring.user.application.usecases.utils.impl;
 
 import com.joel.spring.user.application.usecases.utils.PasswordService;
-import com.joel.spring.user.dto.LoginPasswordsDTO;
-import com.joel.spring.user.dto.PasswordsDTO;
+import com.joel.spring.user.application.dto.auth.LoginPasswordsDTO;
+import com.joel.spring.user.application.dto.auth.PasswordsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

@@ -2,19 +2,17 @@ package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.cart.application.port.input.CartService;
 import com.joel.spring.cart.domain.Cart;
+import com.joel.spring.user.application.dto.auth.*;
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.application.port.output.AuthRepositoryPort;
+import com.joel.spring.user.application.port.output.UserDTOSelectorPort;
 import com.joel.spring.user.application.usecases.accounttoken.NewAccountTokenUseCase;
 import com.joel.spring.security.JWTUtilityService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
 import com.joel.spring.user.domain.AccountToken;
 import com.joel.spring.user.domain.User;
-import com.joel.spring.user.dto.LoginPasswordsDTO;
-import com.joel.spring.user.dto.PasswordsDTO;
-import com.joel.spring.user.dto.RegisterUserDTO;
-import com.joel.spring.user.dto.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -37,20 +35,19 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     @Qualifier("newAccount")
     private NewAccountTokenUseCase newUserAccountToken;
+    @Autowired
+    private UserDTOSelectorPort userDTORepository;
 
     @Autowired
-    @Qualifier("userByEmail")
-    private UserSelector<String> userByEmail;
+    private UserSelector userSelector;
 
     @Override
     public String login(UserCredentialsDTO userCredentials) {
-
-        //TODO HANDLE IF EMAIL DONT EXISTS
-        User user = this.userByEmail.get(userCredentials.getEmail());
+    //TODO AGREGAR EXEPCIONES EN REPO
+        LoginPersistenceInfoDTO user = this.userDTORepository.loginInfo(userCredentials.getEmail());
 
         this.passwordService.checkLoginPasswordsOrThrows(new LoginPasswordsDTO(userCredentials.getPassword(), user.getPassword()));
 
-        //todo catch expetions
         return this.jwtService.generateJWT(user.getId());
     }
 

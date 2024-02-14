@@ -1,4 +1,4 @@
-package com.joel.spring.user.dto;
+package com.joel.spring.user.application.dto.auth;
 
 import lombok.Data;
 

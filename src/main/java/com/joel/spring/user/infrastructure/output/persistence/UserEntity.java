@@ -39,7 +39,7 @@ public class UserEntity {
     @OneToMany(mappedBy = "client")
     private List<SaleEntity> sales;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
     private CartEntity cart;
 
