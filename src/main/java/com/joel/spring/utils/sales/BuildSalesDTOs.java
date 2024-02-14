@@ -13,11 +13,12 @@ public class BuildSalesDTOs {
     @Autowired private BuildProductsDTOImpl productsDTOs;
 
     public SaleInfoDTO saleInfoDTO(SaleEntity saleEntity) {
-        return SaleInfoDTO.builder()
+        /*return SaleInfoDTO.builder()
                 .saleId(saleEntity.getId())
                 .totalPrice(saleEntity.getTotalPrice())
                 .client(this.usersDTOs.userPersonalInfoDTO(saleEntity.getClient()))
                 .products(this.productsDTOs.productInfoDTOList(saleEntity.getProductEntities()))
-                .build();
+                .build();*/
+        return null;
     }
 }

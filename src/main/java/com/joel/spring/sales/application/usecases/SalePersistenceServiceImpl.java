@@ -21,7 +21,7 @@ public class SalePersistenceServiceImpl implements SalePersistenceService {
     private UserSelector userSelector;
     @Autowired
     @Qualifier("productReferenceById")
-    private ProductSelector<String> productsReferenceById;
+    private ProductSelector<Product, String> productsReferenceById;
 
     @Autowired
     private ProductSelectorPort productRepository;

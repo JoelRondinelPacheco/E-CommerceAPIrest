@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/saleEntities")
 public class SaleController {
     @Autowired private SaleService saleService;
-    @Autowired private ProductService productService;
 /*
     @GetMapping
     public List<SaleInfoDTO> getAll(){

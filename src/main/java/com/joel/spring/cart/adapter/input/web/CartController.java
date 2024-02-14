@@ -20,10 +20,9 @@ import java.util.List;
 public class CartController {
 
     @Autowired private CartService cartService;
-    @Autowired private CartProductService cartProductService;
     @Autowired private JWTUtilityService jwtService;
 
-
+/*
     @GetMapping("/products")
     public ResponseEntity<List<ProductCartInfoDTO>> getCartProducts(HttpServletRequest request) throws NotFoundException {
         String id = this.jwtService.getId(request.getHeader("Authorization").substring(7));
@@ -47,5 +46,5 @@ public class CartController {
     public ResponseEntity<CartProductEntity> updateQuantity(@RequestBody UpdateQuantityDTO body) throws NotFoundException {
         CartProductEntity cartProductEntity = this.cartProductService.changeQuantity(body);
         return new ResponseEntity<>(cartProductEntity, HttpStatus.OK);
-    }
+    }*/
 }

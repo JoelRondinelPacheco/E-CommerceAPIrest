@@ -4,7 +4,7 @@ import com.joel.spring.user.application.dto.auth.LoginPersistenceInfoDTO;
 import com.joel.spring.user.application.port.output.UserDTOSelectorPort;
 import com.joel.spring.user.domain.User;
 import com.joel.spring.user.application.dto.UserPersonalInfoDTO;
-import com.joel.spring.user.infrastructure.output.persistence.JpaMySQLUserRepository;
+import com.joel.spring.user.infrastructure.output.persistence.UserJpaMySQLRepository;
 import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
 import com.joel.spring.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UserInfoAdapter implements UserDTOSelectorPort {
 
     @Autowired
-    private JpaMySQLUserRepository userRepository;
+    private UserJpaMySQLRepository userRepository;
     @Autowired
     @Qualifier("userMapper")
     private Mapper<UserEntity, User> mapper;

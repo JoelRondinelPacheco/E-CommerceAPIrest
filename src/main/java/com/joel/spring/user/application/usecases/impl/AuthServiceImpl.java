@@ -55,7 +55,6 @@ public class AuthServiceImpl implements AuthService {
     public String register(RegisterUserDTO newUser) {
 
         this.emailVerification.existsOrThrows(newUser.getEmail());
-        this.passwordService.equalsOrThrows(new PasswordsDTO(newUser.getPassword(), newUser.getRepeatedPassword()));
 
         User user = this.create(newUser);
 
@@ -73,6 +72,7 @@ public class AuthServiceImpl implements AuthService {
         return this.getAccountRegisteredOkMessage();
     }
 
+    //TODO REFACTOR A OTRA CLASE???
     private User create(RegisterUserDTO newUser) {
         User user = new User();
         user.setFirstName(newUser.getFirstName());

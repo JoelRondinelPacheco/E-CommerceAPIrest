@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserPersistenceAdapter implements AuthRepositoryPort {
 
     @Autowired
-    private JpaMySQLUserRepository userRepository;
+    private UserJpaMySQLRepository userRepository;
 
     @Autowired
     private UserMapper mapper;

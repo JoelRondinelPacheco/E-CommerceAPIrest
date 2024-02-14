@@ -57,7 +57,7 @@ TODO copiar de aca el metodo apra buscar por token
 
         this.accountTokenVerifier.isValid(user.getAccountToken());
         this.accountTokenVerifier.isValidationAccountToken(user.getAccountToken());
-        
+
         user.setVerified(true);
         user.getAccountToken().setValid(false);
         this.userRepository.update(user);
@@ -99,6 +99,8 @@ TODO copiar de aca el metodo apra buscar por token
 
         String newPassword = this.passwordService.encrypt(resetPasswordDTO.getPassword());
         user.setPassword(newPassword);
+
+        accountToken.setValid(false);
 
         this.userRepository.update(user);
 
