@@ -25,7 +25,6 @@ public class ProductPersistenceImpl implements ProductPersistence {
     private ProductBuilder builder;
     @Autowired
     private BuildProductsDTO dtoBuilder;
-
     @Autowired
     private ProductPersistencePort productPersistencePort;
 
@@ -33,7 +32,7 @@ public class ProductPersistenceImpl implements ProductPersistence {
     private CategoryService categoryService;
     @Autowired
     @Qualifier("productById")
-    private ProductSelector<String> productById;
+    private ProductSelector<ProductInfoDTO, String> productById;
 
     @Override
     public ProductInfoDTO save(ProductPostReqDTO productDTO) {

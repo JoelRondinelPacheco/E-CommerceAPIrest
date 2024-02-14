@@ -1,4 +1,4 @@
-package com.joel.spring.controllers;
+package com.joel.spring.cart.adapter.input.web;
 
 import com.joel.spring.dtos.cart.AddProductToCartDTO;
 import com.joel.spring.dtos.cart.ProductCartInfoDTO;

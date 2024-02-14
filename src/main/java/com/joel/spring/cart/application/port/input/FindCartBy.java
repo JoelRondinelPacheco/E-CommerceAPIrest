@@ -1,4 +1,4 @@
-package com.joel.spring.cart.adapter.input;
+package com.joel.spring.cart.application.port.input;
 
 import com.joel.spring.cart.domain.Cart;
 

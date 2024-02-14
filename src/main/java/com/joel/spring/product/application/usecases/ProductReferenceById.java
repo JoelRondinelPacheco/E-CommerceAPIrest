@@ -10,9 +10,9 @@ import java.util.List;
 
 @Service
 @Qualifier("productReferenceById")
-public class ProductReferenceById implements ProductSelector<String> {
+public class ProductReferenceById implements ProductSelector<Product, String> {
     @Override
-    public List<ProductInfoDTO> get(String s) {
+    public Product get(String s) {
         return null;
     }
     //inyectar repo

@@ -2,7 +2,7 @@ package com.joel.spring.sales.application.usecases;
 
 import com.joel.spring.dtos.sales.SalePostReqDTO;
 import com.joel.spring.product.application.port.input.ProductSelector;
-import com.joel.spring.product.application.port.output.ProductsByUser;
+import com.joel.spring.product.application.port.output.ProductSelectorPort;
 import com.joel.spring.product.domain.Product;
 import com.joel.spring.sales.application.port.input.SalePersistenceService;
 import com.joel.spring.sales.domain.Sale;
@@ -24,7 +24,7 @@ public class SalePersistenceServiceImpl implements SalePersistenceService {
     private ProductSelector<String> productsReferenceById;
 
     @Autowired
-    private ProductsByUser productRepository;
+    private ProductSelectorPort productRepository;
 
     @Override
     public Sale save(SalePostReqDTO sale) {
