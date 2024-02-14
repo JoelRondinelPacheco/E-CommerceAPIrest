@@ -1,4 +1,4 @@
-package com.joel.spring.dtos.users;
+package com.joel.spring.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -2,7 +2,9 @@ package com.joel.spring.cartproduct.domain;
 
 import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.product.domain.Product;
+import lombok.Data;
 
+@Data
 public class CartProduct {
     private String id;
     private Integer quantity;

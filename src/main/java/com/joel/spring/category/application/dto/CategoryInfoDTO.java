@@ -1,4 +1,4 @@
-package com.joel.spring.dtos.categories;
+package com.joel.spring.category.application.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

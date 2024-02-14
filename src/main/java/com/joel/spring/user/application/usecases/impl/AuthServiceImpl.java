@@ -6,7 +6,7 @@ import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.application.port.output.AuthRepositoryPort;
 import com.joel.spring.user.application.usecases.accounttoken.NewAccountTokenUseCase;
-import com.joel.spring.user.application.usecases.JWTUtilityService;
+import com.joel.spring.security.JWTUtilityService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
 import com.joel.spring.user.domain.AccountToken;

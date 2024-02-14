@@ -1,8 +1,8 @@
 package com.joel.spring.validations.users;
 
-import com.joel.spring.dtos.users.AuthResDTO;
+import com.joel.spring.user.dto.AuthResDTO;
 import com.joel.spring.user.dto.UserCredentialsDTO;
-import com.joel.spring.dtos.users.UserPostReqDTO;
+import com.joel.spring.user.dto.UserPostReqDTO;
 
 import java.util.ArrayList;
 import java.util.List;

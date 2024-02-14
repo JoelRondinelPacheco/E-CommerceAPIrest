@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class UpdateQuantityDTO {
-    private String id;
-    private Integer quantity;
+    private String cartProductId;
+    private Long quantity;
 }

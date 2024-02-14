@@ -1,7 +1,7 @@
 package com.joel.spring.sales.adapter.output.persistence;
 
-import com.joel.spring.dtos.sales.SaleInfoDTO;
-import com.joel.spring.dtos.sales.SaleMaxAmountDTO;
+import com.joel.spring.sales.dto.SaleInfoDTO;
+import com.joel.spring.sales.dto.SaleMaxAmountDTO;
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,10 +26,10 @@ public interface JpaMySQLSaleRepository extends JpaRepository<SaleEntity, String
     List<SaleMaxAmountDTO> saleMaxAmount();
 
     @Query("SELECT new com.joel.spring.dtos.saleEntities.SaleInfoDTO(s.id, s.totalPrice," +
-            " new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id, u.firstName, u.lastName, u.email)) FROM SaleEntity s JOIN UserEntity u")
+            " new com.joel.spring.user.dto.UserPersonalInfoDTO(u.id, u.firstName, u.lastName, u.email)) FROM SaleEntity s JOIN UserEntity u")
     List<SaleInfoDTO> getAllSalesDTOs();
 
     @Query("SELECT new com.joel.spring.dtos.saleEntities.SaleInfoDTO(s.id, s.totalPrice," +
-            " new com.joel.spring.dtos.users.UserPersonalInfoDTO(u.id, u.firstName, u.lastName, u.email)) FROM SaleEntity s JOIN UserEntity u WHERE s.id =:saleId")
+            " new com.joel.spring.user.dto.UserPersonalInfoDTO(u.id, u.firstName, u.lastName, u.email)) FROM SaleEntity s JOIN UserEntity u WHERE s.id =:saleId")
     Optional<SaleInfoDTO> getSaleByIdDTO(@Param(("saleId")) String saleId);
 }

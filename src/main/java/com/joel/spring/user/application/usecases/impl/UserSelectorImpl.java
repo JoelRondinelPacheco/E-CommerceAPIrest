@@ -1,9 +1,9 @@
-package com.joel.spring.user.infrastructure.output.persistence;
+package com.joel.spring.user.application.usecases.impl;
 
-import com.joel.spring.user.application.port.output.UserSelectorPort;
+import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.domain.User;
 
-public class UserSelectorPersistenceAdapter implements UserSelectorPort {
+public class UserSelectorImpl implements UserSelector {
 
     @Override
     public User byEmail(String userEmail) {
@@ -17,6 +17,11 @@ public class UserSelectorPersistenceAdapter implements UserSelectorPort {
 
     @Override
     public User byAccountToken(String accountToken) {
+        return null;
+    }
+
+    @Override
+    public User referenceById(String id) {
         return null;
     }
 }

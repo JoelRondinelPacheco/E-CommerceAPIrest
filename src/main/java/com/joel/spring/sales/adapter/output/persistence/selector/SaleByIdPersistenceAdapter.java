@@ -1,6 +1,6 @@
 package com.joel.spring.sales.adapter.output.persistence.selector;
 
-import com.joel.spring.dtos.sales.SaleInfoDTO;
+import com.joel.spring.sales.dto.SaleInfoDTO;
 import com.joel.spring.sales.application.port.output.SaleSelectorRepositoryPort;
 import org.springframework.beans.factory.annotation.Autowired;
 

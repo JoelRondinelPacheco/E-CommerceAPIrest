@@ -1,4 +1,4 @@
-package com.joel.spring.user.application.usecases;
+package com.joel.spring.security;
 
 import com.joel.spring.exceptions.NotFoundException;
 import com.nimbusds.jose.JOSEException;

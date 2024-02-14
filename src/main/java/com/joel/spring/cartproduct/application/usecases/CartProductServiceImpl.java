@@ -6,6 +6,7 @@ import com.joel.spring.cart.application.port.input.CartSelector;
 import com.joel.spring.cart.application.port.output.CartProductPersistencePort;
 import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.cartproduct.application.port.input.CartProductsService;
+import com.joel.spring.cartproduct.application.port.output.CartProductSelector;
 import com.joel.spring.cartproduct.domain.CartProduct;
 import com.joel.spring.product.application.port.output.ProductDomainSelectorPort;
 import com.joel.spring.product.domain.Product;
@@ -21,6 +22,9 @@ public class CartProductServiceImpl implements CartProductsService {
     @Qualifier("cartById")
     private CartSelector<String> cartById;
     @Autowired
+    @Qualifier("cartProductById")
+    private CartProductSelector<CartProduct, String> cartProductById;
+    @Autowired
     private ProductDomainSelectorPort productRepository;
 
     @Override
@@ -33,7 +37,7 @@ public class CartProductServiceImpl implements CartProductsService {
         Product product = this.productRepository.getById(info.getProductId());
 
         CartProduct cartProduct = CartProduct.NewCartProduct(info.getQuantity(), product, cart);
-        this.cartProductRepository.create(cartProduct);
+        this.cartProductRepository.save(cartProduct);
 
         //TODO DEFINE RETURN
         return null;    }
@@ -46,7 +50,14 @@ public class CartProductServiceImpl implements CartProductsService {
 
     @Override
     public String editQuantity(UpdateQuantityDTO info) {
-        return null;
+        CartProduct cartProduct = this.cartProductById.get(info.getCartProductId());
+        //TODO ACTUALIZAR, QUE EN VEZ DE CART PRODUCT RETORNE UN DTO CON LA INFO NECESARIA
+        Product product = cartProduct.getProduct();
+
+        this.updateQuantity(cartProduct, info.getQuantity(), product.getPrice());
+        this.cartProductRepository.save(cartProduct);
+
+        return "todo return message";
     }
 
     @Override
@@ -57,5 +68,10 @@ public class CartProductServiceImpl implements CartProductsService {
     @Override
     public String minusQuantity(UpdateQuantityDTO info) {
         return null;
+    }
+
+    private void updateQuantity(CartProduct cartProduct, Long newQuantity, Double productPrice) {
+        Double newPrice = newQuantity * productPrice;
+        cartProduct.setPrice(newPrice);
     }
 }

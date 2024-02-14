@@ -1,6 +1,6 @@
 package com.joel.spring.product.application.dto;
 
-import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
+import com.joel.spring.category.application.dto.CategoryParentInfoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,6 @@
-package com.joel.spring.services.impl;
+package com.joel.spring.security;
 
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.user.application.usecases.JWTUtilityService;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
