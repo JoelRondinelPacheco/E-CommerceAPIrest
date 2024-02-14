@@ -56,8 +56,8 @@ TODO copiar de aca el metodo apra buscar por token
         User user = this.userSelector.byAccountToken(token);
 
         this.accountTokenVerifier.isValid(user.getAccountToken());
-        this.accountTokenVerifier.isExpired(user.getAccountToken());
-
+        this.accountTokenVerifier.isValidationAccountToken(user.getAccountToken());
+        
         user.setVerified(true);
         user.getAccountToken().setValid(false);
         this.userRepository.update(user);
@@ -73,7 +73,6 @@ TODO copiar de aca el metodo apra buscar por token
 
         AccountToken accountToken = this.tokenByUserEmail.get(email);
 
-        //TODO set expiration date
         this.forgotPasswordToken.updateToken(accountToken);
         this.accountTokenPersistencePort.save(accountToken);
 
@@ -89,7 +88,10 @@ TODO copiar de aca el metodo apra buscar por token
     @Override
     public String resetPassword(ResetPasswordDTO resetPasswordDTO) {
         AccountToken accountToken = this.tokenByAccountToken.get(resetPasswordDTO.getToken());
-        //TODO CHECK EXPIRATION DATE
+
+        this.accountTokenVerifier.verifyToken(accountToken);
+        this.accountTokenVerifier.isResetPasswordToken(accountToken);
+
         User user = this.userSelector.byAccountToken(resetPasswordDTO.getToken());
 
         PasswordsDTO passwords = new PasswordsDTO(resetPasswordDTO.getPassword(), resetPasswordDTO.getRepeatedPassword());
@@ -108,6 +110,7 @@ TODO copiar de aca el metodo apra buscar por token
             throw new RuntimeException("TODO CUSTOM EX");
         }
     }
+
 
     private String getAccountVerificationOk() {
         return this.accountVerificationOk;

@@ -8,7 +8,7 @@ public class ForgotPasswordTokenUseCaseImpl implements ForgotPasswordTokenUseCas
     public AccountToken updateToken(AccountToken accountToken) {
         accountToken.setToken("FORGOT-PASSWORD-TOKEN");
         accountToken.setValid(true);
-        //TODO set invalid date
+        //TODO set expiration date
         return accountToken;
     }
 }

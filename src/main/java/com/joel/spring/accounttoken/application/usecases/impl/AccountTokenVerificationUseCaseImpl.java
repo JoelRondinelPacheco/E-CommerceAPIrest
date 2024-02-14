@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 public class AccountTokenVerificationUseCaseImpl implements AccountTokenVerificationUseCase {
 
     @Override
+    public void verifyToken(AccountToken accountToken) {
+        this.isValid(accountToken);
+        this.isExpired(accountToken);
+    }
+
+    @Override
     public void isValid(AccountToken accountToken) {
         if(!accountToken.isValid()) {
             throw new RuntimeException("TODO CUSTOM EX");
@@ -18,5 +24,15 @@ public class AccountTokenVerificationUseCaseImpl implements AccountTokenVerifica
     @Override
     public void isExpired(AccountToken accountToken) {
     //TODO VERIFY date
+    }
+
+    @Override
+    public void isValidationAccountToken(AccountToken accountToken) {
+
+    }
+
+    @Override
+    public void isResetPasswordToken(AccountToken accountToken) {
+
     }
 }
