@@ -1,6 +1,6 @@
-package com.joel.spring.cart.adapter.out.persistence.repository;
+package com.joel.spring.cartproduct.adapter.output.persistence;
 
-import com.joel.spring.cart.adapter.out.persistence.cartproduct.CartProductEntity;
+import com.joel.spring.cartproduct.adapter.output.persistence.CartProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

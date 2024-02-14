@@ -16,7 +16,7 @@ public class BuildProductsDTOImpl implements BuildProductsDTO {
 
     @Autowired private BuildCategoryDTOs categoryDTOs;
     public ProductInfoDTO productInfoDTO(Product product) {
-        List<CategoryParentInfoDTO> categories = this.categoryDTOs.categoryParentInfoDTOList(product.getCategories());
+      /*  List<CategoryParentInfoDTO> categories = this.categoryDTOs.categoryParentInfoDTOList(product.getCategories());
         return ProductInfoDTO.builder()
                 .id(product.getId())
                 .name(product.getName())
@@ -24,7 +24,8 @@ public class BuildProductsDTOImpl implements BuildProductsDTO {
                 .price(product.getPrice())
                 .stock(product.getStock())
                 .categories(categories)
-                .build();
+                .build();*/
+        return null;
     }
 
     public List<ProductInfoDTO> productInfoDTOList(List<Product> products) {

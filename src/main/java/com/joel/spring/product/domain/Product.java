@@ -1,6 +1,6 @@
 package com.joel.spring.product.domain;
 
-import com.joel.spring.cart.domain.CartProduct;
+import com.joel.spring.cartproduct.domain.CartProduct;
 import com.joel.spring.category.domain.Category;
 import com.joel.spring.sales.domain.Sale;
 import lombok.Data;

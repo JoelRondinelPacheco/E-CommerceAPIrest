@@ -1,4 +1,4 @@
-package com.joel.spring.dtos.cartproduct;
+package com.joel.spring.cart.application.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

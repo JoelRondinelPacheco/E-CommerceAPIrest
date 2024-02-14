@@ -1,14 +1,13 @@
 package com.joel.spring.services.impl;
 
-import com.joel.spring.dtos.cart.AddProductToCartDTO;
-import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
+import com.joel.spring.cartproduct.application.dto.AddProductToCartDTO;
+import com.joel.spring.cart.application.dto.UpdateQuantityDTO;
 import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
-import com.joel.spring.cart.adapter.out.persistence.cartproduct.CartProductEntity;
+import com.joel.spring.cartproduct.adapter.output.persistence.CartProductEntity;
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
-import com.joel.spring.cart.adapter.out.persistence.repository.CartProductRepository;
+import com.joel.spring.cartproduct.adapter.output.persistence.CartProductRepository;
 import com.joel.spring.services.CartProductService;
-import com.joel.spring.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

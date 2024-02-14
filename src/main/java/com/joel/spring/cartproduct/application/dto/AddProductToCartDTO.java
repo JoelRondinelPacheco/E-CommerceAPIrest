@@ -1,4 +1,4 @@
-package com.joel.spring.dtos.cart;
+package com.joel.spring.cartproduct.application.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AddProductToCartDTO {
+    private String cartId;
     private String productId;
     private Integer quantity;
 }

@@ -1,4 +1,4 @@
-package com.joel.spring.cart.adapter.out.persistence.cartproduct;
+package com.joel.spring.cartproduct.adapter.output.persistence;
 
 import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
@@ -20,12 +20,13 @@ public class CartProductEntity {
     @UuidGenerator
     private String id;
     private Integer quantity;
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
     private CartEntity cart;
 }

@@ -1,5 +1,6 @@
-package com.joel.spring.product.adapter.out.persistence;
+package com.joel.spring.product.adapter.out.persistence.mapper;
 
+import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import com.joel.spring.product.domain.Product;
 import com.joel.spring.utils.Mapper;
 import org.springframework.beans.factory.annotation.Qualifier;

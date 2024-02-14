@@ -1,12 +1,12 @@
 package com.joel.spring.cart.adapter.input.web;
 
-import com.joel.spring.dtos.cart.AddProductToCartDTO;
-import com.joel.spring.dtos.cart.ProductCartInfoDTO;
-import com.joel.spring.dtos.cartproduct.UpdateQuantityDTO;
-import com.joel.spring.cart.adapter.out.persistence.cartproduct.CartProductEntity;
+import com.joel.spring.cart.application.port.input.CartService;
+import com.joel.spring.cartproduct.application.dto.AddProductToCartDTO;
+import com.joel.spring.cartproduct.application.dto.ProductCartInfoDTO;
+import com.joel.spring.cart.application.dto.UpdateQuantityDTO;
+import com.joel.spring.cartproduct.adapter.output.persistence.CartProductEntity;
 import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.services.CartProductService;
-import com.joel.spring.services.CartService;
 import com.joel.spring.user.application.usecases.JWTUtilityService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cartEntity")
+@RequestMapping("/cart")
 public class CartController {
 
     @Autowired private CartService cartService;

@@ -41,6 +41,8 @@ public class ProductController {
         return new ResponseEntity<>(this.productById.get(id), HttpStatus.OK);
     }
 
+
+    //TODO COMPLETE
     @PatchMapping
     public ResponseEntity<?> updateProduct(@RequestBody ProductEditReqDTO product) {
         return null;
