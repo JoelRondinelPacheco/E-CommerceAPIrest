@@ -6,16 +6,14 @@ import com.joel.spring.product.application.port.input.ProductPersistence;
 import com.joel.spring.product.application.port.input.ProductSelector;
 import com.joel.spring.product.application.port.output.ProductPersistencePort;
 import com.joel.spring.product.domain.Product;
-import com.joel.spring.product.dto.ProductEditReqDTO;
-import com.joel.spring.product.dto.ProductInfoDTO;
-import com.joel.spring.product.dto.ProductPersistenceDTO;
-import com.joel.spring.product.dto.ProductPostReqDTO;
+import com.joel.spring.product.application.dto.ProductEditReqDTO;
+import com.joel.spring.product.application.dto.ProductInfoDTO;
+import com.joel.spring.product.application.dto.ProductPostReqDTO;
 import com.joel.spring.product.utils.builder.BuildProductsDTO;
 import com.joel.spring.product.utils.builder.ProductBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductPersistenceImpl implements ProductPersistence {
@@ -35,16 +33,15 @@ public class ProductPersistenceImpl implements ProductPersistence {
     private ProductSelector<ProductInfoDTO, String> productById;
 
     @Override
-    public ProductInfoDTO save(ProductPostReqDTO productDTO) {
+    public Product save(ProductPostReqDTO productDTO) {
         //TODO get all entities
         List<Category> categories  = this.categoryService.categoriesById(productDTO.getCategoriesId());
 
         Product product = this.builder.product(productDTO);
         product.setCategories(categories);
 
-        Product productSaved = this.productPersistencePort.save(product);
+        return this.productPersistencePort.save(product);
 
-        return this.dtoBuilder.productInfoDTO(productSaved);
     }
 
     @Override

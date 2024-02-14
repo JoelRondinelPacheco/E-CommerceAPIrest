@@ -1,8 +1,7 @@
 package com.joel.spring.product.adapter.out.persistence;
 
 import com.joel.spring.product.application.port.output.ProductSelectorPort;
-import com.joel.spring.product.domain.Product;
-import com.joel.spring.product.dto.ProductInfoDTO;
+import com.joel.spring.product.application.dto.ProductInfoDTO;
 
 import java.util.List;
 

@@ -10,6 +10,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 /*
+//TODO USER PERSONA INFO AND UPDATE
     @GetMapping
     public List<UserPersonalInfoDTO> getAll () { return this.userService.getAllDTO(); }
 

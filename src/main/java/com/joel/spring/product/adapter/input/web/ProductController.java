@@ -4,9 +4,10 @@ import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.product.application.port.input.ProductPersistence;
 import com.joel.spring.product.application.port.input.ProductSelector;
 import com.joel.spring.product.application.port.input.ProductService;
-import com.joel.spring.product.dto.ProductEditReqDTO;
-import com.joel.spring.product.dto.ProductInfoDTO;
-import com.joel.spring.product.dto.ProductPostReqDTO;
+import com.joel.spring.product.application.dto.ProductEditReqDTO;
+import com.joel.spring.product.application.dto.ProductInfoDTO;
+import com.joel.spring.product.application.dto.ProductPostReqDTO;
+import com.joel.spring.product.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class ProductController {
     private ProductSelector<ProductInfoDTO, String> productById;
 
     @PostMapping
-    public ResponseEntity<ProductInfoDTO> newProduct(@RequestBody ProductPostReqDTO product) {
+    public ResponseEntity<Product> newProduct(@RequestBody ProductPostReqDTO product) {
         //TODO VALIDATE BODY
 
         return new ResponseEntity<>(this.productPersistence.save(product), HttpStatus.OK);

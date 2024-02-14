@@ -1,7 +1,7 @@
 package com.joel.spring.services.impl;
 
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
-import com.joel.spring.product.dto.ProductInfoDTO;
+import com.joel.spring.product.application.dto.ProductInfoDTO;
 import com.joel.spring.product.adapter.out.persistence.ProductRepository;
 import com.joel.spring.category.application.port.input.CategoryService;
 import com.joel.spring.utils.CheckOptional;

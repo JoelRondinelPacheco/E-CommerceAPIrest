@@ -1,4 +1,4 @@
-package com.joel.spring.product.dto;
+package com.joel.spring.product.application.dto;
 
 import com.joel.spring.product.domain.Product;
 import lombok.AllArgsConstructor;

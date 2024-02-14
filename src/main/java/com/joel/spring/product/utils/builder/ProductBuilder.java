@@ -1,10 +1,8 @@
 package com.joel.spring.product.utils.builder;
 
 import com.joel.spring.product.domain.Product;
-import com.joel.spring.product.dto.ProductPersistenceDTO;
-import com.joel.spring.product.dto.ProductPostReqDTO;
-
-import java.util.List;
+import com.joel.spring.product.application.dto.ProductPersistenceDTO;
+import com.joel.spring.product.application.dto.ProductPostReqDTO;
 
 public interface ProductBuilder {
     Product product(ProductPostReqDTO productDTO);

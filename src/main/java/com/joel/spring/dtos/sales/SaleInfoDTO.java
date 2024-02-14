@@ -1,6 +1,6 @@
 package com.joel.spring.dtos.sales;
 
-import com.joel.spring.product.dto.ProductInfoDTO;
+import com.joel.spring.product.application.dto.ProductInfoDTO;
 import com.joel.spring.dtos.users.UserPersonalInfoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

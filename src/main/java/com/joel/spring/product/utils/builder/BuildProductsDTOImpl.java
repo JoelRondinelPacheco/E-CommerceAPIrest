@@ -3,8 +3,7 @@ package com.joel.spring.product.utils.builder;
 
 import com.joel.spring.dtos.categories.CategoryParentInfoDTO;
 import com.joel.spring.product.domain.Product;
-import com.joel.spring.product.dto.ProductInfoDTO;
-import com.joel.spring.product.adapter.out.persistence.ProductEntity;
+import com.joel.spring.product.application.dto.ProductInfoDTO;
 import com.joel.spring.utils.categories.BuildCategoryDTOs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
