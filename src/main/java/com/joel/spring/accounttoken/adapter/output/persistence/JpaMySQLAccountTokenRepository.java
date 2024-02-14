@@ -1,4 +1,4 @@
-package com.joel.spring.user.infrastructure.output.persistence.accounttoken;
+package com.joel.spring.accounttoken.adapter.output.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,12 +1,12 @@
 package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.user.application.port.input.AccountService;
-import com.joel.spring.user.application.port.input.TokenSelector;
+import com.joel.spring.accounttoken.application.port.input.TokenSelector;
 import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.application.port.output.AccountTokenPersistencePort;
-import com.joel.spring.user.application.port.output.AuthRepositoryPort;
-import com.joel.spring.user.application.usecases.accounttoken.AccountTokenVerificationUseCase;
-import com.joel.spring.user.application.usecases.accounttoken.impl.ForgotPasswordTokenUseCaseImpl;
+import com.joel.spring.accounttoken.application.port.output.AuthRepositoryPort;
+import com.joel.spring.accounttoken.application.usecases.AccountTokenVerificationUseCase;
+import com.joel.spring.accounttoken.application.usecases.impl.ForgotPasswordTokenUseCaseImpl;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
 import com.joel.spring.user.domain.AccountToken;
@@ -90,7 +90,7 @@ TODO copiar de aca el metodo apra buscar por token
     public String resetPassword(ResetPasswordDTO resetPasswordDTO) {
         AccountToken accountToken = this.tokenByAccountToken.get(resetPasswordDTO.getToken());
         //TODO CHECK EXPIRATION DATE
-        User user = this.userByAccountToken.get(resetPasswordDTO.getToken());
+        User user = this.userSelector.byAccountToken(resetPasswordDTO.getToken());
 
         PasswordsDTO passwords = new PasswordsDTO(resetPasswordDTO.getPassword(), resetPasswordDTO.getRepeatedPassword());
         this.passwordService.equalsOrThrows(passwords);

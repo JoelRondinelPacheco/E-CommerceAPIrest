@@ -5,9 +5,9 @@ import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.user.application.dto.auth.*;
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.port.input.UserSelector;
-import com.joel.spring.user.application.port.output.AuthRepositoryPort;
+import com.joel.spring.accounttoken.application.port.output.AuthRepositoryPort;
 import com.joel.spring.user.application.port.output.UserDTOSelectorPort;
-import com.joel.spring.user.application.usecases.accounttoken.NewAccountTokenUseCase;
+import com.joel.spring.accounttoken.application.usecases.NewAccountTokenUseCase;
 import com.joel.spring.security.JWTUtilityService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
@@ -43,12 +43,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(UserCredentialsDTO userCredentials) {
-    //TODO AGREGAR EXEPCIONES EN REPO
-        LoginPersistenceInfoDTO user = this.userDTORepository.loginInfo(userCredentials.getEmail());
 
-        this.passwordService.checkLoginPasswordsOrThrows(new LoginPasswordsDTO(userCredentials.getPassword(), user.getPassword()));
+        LoginPersistenceInfoDTO loginInfo = this.userDTORepository.loginInfo(userCredentials.getEmail());
 
-        return this.jwtService.generateJWT(user.getId());
+        this.passwordService.checkLoginPasswordsOrThrows(new LoginPasswordsDTO(userCredentials.getPassword(), loginInfo.getPassword()));
+
+        return this.jwtService.generateJWT(loginInfo.getId());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.joel.spring.user.application.usecases.accounttoken;
+package com.joel.spring.accounttoken.application.usecases;
 
 import com.joel.spring.user.domain.AccountToken;
 

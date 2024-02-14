@@ -1,10 +1,8 @@
 package com.joel.spring.user.infrastructure.output.persistence;
 
-import com.joel.spring.user.application.port.output.AuthRepositoryPort;
+import com.joel.spring.accounttoken.application.port.output.AuthRepositoryPort;
 import com.joel.spring.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Optional;
 
 public class UserPersistenceAdapter implements AuthRepositoryPort {
 

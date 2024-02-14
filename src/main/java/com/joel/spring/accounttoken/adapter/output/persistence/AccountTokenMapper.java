@@ -1,4 +1,4 @@
-package com.joel.spring.user.infrastructure.output.persistence.accounttoken;
+package com.joel.spring.accounttoken.adapter.output.persistence;
 
 import com.joel.spring.user.domain.AccountToken;
 

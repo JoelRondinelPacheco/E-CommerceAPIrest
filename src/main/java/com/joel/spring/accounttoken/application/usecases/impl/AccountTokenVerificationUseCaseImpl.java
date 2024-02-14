@@ -1,6 +1,6 @@
-package com.joel.spring.user.application.usecases.accounttoken.impl;
+package com.joel.spring.accounttoken.application.usecases.impl;
 
-import com.joel.spring.user.application.usecases.accounttoken.AccountTokenVerificationUseCase;
+import com.joel.spring.accounttoken.application.usecases.AccountTokenVerificationUseCase;
 import com.joel.spring.user.domain.AccountToken;
 import org.springframework.stereotype.Component;
 
