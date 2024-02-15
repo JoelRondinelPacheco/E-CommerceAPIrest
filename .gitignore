@@ -4,13 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-./src/main/resources/application.properties
-
-jwtKeys
-/jwtKeys
-
-
-
+src/main/resources/
+src/main/resources/application.properties
 
 ### STS ###
 .apt_generated
