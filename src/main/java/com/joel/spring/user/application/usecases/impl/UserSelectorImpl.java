@@ -4,7 +4,9 @@ import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.application.port.output.UserSelectorPort;
 import com.joel.spring.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserSelectorImpl implements UserSelector {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.joel.spring.sales.dto;
+package com.joel.spring.sales.application.dto;
 
 import com.joel.spring.product.application.dto.ProductInfoDTO;
 import com.joel.spring.user.application.dto.UserPersonalInfoDTO;
@@ -14,13 +14,13 @@ import java.util.List;
 @Data
 @Builder
 public class SaleInfoDTO {
-    private String saleId;
+    private String id;
     private Double totalPrice;
     private UserPersonalInfoDTO client;
     private List<ProductInfoDTO> products;
 
-    public SaleInfoDTO(String saleId, Double totalPrice, UserPersonalInfoDTO client) {
-        this.saleId = saleId;
+    public SaleInfoDTO(String id, Double totalPrice, UserPersonalInfoDTO client) {
+        this.id = id;
         this.totalPrice = totalPrice;
         this.client = client;
     }

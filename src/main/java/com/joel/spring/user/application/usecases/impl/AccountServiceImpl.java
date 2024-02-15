@@ -15,7 +15,9 @@ import com.joel.spring.user.application.dto.auth.PasswordsDTO;
 import com.joel.spring.user.application.dto.auth.ResetPasswordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AccountServiceImpl implements AccountService {
 /*
 TODO copiar de aca el metodo apra buscar por token

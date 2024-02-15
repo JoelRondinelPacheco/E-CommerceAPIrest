@@ -1,7 +1,7 @@
 package com.joel.spring.sales.application.usecases;
 
 import com.joel.spring.product.application.dto.ProductInfoDTO;
-import com.joel.spring.sales.dto.SaleMaxAmountDTO;
+import com.joel.spring.sales.application.dto.SaleMaxAmountDTO;
 import com.joel.spring.sales.application.port.output.SaleServiceRepositoryPort;
 import com.joel.spring.sales.application.port.input.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;

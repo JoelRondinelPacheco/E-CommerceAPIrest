@@ -15,6 +15,8 @@ public class ProductServicePersistenceAdapter implements ProductServicePort {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductDTORepository productDTORepository;
 
     @Override
     public Product update(UpdateStockDTO productStockDTO) {
@@ -23,6 +25,6 @@ public class ProductServicePersistenceAdapter implements ProductServicePort {
 
     @Override
     public List<ProductInfoDTO> lowStockProducts(Long stock) {
-        return this.productRepository.getLowStock(stock);
+        return this.productDTORepository.getLowStock(stock);
     }
 }

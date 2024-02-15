@@ -4,12 +4,14 @@ import com.joel.spring.user.application.usecases.utils.PasswordService;
 import com.joel.spring.user.application.dto.auth.LoginPasswordsDTO;
 import com.joel.spring.user.application.dto.auth.PasswordsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PasswordServiceImpl implements PasswordService {
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
     @Override
     public void equalsOrThrows(PasswordsDTO passwords) {
         if (!passwords.getPassword().equals(passwords.getRepeatedPassword())) {

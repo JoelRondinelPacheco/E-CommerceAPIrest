@@ -1,4 +1,4 @@
-package com.joel.spring.sales.dto;
+package com.joel.spring.sales.application.dto;
 
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import com.joel.spring.user.infrastructure.output.persistence.UserEntity;

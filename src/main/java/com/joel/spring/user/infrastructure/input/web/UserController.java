@@ -1,14 +1,11 @@
 package com.joel.spring.user.infrastructure.input.web;
 
-import com.joel.spring.user.application.port.input.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/clients")
 public class UserController {
-    @Autowired
-    private UserService userService;
 /*
 //TODO USER PERSONA INFO AND UPDATE
     @GetMapping

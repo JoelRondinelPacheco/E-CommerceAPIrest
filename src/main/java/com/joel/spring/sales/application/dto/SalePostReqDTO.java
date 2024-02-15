@@ -1,4 +1,4 @@
-package com.joel.spring.sales.dto;
+package com.joel.spring.sales.application.dto;
 
 import lombok.Data;
 

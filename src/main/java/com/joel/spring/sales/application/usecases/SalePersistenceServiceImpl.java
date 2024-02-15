@@ -1,7 +1,6 @@
 package com.joel.spring.sales.application.usecases;
 
-import com.joel.spring.product.adapter.out.persistence.ProductEntity;
-import com.joel.spring.sales.dto.SalePostReqDTO;
+import com.joel.spring.sales.application.dto.SalePostReqDTO;
 import com.joel.spring.product.application.port.input.ProductSelector;
 import com.joel.spring.product.application.port.output.ProductSelectorPort;
 import com.joel.spring.product.domain.Product;

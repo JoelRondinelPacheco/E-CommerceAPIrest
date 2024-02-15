@@ -1,6 +1,6 @@
 package com.joel.spring.utils.sales;
 
-import com.joel.spring.sales.dto.SaleInfoDTO;
+import com.joel.spring.sales.application.dto.SaleInfoDTO;
 import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import com.joel.spring.product.utils.builder.BuildProductsDTOImpl;
 import com.joel.spring.utils.users.BuildUsersDTOs;

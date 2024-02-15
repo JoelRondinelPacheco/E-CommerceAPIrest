@@ -1,6 +1,6 @@
 package com.joel.spring.sales.application.port.input;
 
-import com.joel.spring.sales.dto.SalePostReqDTO;
+import com.joel.spring.sales.application.dto.SalePostReqDTO;
 import com.joel.spring.sales.domain.Sale;
 
 public interface SalePersistenceService {
