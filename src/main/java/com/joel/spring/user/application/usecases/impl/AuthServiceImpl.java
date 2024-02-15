@@ -2,6 +2,8 @@ package com.joel.spring.user.application.usecases.impl;
 
 import com.joel.spring.cart.application.port.input.CartService;
 import com.joel.spring.cart.domain.Cart;
+import com.joel.spring.mail.application.dto.SendMailDTO;
+import com.joel.spring.mail.application.port.input.MailService;
 import com.joel.spring.user.application.dto.auth.*;
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.port.input.UserSelector;
@@ -41,6 +43,9 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserSelector userSelector;
 
+    @Autowired
+    private MailService mailService;
+
     @Override
     public String login(UserCredentialsDTO userCredentials) {
 
@@ -68,6 +73,9 @@ public class AuthServiceImpl implements AuthService {
 
         //TODO SEND EMAIL
 
+        SendMailDTO mail = new SendMailDTO(userRegistered.getEmail(), "Verify account", accountToken.getToken());
+
+        this.mailService.sendRegisterEmail(mail);
 
         return this.getAccountRegisteredOkMessage();
     }
