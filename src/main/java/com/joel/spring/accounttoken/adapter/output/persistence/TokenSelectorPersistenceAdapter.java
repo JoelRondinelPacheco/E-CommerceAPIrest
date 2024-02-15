@@ -1,7 +1,7 @@
 package com.joel.spring.accounttoken.adapter.output.persistence;
 
 import com.joel.spring.accounttoken.application.port.output.TokenSelectorPort;
-import com.joel.spring.user.domain.AccountToken;
+import com.joel.spring.accounttoken.domain.AccountToken;
 import org.springframework.stereotype.Component;
 
 @Component

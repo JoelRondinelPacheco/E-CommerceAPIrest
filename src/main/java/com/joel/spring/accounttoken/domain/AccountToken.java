@@ -1,7 +1,6 @@
-package com.joel.spring.user.domain;
+package com.joel.spring.accounttoken.domain;
 
 import com.joel.spring.user.util.AccountTokenType;
-import lombok.Data;
 
 import java.util.Date;
 

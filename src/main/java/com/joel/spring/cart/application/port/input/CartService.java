@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface CartService {
     Cart create();
-
-    List<ProductCartInfoDTO> getUserCard(String id) throws NotFoundException;
+    Long cartProductsQuantity(String cartId);
+    List<ProductCartInfoDTO> getUserCard(String id);
 }

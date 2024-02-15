@@ -13,7 +13,7 @@ import com.joel.spring.accounttoken.application.usecases.NewAccountTokenUseCase;
 import com.joel.spring.security.JWTUtilityService;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
-import com.joel.spring.user.domain.AccountToken;
+import com.joel.spring.accounttoken.domain.AccountToken;
 import com.joel.spring.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

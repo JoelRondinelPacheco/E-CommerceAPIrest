@@ -1,5 +1,6 @@
 package com.joel.spring.user.domain;
 
+import com.joel.spring.accounttoken.domain.AccountToken;
 import com.joel.spring.cart.domain.Cart;
 import com.joel.spring.sales.domain.Sale;
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserSelectorImpl implements UserSelector {
+    //TODO Complete
 
     @Autowired
     private UserSelectorPort userRepository;

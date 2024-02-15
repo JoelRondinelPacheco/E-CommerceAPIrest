@@ -1,7 +1,7 @@
 package com.joel.spring.accounttoken.application.usecases.impl;
 
 import com.joel.spring.accounttoken.application.usecases.ForgotPasswordTokenUseCase;
-import com.joel.spring.user.domain.AccountToken;
+import com.joel.spring.accounttoken.domain.AccountToken;
 import org.springframework.stereotype.Component;
 
 @Component

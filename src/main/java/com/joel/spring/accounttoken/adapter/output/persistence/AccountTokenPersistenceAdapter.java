@@ -2,7 +2,7 @@ package com.joel.spring.accounttoken.adapter.output.persistence;
 
 import com.joel.spring.accounttoken.application.port.output.AccountTokenRepository;
 import com.joel.spring.user.application.port.output.AccountTokenPersistencePort;
-import com.joel.spring.user.domain.AccountToken;
+import com.joel.spring.accounttoken.domain.AccountToken;
 import com.joel.spring.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,6 +20,7 @@ public class AccountTokenPersistenceAdapter implements AccountTokenRepository, A
     @Qualifier("accountTokenMapper")
     private Mapper<AccountTokenEntity, AccountToken> mapper;
 
+    // TODO CREATE ADAPTER SELECTOR
     @Override
     public AccountToken getBy(String token) {
         Optional<AccountTokenEntity> accountToken = this.accountTokenRepository.findByToken(token);

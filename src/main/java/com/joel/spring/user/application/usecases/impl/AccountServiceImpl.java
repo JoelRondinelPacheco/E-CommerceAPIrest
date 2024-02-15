@@ -11,7 +11,7 @@ import com.joel.spring.accounttoken.application.usecases.AccountTokenVerificatio
 import com.joel.spring.accounttoken.application.usecases.impl.ForgotPasswordTokenUseCaseImpl;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;
 import com.joel.spring.user.application.usecases.utils.PasswordService;
-import com.joel.spring.user.domain.AccountToken;
+import com.joel.spring.accounttoken.domain.AccountToken;
 import com.joel.spring.user.domain.User;
 import com.joel.spring.user.application.dto.auth.PasswordsDTO;
 import com.joel.spring.user.application.dto.auth.ResetPasswordDTO;
