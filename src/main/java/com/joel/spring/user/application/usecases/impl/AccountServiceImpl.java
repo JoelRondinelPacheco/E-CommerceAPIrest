@@ -1,5 +1,7 @@
 package com.joel.spring.user.application.usecases.impl;
 
+import com.joel.spring.mail.application.dto.SendMailDTO;
+import com.joel.spring.mail.application.port.input.MailService;
 import com.joel.spring.user.application.port.input.AccountService;
 import com.joel.spring.accounttoken.application.port.input.TokenSelector;
 import com.joel.spring.user.application.port.input.UserSelector;
@@ -14,15 +16,10 @@ import com.joel.spring.user.domain.User;
 import com.joel.spring.user.application.dto.auth.PasswordsDTO;
 import com.joel.spring.user.application.dto.auth.ResetPasswordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AccountServiceImpl implements AccountService {
-/*
-TODO copiar de aca el metodo apra buscar por token
-    @Autowired
-    private AccountTokenRepository accountTokenRepository;*/
 
     @Autowired
     private AuthRepositoryPort userRepository;
@@ -40,14 +37,13 @@ TODO copiar de aca el metodo apra buscar por token
     private AccountTokenPersistencePort accountTokenPersistencePort;
     @Autowired
     private PasswordService passwordService;
+    @Autowired
+    private MailService mailService;
 
     private String accountVerificationOk = "Account verification succesfully";
     private String forgotPasswordMessage = "Forgot password message response";
     private String resetPasswordOkMessage = "Reset password ok message";
-    /*
-    TODO
-        Create account token whit jwt
-     */
+
     @Override
     public String validate(String token) {
         User user = this.userSelector.byAccountToken(token);
@@ -64,21 +60,18 @@ TODO copiar de aca el metodo apra buscar por token
 
     @Override
     public String forgotPassword(String email) {
-        //TODO COMBINE IN ONE METHOD
+
         this.emailVerification.existsOrThrows(email);
         this.emailVerification.isValidORThrows(email);
 
         AccountToken accountToken = this.tokenSelector.getByUserEmail(email);
 
         this.forgotPasswordToken.updateToken(accountToken);
-        this.accountTokenPersistencePort.save(accountToken);
+        AccountToken accountTokenSaved = this.accountTokenPersistencePort.save(accountToken);
 
-        //TODO handle exception
+        SendMailDTO mail = new SendMailDTO(email, "Reset password", accountTokenSaved.getToken());
+        this.mailService.sendForgotPassword(mail);
 
-        /*
-        TODO
-            send email
-         */
         return this.getForgotPasswordMessage();
     }
 
@@ -103,13 +96,6 @@ TODO copiar de aca el metodo apra buscar por token
 
         return this.getResetPasswordOkMessage();
     }
-
-    private void checkUserAccountVerified(User user) {
-        if (!user.isVerified()) {
-            throw new RuntimeException("TODO CUSTOM EX");
-        }
-    }
-
 
     private String getAccountVerificationOk() {
         return this.accountVerificationOk;

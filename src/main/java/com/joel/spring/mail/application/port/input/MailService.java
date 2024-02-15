@@ -5,5 +5,7 @@ import com.joel.spring.mail.application.dto.SendMailDTO;
 public interface MailService {
 
     String sendRegisterEmail(SendMailDTO info);
+
+    String sendForgotPassword(SendMailDTO info);
     String send(SendMailDTO mail);
 }

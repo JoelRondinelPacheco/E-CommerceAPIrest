@@ -23,6 +23,11 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
+    public String sendForgotPassword(SendMailDTO info) {
+        return null;
+    }
+
+    @Override
     public String send(SendMailDTO mailDTO) {
         MailSenderDTO info = new MailSenderDTO(mailDTO.getTo(), mailDTO.getSubject(), mailDTO.getMessage(), fromMail);
         return this.mailSender.send(info);
