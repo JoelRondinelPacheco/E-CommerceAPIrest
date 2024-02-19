@@ -28,7 +28,7 @@ public class UserSelectorPersistenceAdapter implements UserSelectorPort {
     @Override
     public User byId(String userId) {
 
-        Optional<UserEntity> optional = this.userRepository.findById()
+        Optional<UserEntity> optional = this.userRepository.findById(userId);
         return null;
     }
 

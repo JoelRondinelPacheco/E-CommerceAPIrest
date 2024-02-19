@@ -13,6 +13,6 @@ public interface AccountTokenMySQLRepository extends JpaRepository<AccountTokenE
     Optional<AccountTokenEntity> findByToken(String token);
 
     //TODO VER SI FUNCIONA
-    @Query("SELECT u.account_token_id FROM UserEntity u WHERE u.email = :email")
+    @Query("SELECT u.accountToken FROM UserEntity u WHERE u.email = :email")
     Optional<AccountTokenEntity> findByUserEmail(@Param("email") String email);
 }

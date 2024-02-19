@@ -10,7 +10,14 @@ import org.springframework.stereotype.Component;
 public class AccountTokenMapper implements Mapper<AccountTokenEntity, AccountToken> {
 
     public AccountTokenEntity domainToEntity(AccountToken accountToken) {
-        return new AccountTokenEntity();
+        AccountTokenEntity accountTokenEntity = new AccountTokenEntity();
+        accountTokenEntity.setToken(accountTokenEntity.getToken());
+        accountTokenEntity.setAccountTokenType(accountToken.getTokenType());
+        accountTokenEntity.setValid(accountToken.isValid());
+        accountTokenEntity.setExpires(accountToken.getExpires());
+        
+        return accountTokenEntity;
+
     }
 
     public AccountToken entityToDomain(AccountTokenEntity accountTokenEntity) {

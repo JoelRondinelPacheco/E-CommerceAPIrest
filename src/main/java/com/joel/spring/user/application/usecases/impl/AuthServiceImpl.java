@@ -72,7 +72,8 @@ public class AuthServiceImpl implements AuthService {
         User userRegistered = this.authRepository.register(user);
 
         SendMailDTO mail = new SendMailDTO(userRegistered.getEmail(), "Verify account", accountToken.getToken());
-        this.mailService.sendRegisterEmail(mail);
+        System.out.println(mail.getMessage());
+        //TODO this.mailService.sendRegisterEmail(mail);
 
         return this.getAccountRegisteredOkMessage();
     }
