@@ -2,7 +2,7 @@ package com.joel.spring.utils.categories;
 
 import com.joel.spring.category.application.dto.CategoryInfoDTO;
 import com.joel.spring.category.application.dto.CategoryParentInfoDTO;
-import com.joel.spring.category.adapter.output.persistence.CategoryEntity;
+import com.joel.spring.category.adapter.output.persistence.entity.CategoryEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.joel.spring.category.adapter.output.persistence;
+package com.joel.spring.category.adapter.output.persistence.entity;
 
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import jakarta.persistence.*;
@@ -19,16 +19,11 @@ public class CategoryEntity {
     @UuidGenerator
     private String id;
     private String name;
-    //private String image;
     private String description;
     private Integer displayOrder;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id")
-    private CategoryEntity parent;
-
-    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-    private List<CategoryEntity> children;
+    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<SubCategoryEntity> subCategories;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "rel_category_product", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))

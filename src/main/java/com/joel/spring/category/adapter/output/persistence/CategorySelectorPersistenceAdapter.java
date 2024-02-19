@@ -1,5 +1,6 @@
 package com.joel.spring.category.adapter.output.persistence;
 
+import com.joel.spring.category.adapter.output.persistence.entity.CategoryEntity;
 import com.joel.spring.category.application.port.outpout.CategorySelectorPort;
 import com.joel.spring.category.domain.Category;
 import com.joel.spring.utils.Mapper;
@@ -23,6 +24,7 @@ public class CategorySelectorPersistenceAdapter implements CategorySelectorPort 
     @Override
     public Category getById(String id) {
         Optional<CategoryEntity> optional = this.categoryRepository.findById(id);
+        //Category cat = this.categoryRepository.findById(id).map(this.mapper::entityToDomain).orElseThrow();
         if(optional.isPresent()){
             return this.mapper.entityToDomain(optional.get());
         }

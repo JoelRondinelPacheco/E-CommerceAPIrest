@@ -1,6 +1,6 @@
 package com.joel.spring.product.adapter.out.persistence.mapper;
 
-import com.joel.spring.category.adapter.output.persistence.CategoryEntity;
+import com.joel.spring.category.adapter.output.persistence.entity.CategoryEntity;
 import com.joel.spring.category.domain.Category;
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import com.joel.spring.product.domain.Product;

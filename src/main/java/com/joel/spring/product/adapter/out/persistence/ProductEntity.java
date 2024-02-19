@@ -2,7 +2,7 @@ package com.joel.spring.product.adapter.out.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.joel.spring.cartproduct.adapter.output.persistence.CartProductEntity;
-import com.joel.spring.category.adapter.output.persistence.CategoryEntity;
+import com.joel.spring.category.adapter.output.persistence.entity.CategoryEntity;
 import com.joel.spring.sales.adapter.output.persistence.SaleEntity;
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,5 +1,6 @@
 package com.joel.spring.category.adapter.output.persistence;
 
+import com.joel.spring.category.adapter.output.persistence.entity.CategoryEntity;
 import com.joel.spring.category.application.dto.CategoryInfoDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
