@@ -19,7 +19,6 @@ public class UserPersistenceAdapter implements AuthRepositoryPort {
 
     @Override
     public User register(User user) {
-        //TODO REFACTO PARA QUE SEA MAS LEGIBLE
         UserEntity userSaved = this.userRepository.save(this.mapper.domainToEntity(user));
         return this.mapper.entityToDomain(userSaved);
     }

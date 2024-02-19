@@ -25,6 +25,10 @@ public class UserMapper implements Mapper<UserEntity, User> {
     public User entityToDomain(UserEntity userEntity) {
         User user = new User();
         user.setId(userEntity.getId());
+        user.setFirstName(userEntity.getFirstName());
+        user.setLastName(userEntity.getLastName());
+        user.setEmail(userEntity.getEmail());
+        user.setVerified(userEntity.isVerified());
         return user;
     }
 
