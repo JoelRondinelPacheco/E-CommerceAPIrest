@@ -11,7 +11,7 @@ public interface CategoryService {
     List<Category> categoriesById(List<String> categoriesId);
     Category getCategoryById(String id) throws NotFoundException;
     public List<CategoryInfoDTO> categoryInfoDTOList(String parentId);
-    public CategoryParentInfoDTO categoryParentInfoDTO(String id) throws NotFoundException;
+    public CategoryParentInfoDTO categoryParentInfoDTO(String id);
     public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<String> categories);
     List<CategoryParentInfoDTO> categoryParentInfoDTOListByProductId(String id);
     List<String> categoriesIdByProduct(String productId);

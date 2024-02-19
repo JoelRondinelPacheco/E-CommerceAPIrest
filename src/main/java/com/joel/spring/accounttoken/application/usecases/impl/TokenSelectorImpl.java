@@ -14,16 +14,16 @@ public class TokenSelectorImpl implements TokenSelector {
 
     @Override
     public AccountToken getById(String id) {
-        return null;
+        return this.tokenRepository.getById(id);
     }
 
     @Override
     public AccountToken getByToken(String token) {
-        return null;
+        return this.tokenRepository.getByToken(token);
     }
 
     @Override
     public AccountToken getByUserEmail(String userEmail) {
-        return null;
+        return this.tokenRepository.getByUserEmail(userEmail);
     }
 }

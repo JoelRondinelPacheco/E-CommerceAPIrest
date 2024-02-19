@@ -1,8 +1,6 @@
-package com.joel.spring.user.infrastructure.output.persistence;
+package com.joel.spring.user.adapter.output.persistence;
 
 import org.springframework.data.repository.Repository;
-
-import java.util.Optional;
 
 @org.springframework.stereotype.Repository
 public interface UtilsUserRepository extends Repository<UserEntity, String> {

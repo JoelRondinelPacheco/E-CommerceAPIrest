@@ -1,5 +1,6 @@
 package com.joel.spring.category.application.usecases;
 
+import com.joel.spring.category.application.port.outpout.CategorySelectorPort;
 import com.joel.spring.category.domain.Category;
 import com.joel.spring.category.application.dto.CategoryInfoDTO;
 import com.joel.spring.category.application.dto.CategoryParentInfoDTO;
@@ -14,23 +15,21 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
+    @Autowired
+    private CategorySelectorPort categorySelectorPort;
 
     @Override
     public List<Category> categoriesById(List<String> categoriesId) {
         List<Category> categories = new ArrayList<>();
         for (String id : categoriesId) {
-            try {
-                categories.add(this.getCategoryById(id));
-            } catch (NotFoundException e) {
-                continue;
-            }
+            categories.add(this.getCategoryById(id));
         }
         return categories;
     }
 
     @Override
-    public Category getCategoryById(String id) throws NotFoundException {
-        return null;
+    public Category getCategoryById(String id) {
+        return this.categorySelectorPort.getById(id);
     }
 
     @Override
@@ -39,7 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryParentInfoDTO categoryParentInfoDTO(String id) throws NotFoundException {
+    public CategoryParentInfoDTO categoryParentInfoDTO(String id) {
         return null;
     }
 

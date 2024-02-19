@@ -7,6 +7,6 @@ import com.joel.spring.product.application.dto.UpdateStockDTO;
 import java.util.List;
 
 public interface ProductServicePort {
-    Product update(UpdateStockDTO productStockDTO);
+    Product updateStock(UpdateStockDTO productStockDTO);
     List<ProductInfoDTO> lowStockProducts(Long stock);
 }

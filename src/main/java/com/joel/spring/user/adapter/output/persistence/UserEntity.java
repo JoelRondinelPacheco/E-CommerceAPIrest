@@ -1,4 +1,4 @@
-package com.joel.spring.user.infrastructure.output.persistence;
+package com.joel.spring.user.adapter.output.persistence;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.joel.spring.cart.adapter.out.persistence.entity.CartEntity;
@@ -29,7 +29,7 @@ public class UserEntity {
     private String lastName;
     private String email;
     private String password;
-    private boolean enabled;
+    private boolean verified;
 
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -52,7 +52,6 @@ public class UserEntity {
         this.email = email;
         this.password = password;
         this.accountToken = accountToken;
-        this.enabled = false;
 
     }
 }

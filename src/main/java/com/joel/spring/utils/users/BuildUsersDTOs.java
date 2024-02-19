@@ -1,7 +1,7 @@
 package com.joel.spring.utils.users;
 
 import com.joel.spring.user.application.dto.UserPersonalInfoDTO;
-import com.joel.spring.user.infrastructure.output.persistence.UserEntity;
+import com.joel.spring.user.adapter.output.persistence.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component

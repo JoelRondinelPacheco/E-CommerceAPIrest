@@ -1,4 +1,4 @@
-package com.joel.spring.user.infrastructure.input.web;
+package com.joel.spring.user.adapter.input.web;
 
 import com.joel.spring.user.application.dto.auth.PasswordsDTO;
 import com.joel.spring.user.application.port.input.AuthService;

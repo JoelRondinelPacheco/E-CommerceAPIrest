@@ -1,4 +1,4 @@
-package com.joel.spring.user.infrastructure.output.persistence;
+package com.joel.spring.user.adapter.output.persistence;
 
 import com.joel.spring.user.application.port.output.UserSelectorPort;
 import com.joel.spring.user.domain.User;
@@ -27,6 +27,8 @@ public class UserSelectorPersistenceAdapter implements UserSelectorPort {
 
     @Override
     public User byId(String userId) {
+
+        Optional<UserEntity> optional = this.userRepository.findById()
         return null;
     }
 

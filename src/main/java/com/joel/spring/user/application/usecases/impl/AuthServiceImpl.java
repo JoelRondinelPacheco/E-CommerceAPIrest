@@ -7,7 +7,7 @@ import com.joel.spring.mail.application.port.input.MailService;
 import com.joel.spring.user.application.dto.auth.*;
 import com.joel.spring.user.application.port.input.AuthService;
 import com.joel.spring.user.application.port.input.UserSelector;
-import com.joel.spring.accounttoken.application.port.output.AuthRepositoryPort;
+import com.joel.spring.user.application.port.output.AuthRepositoryPort;
 import com.joel.spring.user.application.port.output.UserDTOSelectorPort;
 import com.joel.spring.accounttoken.application.usecases.NewAccountTokenUseCase;
 import com.joel.spring.security.JWTUtilityService;
@@ -77,13 +77,13 @@ public class AuthServiceImpl implements AuthService {
         return this.getAccountRegisteredOkMessage();
     }
 
-    //TODO REFACTOR A OTRA CLASE???
     private User create(RegisterUserDTO newUser) {
         User user = new User();
         user.setFirstName(newUser.getFirstName());
         user.setLastName(newUser.getLastName());
         user.setEmail(newUser.getEmail());
         user.setPassword(this.passwordService.encrypt(newUser.getPassword()));
+        user.setVerified(false);
 
         return user;
     }

@@ -12,6 +12,6 @@ public class CategoryById implements CategorySelector<String> {
     private CategorySelectorPort categoryRepository;
     @Override
     public Category get(String categoryId) {
-        return this.categoryRepository.get(categoryId);
+        return this.categoryRepository.getById(categoryId);
     }
 }

@@ -18,7 +18,8 @@ public class NewAccountTokenUseCaseImpl implements NewAccountTokenUseCase {
     public AccountToken create() {
         String token = this.generateNewAccountToken();
         AccountToken accountToken = AccountToken.NewUserAccountToken(token);
-        return this.accountTokenPersistencePort.save(accountToken);
+        return accountToken;
+        //return this.accountTokenPersistencePort.save(accountToken);
     }
 
     private String generateNewAccountToken() {

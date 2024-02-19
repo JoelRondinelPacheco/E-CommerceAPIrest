@@ -6,7 +6,7 @@ import com.joel.spring.user.application.port.input.AccountService;
 import com.joel.spring.accounttoken.application.port.input.TokenSelector;
 import com.joel.spring.user.application.port.input.UserSelector;
 import com.joel.spring.user.application.port.output.AccountTokenPersistencePort;
-import com.joel.spring.accounttoken.application.port.output.AuthRepositoryPort;
+import com.joel.spring.user.application.port.output.AuthRepositoryPort;
 import com.joel.spring.accounttoken.application.usecases.AccountTokenVerificationUseCase;
 import com.joel.spring.accounttoken.application.usecases.impl.ForgotPasswordTokenUseCaseImpl;
 import com.joel.spring.user.application.usecases.utils.EmailVerification;

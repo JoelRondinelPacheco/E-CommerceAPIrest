@@ -14,9 +14,11 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductServicePort updateStock;
+    private ProductServicePort productServicePort;
     @Override
     public ProductInfoDTO updateStock(UpdateStockDTO newStock) {
+        this.productServicePort.updateStock(newStock);
+
         return null;
     }
 

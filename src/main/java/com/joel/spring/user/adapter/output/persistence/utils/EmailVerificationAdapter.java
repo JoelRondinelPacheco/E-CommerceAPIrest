@@ -1,7 +1,7 @@
-package com.joel.spring.user.infrastructure.output.persistence.utils;
+package com.joel.spring.user.adapter.output.persistence.utils;
 
 import com.joel.spring.user.application.port.output.EmailVerificationPort;
-import com.joel.spring.user.infrastructure.output.persistence.UtilsUserRepository;
+import com.joel.spring.user.adapter.output.persistence.UtilsUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

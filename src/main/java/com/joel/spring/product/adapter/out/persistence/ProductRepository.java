@@ -19,4 +19,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, String> 
     int updateQuantity(@Param("id") String id, @Param("quantity") Double quantity);
 
 
+    @Modifying
+    @Query("UPDATE ProductEntity p SET p.stock = :stock WHERE p.id = :id")
+    int updateStock(@Param("id") String id, @Param("stock") Long stock);
+
 }

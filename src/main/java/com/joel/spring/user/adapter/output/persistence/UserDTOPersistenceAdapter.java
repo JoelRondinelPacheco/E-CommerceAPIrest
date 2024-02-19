@@ -1,9 +1,8 @@
-package com.joel.spring.user.infrastructure.output.persistence;
+package com.joel.spring.user.adapter.output.persistence;
 
 import com.joel.spring.user.application.dto.UserPersonalInfoDTO;
 import com.joel.spring.user.application.dto.auth.LoginPersistenceInfoDTO;
 import com.joel.spring.user.application.port.output.UserDTOSelectorPort;
-import com.joel.spring.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.joel.spring.user.infrastructure.input.web;
+package com.joel.spring.user.adapter.input.web;
 
 
 import org.springframework.web.bind.annotation.*;

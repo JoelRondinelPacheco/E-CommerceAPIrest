@@ -1,8 +1,7 @@
-package com.joel.spring.user.infrastructure.output.persistence;
+package com.joel.spring.user.adapter.output.persistence;
 
 import com.joel.spring.user.application.dto.UserPersonalInfoDTO;
 import com.joel.spring.user.application.dto.auth.LoginPersistenceInfoDTO;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

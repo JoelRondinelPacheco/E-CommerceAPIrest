@@ -1,4 +1,4 @@
-package com.joel.spring.accounttoken.application.port.output;
+package com.joel.spring.user.application.port.output;
 
 import com.joel.spring.user.domain.User;
 
