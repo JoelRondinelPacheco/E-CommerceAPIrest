@@ -13,6 +13,7 @@ public class ProductBuilderImpl implements ProductBuilder{
         product.setName(productDTO.getName());
         product.setBrand(productDTO.getBrand());
         product.setStock(productDTO.getStock());
+        product.setCategoriesId(productDTO.getCategoriesId());
         return product;
     }
 

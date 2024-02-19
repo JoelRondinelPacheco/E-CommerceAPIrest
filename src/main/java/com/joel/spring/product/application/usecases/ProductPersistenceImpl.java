@@ -37,10 +37,10 @@ public class ProductPersistenceImpl implements ProductPersistence {
     @Override
     public Product save(ProductPostReqDTO productDTO) {
 
-        List<Category> categories  = this.categoryService.categoriesById(productDTO.getCategoriesId());
+        //List<Category> categories  = this.categoryService.categoriesById(productDTO.getCategoriesId());
 
         Product product = this.builder.product(productDTO);
-        product.setCategories(categories);
+        //product.setCategories(categories);
 
         return this.productPersistencePort.save(product);
     }

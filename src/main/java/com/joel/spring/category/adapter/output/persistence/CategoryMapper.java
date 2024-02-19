@@ -15,6 +15,12 @@ public class CategoryMapper implements Mapper<CategoryEntity, Category> {
 
     @Override
     public CategoryEntity domainToEntity(Category category) {
-        return null;
+        CategoryEntity categoryEntity = new CategoryEntity().builder()
+                .id(category.getId())
+                .name(category.getName())
+                .description(category.getDescription())
+                .build();
+
+        return categoryEntity;
     }
 }

@@ -15,7 +15,7 @@ public class AccountTokenMapper implements Mapper<AccountTokenEntity, AccountTok
         accountTokenEntity.setAccountTokenType(accountToken.getTokenType());
         accountTokenEntity.setValid(accountToken.isValid());
         accountTokenEntity.setExpires(accountToken.getExpires());
-        
+
         return accountTokenEntity;
 
     }

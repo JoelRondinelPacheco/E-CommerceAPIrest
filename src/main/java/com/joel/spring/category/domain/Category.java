@@ -1,9 +1,11 @@
 package com.joel.spring.category.domain;
 
 import com.joel.spring.product.domain.Product;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class Category {
     private String id;
     private String name;
@@ -11,4 +13,6 @@ public class Category {
     private Category parent;
     private List<Category> children;
     private List<Product> products;
+
+
 }

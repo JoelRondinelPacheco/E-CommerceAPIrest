@@ -20,4 +20,5 @@ public class Product {
     private List<Sale> sales;
     private List<Category> categories;
     private List<CartProduct> cartsProducts;
+    private List<String> categoriesId;
 }

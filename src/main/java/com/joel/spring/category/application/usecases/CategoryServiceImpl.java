@@ -20,17 +20,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> categoriesById(List<String> categoriesId) {
-        List<Category> categories = new ArrayList<>();
-        for (String id : categoriesId) {
-            categories.add(this.getCategoryById(id));
-        }
-        return categories;
+        return this.categorySelectorPort.getCategoriesByIds(categoriesId);
     }
 
-    @Override
-    public Category getCategoryById(String id) {
-        return this.categorySelectorPort.getById(id);
-    }
 
     @Override
     public List<CategoryInfoDTO> categoryInfoDTOList(String parentId) {
@@ -54,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<String> categoriesIdByProduct(String productId) {
-        return null;
+    return null;
     }
     /*
         public List<CategoryEntity> getListCategoriesById(List<String> categoriesId) {

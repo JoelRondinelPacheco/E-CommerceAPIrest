@@ -2,10 +2,7 @@ package com.joel.spring.category.adapter.output.persistence;
 
 import com.joel.spring.product.adapter.out.persistence.ProductEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.List;
@@ -16,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class CategoryEntity {
     @Id
     @UuidGenerator

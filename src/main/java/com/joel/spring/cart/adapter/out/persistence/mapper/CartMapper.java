@@ -17,6 +17,9 @@ public class CartMapper implements Mapper<CartEntity, Cart> {
 
     @Override
     public CartEntity domainToEntity(Cart cart) {
-        return null;
+        CartEntity cartEntity = new CartEntity();
+        cartEntity.setTotalPrice(cart.getTotalPrice());
+        return cartEntity;
+
     }
 }

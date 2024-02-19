@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -27,5 +28,10 @@ public class CategorySelectorPersistenceAdapter implements CategorySelectorPort 
         }
         //TODO CUSTOM EX
         throw new RuntimeException("TODO CUSTOM EX");
+    }
+
+    @Override
+    public List<Category> getCategoriesByIds(List<String> ids) {
+        return this.categoryRepository.findAllById(ids).stream().map(this.mapper::entityToDomain).toList();
     }
 }
