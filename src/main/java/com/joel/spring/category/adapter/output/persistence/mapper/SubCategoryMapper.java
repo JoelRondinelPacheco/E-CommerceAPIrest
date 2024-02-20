@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface SubCategoryMapper extends Mapper<SubCategoryEntity, SubCategory> {
     List<SubCategory> entityToDomainList(List<SubCategoryEntity> subCategoryEntities);
+    List<SubCategoryEntity> domaintToEntityList(List<SubCategory> subCategories);
 }

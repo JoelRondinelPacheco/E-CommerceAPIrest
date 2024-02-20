@@ -27,9 +27,14 @@ public class CategoryPersistenceAdapter implements CategoryPersistencePort {
     @Override
     public Category save(Category category) {
 
+        System.out.println("PREE");
+        System.out.println(category);
         CategoryEntity categoryEntity = this.categoryMapper.domainToEntity(category);
+        System.out.println("pre saved");
+        System.out.println(categoryEntity);
         CategoryEntity categoryEntitySaved = this.categoryRepository.save(categoryEntity);
 
+        System.out.println(categoryEntitySaved);
         return this.categoryMapper.entityToDomain(categoryEntitySaved);
     }
 }

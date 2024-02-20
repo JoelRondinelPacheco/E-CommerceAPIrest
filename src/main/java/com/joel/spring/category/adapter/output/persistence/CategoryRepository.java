@@ -12,8 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, String> {
+    /*
     @Query("SELECT new com.joel.spring.category.application.dto.CategoryInfoDTO(cat.id, cat.name, cat.displayOrder) FROM CategoryEntity cat WHERE cat.parent.id = :parentId")
-    List<CategoryInfoDTO> categoryInfoDTOByParentId(@Param("parentId") String parentId);
+    List<CategoryInfoDTO> categoryInfoDTOByParentId(@Param("parentId") String parentId);*/
 
     @Query("SELECT new com.joel.spring.category.application.dto.CategoryInfoDTO(c.id, c.name, c.displayOrder) FROM CategoryEntity c WHERE c.id = :id")
     Optional<CategoryInfoDTO> categoryInfoDTOById(@Param("id") String id);

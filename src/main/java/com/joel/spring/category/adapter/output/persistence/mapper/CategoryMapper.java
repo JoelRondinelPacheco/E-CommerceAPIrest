@@ -15,11 +15,11 @@ import java.util.List;
 public class CategoryMapper implements Mapper<CategoryEntity, Category> {
 
     @Autowired
-    private SubCategoryMapper mapper;
+    private SubCategoryMapper subCategoryMapper;
 
     @Override
     public Category entityToDomain(CategoryEntity categoryEntity) {
-        List<SubCategory> subCategories = this.mapper.entityToDomainList(categoryEntity.getSubCategories());
+        List<SubCategory> subCategories = this.subCategoryMapper.entityToDomainList(categoryEntity.getSubCategories());
 
         Category category = Category.builder()
                 .id(categoryEntity.getId())
@@ -37,8 +37,8 @@ public class CategoryMapper implements Mapper<CategoryEntity, Category> {
                 .id(category.getId())
                 .name(category.getName())
                 .description(category.getDescription())
+                .subCategories(this.subCategoryMapper.domaintToEntityList(category.getSubCategories()))
                 .build();
-
 
         return categoryEntity;
     }

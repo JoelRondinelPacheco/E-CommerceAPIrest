@@ -1,6 +1,6 @@
 package com.joel.spring.product.application.dto;
 
-import com.joel.spring.category.application.dto.CategoryParentInfoDTO;
+import com.joel.spring.category.application.dto.CategoryInfoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +18,7 @@ public class ProductInfoDTO {
     private String brand;
     private Double price;
     private Long stock;
-    private List<CategoryParentInfoDTO> categories;
+    private List<CategoryInfoDTO> categories;
 
     public ProductInfoDTO(String id, String name, String brand, Double price, Long stock) {
         this.id = id;

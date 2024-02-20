@@ -14,4 +14,4 @@ properties:
   categories:
     type: array
     items:
-      $ref: './CategoryParentInfoDTO.yaml'
+      $ref: './CategoryInfoDTO.yaml'

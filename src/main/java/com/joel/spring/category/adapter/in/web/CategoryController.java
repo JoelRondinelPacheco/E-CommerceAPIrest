@@ -1,6 +1,7 @@
 package com.joel.spring.category.adapter.in.web;
 
 import com.joel.spring.category.application.dto.NewCategoryDTO;
+import com.joel.spring.category.application.dto.NewSubCategory;
 import com.joel.spring.category.application.port.input.CategoryPersistence;
 import com.joel.spring.category.application.port.input.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,13 @@ public class CategoryController {
 
     @PostMapping
     private ResponseEntity<?> addCategory(@RequestBody NewCategoryDTO body) {
+        System.out.println(body);
         this.categoryPersistence.newCategory(body);
-        return null;
+        System.out.println(body.getName());
+        System.out.println(body.getDescription());
+        for(NewSubCategory n : body.getSubCategories()) {
+            System.out.println(n.getName());
+        }
+        return ResponseEntity.ok("Ok");
     }
 }

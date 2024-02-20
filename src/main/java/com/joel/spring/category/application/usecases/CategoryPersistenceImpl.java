@@ -38,6 +38,7 @@ public class CategoryPersistenceImpl implements CategoryPersistence {
                 .description(categoryDTO.getDescription())
                 .subCategories(subCategories)
                 .build();
+        System.out.println(category);
 
         return this.categoryRepository.save(category);
 

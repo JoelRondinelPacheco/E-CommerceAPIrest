@@ -3,13 +3,10 @@ package com.joel.spring.category.application.usecases;
 import com.joel.spring.category.application.port.outpout.CategorySelectorPort;
 import com.joel.spring.category.domain.Category;
 import com.joel.spring.category.application.dto.CategoryInfoDTO;
-import com.joel.spring.category.application.dto.CategoryParentInfoDTO;
-import com.joel.spring.exceptions.NotFoundException;
 import com.joel.spring.category.application.port.input.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,17 +27,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryParentInfoDTO categoryParentInfoDTO(String id) {
+    public CategoryInfoDTO categoryParentInfoDTO(String id) {
         return null;
     }
 
     @Override
-    public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<String> categories) {
+    public List<CategoryInfoDTO> categoryParentInfoDTOList(List<String> categories) {
         return null;
     }
 
     @Override
-    public List<CategoryParentInfoDTO> categoryParentInfoDTOListByProductId(String id) {
+    public List<CategoryInfoDTO> categoryParentInfoDTOListByProductId(String id) {
         return null;
     }
 
@@ -69,12 +66,12 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryInfoDTO> categoryInfoDTOList(String parentId) {
         return this.categoryRepository.categoryInfoDTOByParentId(parentId);
     }
-    public CategoryParentInfoDTO categoryParentInfoDTO(String id) throws NotFoundException {
+    public CategoryInfoDTO categoryParentInfoDTO(String id) throws NotFoundException {
         Optional<CategoryInfoDTO> optional = this.categoryRepository.categoryInfoDTOById(id);
         //Info de parent
         CategoryInfoDTO parentInfo =  this.checkOptional.checkOptionalOk(optional);
         List<CategoryInfoDTO> children = this.categoryInfoDTOList(id);
-        return CategoryParentInfoDTO.builder()
+        return CategoryInfoDTO.builder()
                 .id(parentInfo.getId())
                 .name(parentInfo.getName())
                 .categoryOrder(parentInfo.getCategoryOrder())
@@ -82,8 +79,8 @@ public class CategoryServiceImpl implements CategoryService {
                 .build();
     }
 
-    public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<String> categories) {
-        List<CategoryParentInfoDTO> categoriesDTO = new ArrayList<>();
+    public List<CategoryInfoDTO> categoryParentInfoDTOList(List<String> categories) {
+        List<CategoryInfoDTO> categoriesDTO = new ArrayList<>();
         for (String id : categories) {
             try {
                 categoriesDTO.add(this.categoryParentInfoDTO(id));
@@ -94,7 +91,7 @@ public class CategoryServiceImpl implements CategoryService {
         return categoriesDTO;
     }
 
-    public List<CategoryParentInfoDTO> categoryParentInfoDTOListByProductId(String id) {
+    public List<CategoryInfoDTO> categoryParentInfoDTOListByProductId(String id) {
         List<String> categoriesId = this.categoriesIdByProduct(id);
         return this.categoryParentInfoDTOList(categoriesId);
     }

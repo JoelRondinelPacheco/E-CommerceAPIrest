@@ -23,7 +23,9 @@ public class SubCategoryMapperImpl implements SubCategoryMapper {
 
     @Override
     public SubCategoryEntity domainToEntity(SubCategory subCategory) {
-        return null;
+        return SubCategoryEntity.builder()
+                .name(subCategory.getName())
+                .build();
     }
 
     @Override
@@ -35,5 +37,16 @@ public class SubCategoryMapperImpl implements SubCategoryMapper {
         }
 
         return subCategories;
+    }
+
+    @Override
+    public List<SubCategoryEntity> domaintToEntityList(List<SubCategory> subCategories) {
+        List<SubCategoryEntity> subCategoryEntities = new ArrayList<>();
+
+        for (SubCategory s : subCategories) {
+            subCategoryEntities.add(this.domainToEntity(s));
+        }
+
+        return subCategoryEntities;
     }
 }

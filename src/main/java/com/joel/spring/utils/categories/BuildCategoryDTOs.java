@@ -1,7 +1,6 @@
 package com.joel.spring.utils.categories;
 
 import com.joel.spring.category.application.dto.CategoryInfoDTO;
-import com.joel.spring.category.application.dto.CategoryParentInfoDTO;
 import com.joel.spring.category.adapter.output.persistence.entity.CategoryEntity;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +9,10 @@ import java.util.List;
 
 @Component
 public class BuildCategoryDTOs {
-    public CategoryParentInfoDTO categoryParentInfoDTO(CategoryEntity categoryEntity) {
+    /*
+    public CategoryInfoDTO categoryParentInfoDTO(CategoryEntity categoryEntity) {
         List<CategoryInfoDTO> children = this.categoryInfoDTOSList(categoryEntity.getChildren());
-        return CategoryParentInfoDTO.builder()
+        return CategoryInfoDTO.builder()
                 .id(categoryEntity.getId())
                 .name(categoryEntity.getName())
                 .categoryOrder(categoryEntity.getDisplayOrder())
@@ -20,8 +20,8 @@ public class BuildCategoryDTOs {
                 .build();
     }
 
-    public List<CategoryParentInfoDTO> categoryParentInfoDTOList(List<CategoryEntity> categories) {
-        List<CategoryParentInfoDTO> categoriesDTO = new ArrayList<>();
+    public List<CategoryInfoDTO> categoryParentInfoDTOList(List<CategoryEntity> categories) {
+        List<CategoryInfoDTO> categoriesDTO = new ArrayList<>();
         for (CategoryEntity categoryEntity : categories) {
             categoriesDTO.add(this.categoryParentInfoDTO(categoryEntity));
         }
@@ -42,5 +42,5 @@ public class BuildCategoryDTOs {
             children.add(this.categoryInfoDTO(categoryEntity));
         }
         return children;
-    }
+    }*/
 }

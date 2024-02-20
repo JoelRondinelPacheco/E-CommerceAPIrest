@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -13,4 +15,5 @@ public class CategoryInfoDTO {
     private String id;
     private String name;
     private Integer categoryOrder;
+    private List<String> subCategories;
 }
