@@ -44,6 +44,17 @@ public class AccountServiceImpl implements AccountService {
     private String forgotPasswordMessage = "Forgot password message response";
     private String resetPasswordOkMessage = "Reset password ok message";
 
+    public AccountServiceImpl(
+            AccountTokenVerificationUseCase accountTokenVerifier,
+            UserSelector userSelector,
+            AuthRepositoryPort userRepository
+
+    ) {
+        this.accountTokenVerifier = accountTokenVerifier;
+        this.userSelector = userSelector;
+        this.userRepository = userRepository;
+    }
+
     @Override
     public String validate(String token) {
         User user = this.userSelector.byAccountToken(token);

@@ -5,7 +5,9 @@ import com.joel.spring.category.application.port.outpout.CategorySelectorPort;
 import com.joel.spring.category.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoryById implements CategorySelector<String> {
     @Autowired
     @Qualifier("categoryById")
