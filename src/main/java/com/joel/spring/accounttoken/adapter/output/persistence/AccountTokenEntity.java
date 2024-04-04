@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -29,5 +29,5 @@ public class AccountTokenEntity {
     private AccountTokenType accountTokenType;
 
     private boolean valid;
-    private Date expires;
+    private LocalDate expires;
 }

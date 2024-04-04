@@ -2,14 +2,14 @@ package com.joel.spring.accounttoken.domain;
 
 import com.joel.spring.user.util.AccountTokenType;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class AccountToken {
     private String id;
     private String token;
     private AccountTokenType tokenType;
     private boolean valid;
-    private Date expires;
+    private LocalDate expires;
 
     public AccountToken(){
 
@@ -18,7 +18,6 @@ public class AccountToken {
         this.token = token;
         this.tokenType = AccountTokenType.VALIDATE_ACCOUNT;
         this.valid = true;
-
     }
     public static AccountToken NewUserAccountToken (String token) {
         return new AccountToken(token);
@@ -56,11 +55,11 @@ public class AccountToken {
         this.valid = valid;
     }
 
-    public Date getExpires() {
+    public LocalDate getExpires() {
         return expires;
     }
 
-    public void setExpires(Date expires) {
+    public void setExpires(LocalDate expires) {
         this.expires = expires;
     }
 }

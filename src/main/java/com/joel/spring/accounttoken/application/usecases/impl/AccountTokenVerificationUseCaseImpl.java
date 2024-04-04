@@ -2,7 +2,11 @@ package com.joel.spring.accounttoken.application.usecases.impl;
 
 import com.joel.spring.accounttoken.application.usecases.AccountTokenVerificationUseCase;
 import com.joel.spring.accounttoken.domain.AccountToken;
+import com.joel.spring.user.util.AccountTokenType;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 
 @Component
@@ -23,7 +27,11 @@ public class AccountTokenVerificationUseCaseImpl implements AccountTokenVerifica
 
     @Override
     public void isExpired(AccountToken accountToken) {
-    //TODO VERIFY date
+    if (accountToken.getTokenType().equals(AccountTokenType.RESET_PASSWORD)) {
+        if (accountToken.getExpires().isBefore(LocalDate.now())) {
+            throw new RuntimeException("Token expired");
+        }
+    }
     }
 
     @Override
