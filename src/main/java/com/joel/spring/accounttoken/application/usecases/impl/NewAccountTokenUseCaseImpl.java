@@ -17,9 +17,7 @@ public class NewAccountTokenUseCaseImpl implements NewAccountTokenUseCase {
     @Override
     public AccountToken create() {
         String token = this.generateNewAccountToken();
-        AccountToken accountToken = AccountToken.NewUserAccountToken(token);
-        return accountToken;
-        //return this.accountTokenPersistencePort.save(accountToken);
+        return AccountToken.NewUserAccountToken(token);
     }
 
     private String generateNewAccountToken() {
